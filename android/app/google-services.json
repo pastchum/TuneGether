@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "159280700402",
+    "project_id": "tunegether",
+    "storage_bucket": "tunegether.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:159280700402:android:7e407bf845578e3f50a96b",
+        "android_client_info": {
+          "package_name": "com.tunegether"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAz4Cyo5XHbi3SsVTWk0WvK2bx_UeFnJiM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -1,0 +1,6 @@
+framework module Pods_TuneGether_TuneGetherTests {
+  umbrella header "Pods-TuneGether-TuneGetherTests-umbrella.h"
+
+  export *
+  module * { export * }
+}
