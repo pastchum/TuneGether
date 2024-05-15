@@ -9,9 +9,11 @@ import styles from '../../components/Styles';
 import { useAuth } from '../../context/Auth-context';
 
 function CreateAccountScreen() {
+    //set hooks for emails and password
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
 
+    //get create account function
     const { createAcc } = useAuth();
 
     return (
@@ -38,7 +40,7 @@ function CreateAccountScreen() {
                 placeholder='Re-enter your Password'
                 onChangeText={null}
                 secureTextEntry
-                //create logic for ensuring password is same
+                //create logic for ensuring password is same to be done at later date
             />
 
             <Button title='Create Account' onPress={() => createAcc(email, password)} />

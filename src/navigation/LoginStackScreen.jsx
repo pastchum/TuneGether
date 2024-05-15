@@ -18,10 +18,10 @@ function LoginStackScreen() {
     return (
       <LoginStack.Navigator>
         { user ? (
-          //signed in
+          //if user is signed in, direct here
           <LoginStack.Screen name="Profile" component={ProfileScreen} />
         ) : (
-          //not signed in
+          //if user not signed in
           <>
             <LoginStack.Screen name="Sign In" component={LoginScreen} />
             <LoginStack.Screen name="CreateAccount" component={CreateAccountScreen} />
