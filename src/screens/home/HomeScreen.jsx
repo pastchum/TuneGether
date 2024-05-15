@@ -1,5 +1,6 @@
 import React from 'react';
 import { View, Text, Platform } from 'react-native';
+import SwipeFunction from '../../Swiping/SwipeFunction';
 
 const HomeScreen = () => {
     return (
@@ -8,9 +9,9 @@ const HomeScreen = () => {
             justifyContent: 'center', 
             alignItems: 'center'           
         }}>
-            <Text>
-                HOME PAGE TO BE SET UP IN A LATER REVISION
-            </Text>
+            <View>
+                <SwipeFunction />
+            </View>
         </View>
     )
 };

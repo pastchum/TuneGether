@@ -40,7 +40,6 @@ function LoginScreen({ navigation }) {
                     onPress={() => navigation.navigate('CreateAccount')}>
                 </Button>
             </View>
-            
 
         </View>
     )
