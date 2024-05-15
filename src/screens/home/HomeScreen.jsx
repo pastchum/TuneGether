@@ -1,9 +1,10 @@
 import React from 'react';
-import { View, Text, Platform } from 'react-native';
+import { View, Text, Platform, TouchableOpacity } from 'react-native';
 import SwipeFunction from '../../Swiping/SwipeFunction';
 import { Profile1, Profile2 } from '../../Swiping/tmp_profiles/profiles';
+import styles from '../../components/Styles';
 
-const HomeScreen = () => {
+const HomeScreen = ({ navigation }) => {
     const profileList = [Profile1, Profile2];
 
     return (
@@ -13,7 +14,7 @@ const HomeScreen = () => {
             alignItems: 'center'           
         }}>
             <View>
-                <SwipeFunction profileList={profileList}/>
+                <SwipeFunction profileList={profileList} navigation={navigation}/>
             </View>
         </View>
     )

@@ -31,6 +31,13 @@ const styles = StyleSheet.create({
         justifyContent: 'space-between'
     },
 
+    /* touchable opacity button styles */
+    startChatButton: {
+      height: 60,
+      width: "100%",
+      fontSize: 16,
+      fontWeight: 'bold'
+    },
     
     /* text styles */
     titleText: {

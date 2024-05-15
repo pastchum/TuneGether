@@ -1,10 +1,13 @@
-import React, { useState } from 'react';
-import { View, Text, TouchableHighlight, FlatList, ScrollView, Image } from 'react-native';
+import React from 'react';
+import { View, TouchableOpacity, FlatList} from 'react-native';
 import styles, { phoneWidth } from '../components/Styles';
+import { profiles } from './tmp_profiles/profiles';
 
-function SwipeFunction( { profileList } ) {
+function SwipeFunction( { profileList, navigation } ) {
     const profileRender = ({ item }) => (
-        (item.generateRender())
+        <TouchableOpacity onPress={() => navigation.navigate("ProfileView", { profileId: item.getId()})}>
+            {item.generateRender()}
+        </TouchableOpacity>
     );
     
     const Divider = () => (
@@ -27,6 +30,7 @@ function SwipeFunction( { profileList } ) {
                 snapToInterval={phoneWidth}
                 showsHorizontalScrollIndicator={false}
                 ItemSeparatorComponent={Divider}
+                keyExtractor={item => item.getId()}
                 />
         </View>
     )

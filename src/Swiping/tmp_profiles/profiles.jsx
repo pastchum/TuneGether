@@ -9,11 +9,17 @@ class Profile {
     #pic;
     #instrument;
     #bio;
-    constructor (name, pic, instrument, bio, ) {
+    #id
+    constructor (name, pic, instrument, bio, id) {
         this.#name = name;
         this.#pic = pic;
         this.#instrument = instrument;
         this.#bio = bio;
+        this.#id = id;
+    }
+
+    getId() {
+        return this.#id;
     }
 
     generateRender() {
@@ -23,7 +29,7 @@ class Profile {
             <View style={{justifyContent:'center', alignItems: 'center'}}>
                 <Text style={styles.titleText}>{this.#name}</Text>
                 <Image source={this.#pic} style={styles.displayPhoto} />
-                <View style={styles.container}>
+                <View style={{marginTop: 30}}>
                     <Text style={styles.subHeader}>Instrument</Text>
                     <Text>{this.#instrument}</Text>
                     <View style={{marginTop: 30}}>
@@ -41,6 +47,7 @@ export const Profile1 = new Profile(
     profilePic1,
     'bass',
     'I love cats and I like to play bass!!',
+    0
 );
 
 export const Profile2 = new Profile(
@@ -48,6 +55,7 @@ export const Profile2 = new Profile(
     profilePic2,
     'bass, guitar, keyboard',
     'I love dogs and I like to play bass, guitar or keyboard!!',
+    1
 );
 
 export const profiles = [Profile1, Profile2];
