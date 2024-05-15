@@ -1,15 +1,22 @@
-import { StyleSheet } from "react-native";
+import { Dimensions, StyleSheet } from "react-native";
+
+export const {phoneWidth, phoneHeight} = Dimensions.get("window");
 
 const styles = StyleSheet.create({
     container: {
       flex: 1,
       padding: 20,
-      justifyContent: 'center'
+      justifyContent: 'center',
+      width: phoneWidth,
+      maxHeight: phoneHeight,
     },
     
     profileContainer: {
       flex: 1,
-      padding: 10
+      padding: 10,
+      width: "100%",
+      maxHeight: "100%",
+      backgroundColor: "#8392ab"
     },
 
     input: {
@@ -38,8 +45,8 @@ const styles = StyleSheet.create({
     
     /* image styles */
     displayPhoto: {
-      width: 200,
-      height: 200
+      width: 300,
+      height: 300
     }
 
   });
