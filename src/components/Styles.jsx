@@ -7,7 +7,8 @@ const styles = StyleSheet.create({
       flex: 1,
       padding: 20,
       justifyContent: 'center',
-      width: phoneWidth,
+      alignItems:'center',
+      maxWidth: phoneWidth,
       maxHeight: phoneHeight,
     },
     
@@ -15,7 +16,9 @@ const styles = StyleSheet.create({
       flex: 1,
       padding: 10,
       width: "100%",
-      maxHeight: "100%",
+      maxWidth: phoneWidth,
+      height: "100%",
+      maxHeight: phoneHeight,     
       backgroundColor: "#8392ab"
     },
 
@@ -24,6 +27,7 @@ const styles = StyleSheet.create({
         marginBottom: 12,
         borderWidth: 1,
         padding: 10,
+        width: 200
     },
     
     bottomRowButtons: {
@@ -33,15 +37,23 @@ const styles = StyleSheet.create({
 
     /* touchable opacity button styles */
     startChatButton: {
+      padding: 20,
+      backgroundColor: "burlywood",
       height: 60,
       width: "100%",
-      fontSize: 16,
-      fontWeight: 'bold'
+      borderRadius: 10,
+      alignItems: 'center'
     },
     
     /* text styles */
     titleText: {
       fontSize: 24,
+      fontWeight: 'bold'
+    },
+
+    buttonText: {
+      color: 'white',
+      fontSize: 16,
       fontWeight: 'bold'
     },
 

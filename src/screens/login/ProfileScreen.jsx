@@ -12,9 +12,8 @@ function ProfileScreen() {
     return (
         <View>
             <Text>
-                ProfileScreen
-                Email:
-                
+                User Profile Screen
+                {/* full implementation to be done at later date */}
             </Text>
             <Button title='sign out' onPress={signOut}></Button>
         </View>

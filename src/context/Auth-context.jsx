@@ -3,32 +3,32 @@ import auth from '@react-native-firebase/auth';
 
 const AuthContext = createContext(null);
 
-// Provider component that wraps your app and provides an AuthContext
+// provider to wrap app with context
 export const AuthProvider = ({ children }) => {
     const [user, setUser] = useState(null);
     const [loading, setLoading] = useState(true);
 
-    // Listen to the Firebase Auth state and set the user state
+    //set user state based on firebase auth context
     useEffect(() => {
         const unsubscribe = auth().onAuthStateChanged(async authenticatedUser => {
             setUser(authenticatedUser);
             setLoading(false);
         });
 
-        return unsubscribe; // Unsubscribe on unmount
+        return unsubscribe;
     }, []);
 
-    // Sign in function
+    // signin function
     const signIn = async (email, password) => {
         try {
             await auth().signInWithEmailAndPassword(email, password);
         } catch (error) {
             console.error('Login failed: ', error);
-            throw error;  // Propagate error
+            throw error;  
         }
     };
 
-    // Create account function
+    // create account function
     const createAcc = async (email, password) => {
         try {
             await auth().createUserWithEmailAndPassword(email, password);
@@ -38,17 +38,17 @@ export const AuthProvider = ({ children }) => {
         }
     };
 
-    // Sign out function
+    // signout function
     const signOut = async () => {
         try {
             await auth().signOut();
         } catch (error) {
             console.error('Sign out failed: ', error);
-            throw error;  // Propagate error
+            throw error;  
         }
     };
 
-    // Make the context object:
+    // context object:
     const value = {
         user,
         loading,
@@ -57,7 +57,6 @@ export const AuthProvider = ({ children }) => {
         signOut,
     };
 
-    // Return the provider component
     return (
         <AuthContext.Provider value={value}>
             {!loading && children}
@@ -65,5 +64,5 @@ export const AuthProvider = ({ children }) => {
     );
 };
 
-// Hook for child components to get the auth object and re-render when it changes.
+// export hook for authentication
 export const useAuth = () => useContext(AuthContext);

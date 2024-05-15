@@ -1,38 +1,38 @@
 import React from 'react';
 import { View, TouchableOpacity, FlatList} from 'react-native';
 import styles, { phoneWidth } from '../components/Styles';
-import { profiles } from './tmp_profiles/profiles';
 
 function SwipeFunction( { profileList, navigation } ) {
+    //function to render profiles as a button that navigates to its own details screen
     const profileRender = ({ item }) => (
-        <TouchableOpacity onPress={() => navigation.navigate("ProfileView", { profileId: item.getId()})}>
-            {item.generateRender()}
-        </TouchableOpacity>
+        <View style={styles.container}>
+            <TouchableOpacity 
+                onPress={() => navigation.navigate("ProfileDetails", { profileId: item.getId()})}>
+                {item.generateRender()}
+            </TouchableOpacity>
+        </View>
     );
     
-    const Divider = () => (
+    /*const Divider = () => (
         <View style={{
             height: "100%",
-            width: 30
+            width: 20
         }}/>
-    );
+    );*/
 
     return (
-        //display profiles
-        <View style={styles.container}>
-            <FlatList 
-                data={profileList}
-                renderItem ={profileRender} 
-                initialNumToRender={1}
-                horizontal={true} 
-                pagingEnabled={true}
-                snapToAlignment="start"
-                snapToInterval={phoneWidth}
-                showsHorizontalScrollIndicator={false}
-                ItemSeparatorComponent={Divider}
-                keyExtractor={item => item.getId()}
-                />
-        </View>
+        //display profiles as flatlist
+        <FlatList 
+            data={profileList}
+            renderItem ={profileRender} 
+            initialNumToRender={1}
+            horizontal={true} 
+            pagingEnabled={true}
+            snapToAlignment="start"
+            snapToInterval={phoneWidth}
+            showsHorizontalScrollIndicator={false}
+            keyExtractor={item => item.getId()}
+            />
     )
 }
 
