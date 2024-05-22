@@ -1,10 +1,10 @@
 {
     "logs": [
         {
-            "outputFile": "com.tunegether.app-mergeDebugResources-37:/values-watch-v20/values-watch-v20.xml",
+            "outputFile": "com.TuneGether.app-mergeDebugResources-46:/values-watch-v20/values-watch-v20.xml",
             "map": [
                 {
-                    "source": "/Users/patrickthomas/.gradle/caches/transforms-4/5aadb3469717b3836be5626294f6b85d/transformed/appcompat-1.6.1/res/values-watch-v20/values-watch-v20.xml",
+                    "source": "/Users/patrickthomas/.gradle/caches/transforms-4/6194cfe0fac5b2bd475f49a1cd43229a/transformed/appcompat-1.6.1/res/values-watch-v20/values-watch-v20.xml",
                     "from": {
                         "startLines": "2,5,8",
                         "startColumns": "4,4,4",
@@ -23,7 +23,7 @@
                     }
                 },
                 {
-                    "source": "/Users/patrickthomas/.gradle/caches/transforms-4/2a2e811599ddc08603cdeed54d6b35e3/transformed/jetified-play-services-auth-21.0.0/res/values-watch-v20/values.xml",
+                    "source": "/Users/patrickthomas/.gradle/caches/transforms-4/551aad934bfac7cf25c61a87bd9aee66/transformed/jetified-play-services-auth-21.1.1/res/values-watch-v20/values.xml",
                     "from": {
                         "startLines": "4,5,6,7,8,9,10,11",
                         "startColumns": "0,0,0,0,0,0,0,0",

@@ -1,10 +1,10 @@
 {
     "logs": [
         {
-            "outputFile": "com.tunegether.app-mergeDebugResources-37:/values-w320dp-land-v13/values-w320dp-land-v13.xml",
+            "outputFile": "com.TuneGether.app-mergeDebugResources-46:/values-w320dp-land-v13/values-w320dp-land-v13.xml",
             "map": [
                 {
-                    "source": "/Users/patrickthomas/.gradle/caches/transforms-4/5349654a033d3a0a7f56022977e742a4/transformed/material-1.6.1/res/values-w320dp-land-v13/values-w320dp-land-v13.xml",
+                    "source": "/Users/patrickthomas/.gradle/caches/transforms-4/9607b64f6fdf8e772450373e6dd4da90/transformed/material-1.6.1/res/values-w320dp-land-v13/values-w320dp-land-v13.xml",
                     "from": {
                         "startLines": "2,3",
                         "startColumns": "4,4",

@@ -1,15 +1,11 @@
-import React from 'react';
-import { Dimensions, View } from 'react-native';
-import SwipeFunction from '../../Swiping/SwipeFunction';
-import { Profile1, Profile2 } from '../../Swiping/tmp_profiles/profiles';
-import styles from '../../components/Styles';
+import { View, Text } from "react-native";
 
-const HomeScreen = ({ navigation }) => {
-    const profileList = [Profile1, Profile2];
-
+function HomeScreen() {
     return (
         <View>
-            <SwipeFunction profileList={profileList} navigation={navigation}/>
+            <Text>
+                HomeScreen ahsdkjfalskdjf
+            </Text>
         </View>
     )
 };

@@ -1,10 +1,10 @@
 {
     "logs": [
         {
-            "outputFile": "com.tunegether.app-mergeDebugResources-37:/values-sw600dp-v13/values-sw600dp-v13.xml",
+            "outputFile": "com.TuneGether.app-mergeDebugResources-46:/values-sw600dp-v13/values-sw600dp-v13.xml",
             "map": [
                 {
-                    "source": "/Users/patrickthomas/.gradle/caches/transforms-4/5aadb3469717b3836be5626294f6b85d/transformed/appcompat-1.6.1/res/values-sw600dp-v13/values-sw600dp-v13.xml",
+                    "source": "/Users/patrickthomas/.gradle/caches/transforms-4/6194cfe0fac5b2bd475f49a1cd43229a/transformed/appcompat-1.6.1/res/values-sw600dp-v13/values-sw600dp-v13.xml",
                     "from": {
                         "startLines": "2,3,4,5,6,7,8,9",
                         "startColumns": "4,4,4,4,4,4,4,4",
@@ -14,7 +14,7 @@
                     }
                 },
                 {
-                    "source": "/Users/patrickthomas/.gradle/caches/transforms-4/5349654a033d3a0a7f56022977e742a4/transformed/material-1.6.1/res/values-sw600dp-v13/values-sw600dp-v13.xml",
+                    "source": "/Users/patrickthomas/.gradle/caches/transforms-4/9607b64f6fdf8e772450373e6dd4da90/transformed/material-1.6.1/res/values-sw600dp-v13/values-sw600dp-v13.xml",
                     "from": {
                         "startLines": "2,3,4,5,6,7,8,10,11,12,13,14",
                         "startColumns": "4,4,4,4,4,4,4,4,4,4,4,4",

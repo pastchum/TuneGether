@@ -1,10 +1,10 @@
 {
     "logs": [
         {
-            "outputFile": "com.tunegether.app-mergeDebugResources-37:/values-h720dp-v13/values-h720dp-v13.xml",
+            "outputFile": "com.TuneGether.app-mergeDebugResources-46:/values-h720dp-v13/values-h720dp-v13.xml",
             "map": [
                 {
-                    "source": "/Users/patrickthomas/.gradle/caches/transforms-4/5aadb3469717b3836be5626294f6b85d/transformed/appcompat-1.6.1/res/values-h720dp-v13/values-h720dp-v13.xml",
+                    "source": "/Users/patrickthomas/.gradle/caches/transforms-4/6194cfe0fac5b2bd475f49a1cd43229a/transformed/appcompat-1.6.1/res/values-h720dp-v13/values-h720dp-v13.xml",
                     "from": {
                         "startLines": "2",
                         "startColumns": "4",

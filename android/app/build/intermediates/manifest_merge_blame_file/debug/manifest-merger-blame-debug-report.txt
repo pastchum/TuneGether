@@ -1,300 +1,740 @@
 1<?xml version="1.0" encoding="utf-8"?>
 2<manifest xmlns:android="http://schemas.android.com/apk/res/android"
-3    package="com.tunegether"
+3    package="com.TuneGether"
 4    android:versionCode="1"
-5    android:versionName="1.0" >
+5    android:versionName="1.0.0" >
 6
 7    <uses-sdk
 8        android:minSdkVersion="23"
 9        android:targetSdkVersion="34" />
 10
-11    <uses-permission android:name="android.permission.INTERNET" />
-11-->/Users/patrickthomas/Documents/GitHub/TuneGether/android/app/src/main/AndroidManifest.xml:3:5-67
-11-->/Users/patrickthomas/Documents/GitHub/TuneGether/android/app/src/main/AndroidManifest.xml:3:22-64
-12    <uses-permission android:name="android.permission.WAKE_LOCK" />
-12-->[:react-native-firebase_auth] /Users/patrickthomas/Documents/GitHub/TuneGether/node_modules/@react-native-firebase/auth/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:8:5-68
-12-->[:react-native-firebase_auth] /Users/patrickthomas/Documents/GitHub/TuneGether/node_modules/@react-native-firebase/auth/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:8:22-65
-13    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
-13-->[:react-native-firebase_auth] /Users/patrickthomas/Documents/GitHub/TuneGether/node_modules/@react-native-firebase/auth/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:9:5-79
-13-->[:react-native-firebase_auth] /Users/patrickthomas/Documents/GitHub/TuneGether/node_modules/@react-native-firebase/auth/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:9:22-76
-14    <!--
-15    This manifest file is used only by Gradle to configure debug-only capabilities
-16    for React Native Apps.
-17    -->
-18    <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW" />
-18-->[com.facebook.react:react-android:0.74.1] /Users/patrickthomas/.gradle/caches/transforms-4/cff4b1d2c0f2520f59a0aac653ca6b7e/transformed/jetified-react-android-0.74.1-debug/AndroidManifest.xml:16:5-78
-18-->[com.facebook.react:react-android:0.74.1] /Users/patrickthomas/.gradle/caches/transforms-4/cff4b1d2c0f2520f59a0aac653ca6b7e/transformed/jetified-react-android-0.74.1-debug/AndroidManifest.xml:16:22-75
-19    <uses-permission android:name="com.google.android.providers.gsf.permission.READ_GSERVICES" />
-19-->[com.google.android.recaptcha:recaptcha:18.4.0] /Users/patrickthomas/.gradle/caches/transforms-4/b1f0c97b2ee7aa16fcb24dfcad7a30de/transformed/jetified-recaptcha-18.4.0/AndroidManifest.xml:9:5-98
-19-->[com.google.android.recaptcha:recaptcha:18.4.0] /Users/patrickthomas/.gradle/caches/transforms-4/b1f0c97b2ee7aa16fcb24dfcad7a30de/transformed/jetified-recaptcha-18.4.0/AndroidManifest.xml:9:22-95
+11    <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW" />
+11-->/Users/patrickthomas/Documents/uni/orbital/TuneGether/android/app/src/main/AndroidManifest.xml:4:3-75
+11-->/Users/patrickthomas/Documents/uni/orbital/TuneGether/android/app/src/main/AndroidManifest.xml:4:20-73
+12    <uses-permission android:name="android.permission.INTERNET" />
+12-->/Users/patrickthomas/Documents/uni/orbital/TuneGether/android/app/src/main/AndroidManifest.xml:2:3-64
+12-->/Users/patrickthomas/Documents/uni/orbital/TuneGether/android/app/src/main/AndroidManifest.xml:2:20-62
+13    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+13-->/Users/patrickthomas/Documents/uni/orbital/TuneGether/android/app/src/main/AndroidManifest.xml:3:3-77
+13-->/Users/patrickthomas/Documents/uni/orbital/TuneGether/android/app/src/main/AndroidManifest.xml:3:20-75
+14    <uses-permission android:name="android.permission.VIBRATE" />
+14-->/Users/patrickthomas/Documents/uni/orbital/TuneGether/android/app/src/main/AndroidManifest.xml:5:3-63
+14-->/Users/patrickthomas/Documents/uni/orbital/TuneGether/android/app/src/main/AndroidManifest.xml:5:20-61
+15    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+15-->/Users/patrickthomas/Documents/uni/orbital/TuneGether/android/app/src/main/AndroidManifest.xml:6:3-78
+15-->/Users/patrickthomas/Documents/uni/orbital/TuneGether/android/app/src/main/AndroidManifest.xml:6:20-76
+16
+17    <queries>
+17-->/Users/patrickthomas/Documents/uni/orbital/TuneGether/android/app/src/main/AndroidManifest.xml:7:3-13:13
+18        <intent>
+18-->/Users/patrickthomas/Documents/uni/orbital/TuneGether/android/app/src/main/AndroidManifest.xml:8:5-12:14
+19            <action android:name="android.intent.action.VIEW" />
+19-->/Users/patrickthomas/Documents/uni/orbital/TuneGether/android/app/src/main/AndroidManifest.xml:9:7-58
+19-->/Users/patrickthomas/Documents/uni/orbital/TuneGether/android/app/src/main/AndroidManifest.xml:9:15-56
 20
-21    <permission
-21-->[androidx.core:core:1.9.0] /Users/patrickthomas/.gradle/caches/transforms-4/f76bdcd48ff8fedc2015290c63fdd657/transformed/core-1.9.0/AndroidManifest.xml:22:5-24:47
-22        android:name="com.tunegether.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION"
-22-->[androidx.core:core:1.9.0] /Users/patrickthomas/.gradle/caches/transforms-4/f76bdcd48ff8fedc2015290c63fdd657/transformed/core-1.9.0/AndroidManifest.xml:23:9-81
-23        android:protectionLevel="signature" />
-23-->[androidx.core:core:1.9.0] /Users/patrickthomas/.gradle/caches/transforms-4/f76bdcd48ff8fedc2015290c63fdd657/transformed/core-1.9.0/AndroidManifest.xml:24:9-44
-24
-25    <uses-permission android:name="com.tunegether.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION" />
-25-->[androidx.core:core:1.9.0] /Users/patrickthomas/.gradle/caches/transforms-4/f76bdcd48ff8fedc2015290c63fdd657/transformed/core-1.9.0/AndroidManifest.xml:26:5-97
-25-->[androidx.core:core:1.9.0] /Users/patrickthomas/.gradle/caches/transforms-4/f76bdcd48ff8fedc2015290c63fdd657/transformed/core-1.9.0/AndroidManifest.xml:26:22-94
-26
-27    <application
-27-->/Users/patrickthomas/Documents/GitHub/TuneGether/android/app/src/main/AndroidManifest.xml:5:5-24:19
-28        android:name="com.tunegether.MainApplication"
-28-->/Users/patrickthomas/Documents/GitHub/TuneGether/android/app/src/main/AndroidManifest.xml:6:7-38
-29        android:allowBackup="false"
-29-->/Users/patrickthomas/Documents/GitHub/TuneGether/android/app/src/main/AndroidManifest.xml:10:7-34
-30        android:appComponentFactory="androidx.core.app.CoreComponentFactory"
-30-->[androidx.core:core:1.9.0] /Users/patrickthomas/.gradle/caches/transforms-4/f76bdcd48ff8fedc2015290c63fdd657/transformed/core-1.9.0/AndroidManifest.xml:28:18-86
-31        android:debuggable="true"
-32        android:extractNativeLibs="false"
-33        android:icon="@mipmap/ic_launcher"
-33-->/Users/patrickthomas/Documents/GitHub/TuneGether/android/app/src/main/AndroidManifest.xml:8:7-41
-34        android:label="@string/app_name"
-34-->/Users/patrickthomas/Documents/GitHub/TuneGether/android/app/src/main/AndroidManifest.xml:7:7-39
-35        android:roundIcon="@mipmap/ic_launcher_round"
-35-->/Users/patrickthomas/Documents/GitHub/TuneGether/android/app/src/main/AndroidManifest.xml:9:7-52
-36        android:theme="@style/AppTheme"
-36-->/Users/patrickthomas/Documents/GitHub/TuneGether/android/app/src/main/AndroidManifest.xml:11:7-38
-37        android:usesCleartextTraffic="true" >
-37-->/Users/patrickthomas/Documents/GitHub/TuneGether/android/app/src/debug/AndroidManifest.xml:6:9-44
-38        <activity
-38-->/Users/patrickthomas/Documents/GitHub/TuneGether/android/app/src/main/AndroidManifest.xml:12:7-23:18
-39            android:name="com.tunegether.MainActivity"
-39-->/Users/patrickthomas/Documents/GitHub/TuneGether/android/app/src/main/AndroidManifest.xml:13:9-37
-40            android:configChanges="keyboard|keyboardHidden|orientation|screenLayout|screenSize|smallestScreenSize|uiMode"
-40-->/Users/patrickthomas/Documents/GitHub/TuneGether/android/app/src/main/AndroidManifest.xml:15:9-118
-41            android:exported="true"
-41-->/Users/patrickthomas/Documents/GitHub/TuneGether/android/app/src/main/AndroidManifest.xml:18:9-32
-42            android:label="@string/app_name"
-42-->/Users/patrickthomas/Documents/GitHub/TuneGether/android/app/src/main/AndroidManifest.xml:14:9-41
-43            android:launchMode="singleTask"
-43-->/Users/patrickthomas/Documents/GitHub/TuneGether/android/app/src/main/AndroidManifest.xml:16:9-40
-44            android:windowSoftInputMode="adjustResize" >
-44-->/Users/patrickthomas/Documents/GitHub/TuneGether/android/app/src/main/AndroidManifest.xml:17:9-51
-45            <intent-filter>
-45-->/Users/patrickthomas/Documents/GitHub/TuneGether/android/app/src/main/AndroidManifest.xml:19:9-22:25
-46                <action android:name="android.intent.action.MAIN" />
-46-->/Users/patrickthomas/Documents/GitHub/TuneGether/android/app/src/main/AndroidManifest.xml:20:13-65
-46-->/Users/patrickthomas/Documents/GitHub/TuneGether/android/app/src/main/AndroidManifest.xml:20:21-62
-47
-48                <category android:name="android.intent.category.LAUNCHER" />
-48-->/Users/patrickthomas/Documents/GitHub/TuneGether/android/app/src/main/AndroidManifest.xml:21:13-73
-48-->/Users/patrickthomas/Documents/GitHub/TuneGether/android/app/src/main/AndroidManifest.xml:21:23-70
-49            </intent-filter>
-50        </activity>
-51
-52        <meta-data
-52-->[:react-native-firebase_app] /Users/patrickthomas/Documents/GitHub/TuneGether/node_modules/@react-native-firebase/app/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:9:9-11:36
-53            android:name="app_data_collection_default_enabled"
-53-->[:react-native-firebase_app] /Users/patrickthomas/Documents/GitHub/TuneGether/node_modules/@react-native-firebase/app/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:10:13-63
-54            android:value="true" />
-54-->[:react-native-firebase_app] /Users/patrickthomas/Documents/GitHub/TuneGether/node_modules/@react-native-firebase/app/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:11:13-33
-55
-56        <service
-56-->[:react-native-firebase_app] /Users/patrickthomas/Documents/GitHub/TuneGether/node_modules/@react-native-firebase/app/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:13:9-21:19
-57            android:name="com.google.firebase.components.ComponentDiscoveryService"
-57-->[:react-native-firebase_app] /Users/patrickthomas/Documents/GitHub/TuneGether/node_modules/@react-native-firebase/app/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:14:13-84
-58            android:directBootAware="true"
-58-->[:react-native-firebase_app] /Users/patrickthomas/Documents/GitHub/TuneGether/node_modules/@react-native-firebase/app/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:15:13-43
-59            android:exported="false" >
-59-->[:react-native-firebase_app] /Users/patrickthomas/Documents/GitHub/TuneGether/node_modules/@react-native-firebase/app/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:16:13-37
-60            <meta-data
-60-->[:react-native-firebase_app] /Users/patrickthomas/Documents/GitHub/TuneGether/node_modules/@react-native-firebase/app/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:18:13-20:85
-61                android:name="com.google.firebase.components:io.invertase.firebase.app.ReactNativeFirebaseAppRegistrar"
-61-->[:react-native-firebase_app] /Users/patrickthomas/Documents/GitHub/TuneGether/node_modules/@react-native-firebase/app/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:19:17-120
-62                android:value="com.google.firebase.components.ComponentRegistrar" />
-62-->[:react-native-firebase_app] /Users/patrickthomas/Documents/GitHub/TuneGether/node_modules/@react-native-firebase/app/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:20:17-82
-63            <meta-data
-63-->[com.google.firebase:firebase-auth:22.3.1] /Users/patrickthomas/.gradle/caches/transforms-4/013bf5045d460d68b34dea0c1b0d4f7c/transformed/jetified-firebase-auth-22.3.1/AndroidManifest.xml:69:13-71:85
-64                android:name="com.google.firebase.components:com.google.firebase.auth.FirebaseAuthRegistrar"
-64-->[com.google.firebase:firebase-auth:22.3.1] /Users/patrickthomas/.gradle/caches/transforms-4/013bf5045d460d68b34dea0c1b0d4f7c/transformed/jetified-firebase-auth-22.3.1/AndroidManifest.xml:70:17-109
-65                android:value="com.google.firebase.components.ComponentRegistrar" />
-65-->[com.google.firebase:firebase-auth:22.3.1] /Users/patrickthomas/.gradle/caches/transforms-4/013bf5045d460d68b34dea0c1b0d4f7c/transformed/jetified-firebase-auth-22.3.1/AndroidManifest.xml:71:17-82
-66            <meta-data
-66-->[com.google.firebase:firebase-common-ktx:20.4.3] /Users/patrickthomas/.gradle/caches/transforms-4/b1047aa26d2eb97d54d785febc595a6c/transformed/jetified-firebase-common-ktx-20.4.3/AndroidManifest.xml:12:13-14:85
-67                android:name="com.google.firebase.components:com.google.firebase.ktx.FirebaseCommonLegacyRegistrar"
-67-->[com.google.firebase:firebase-common-ktx:20.4.3] /Users/patrickthomas/.gradle/caches/transforms-4/b1047aa26d2eb97d54d785febc595a6c/transformed/jetified-firebase-common-ktx-20.4.3/AndroidManifest.xml:13:17-116
-68                android:value="com.google.firebase.components.ComponentRegistrar" />
-68-->[com.google.firebase:firebase-common-ktx:20.4.3] /Users/patrickthomas/.gradle/caches/transforms-4/b1047aa26d2eb97d54d785febc595a6c/transformed/jetified-firebase-common-ktx-20.4.3/AndroidManifest.xml:14:17-82
-69            <meta-data
-69-->[com.google.firebase:firebase-common:20.4.3] /Users/patrickthomas/.gradle/caches/transforms-4/eb9de7381676153c0a6bc470f0d1d1f5/transformed/jetified-firebase-common-20.4.3/AndroidManifest.xml:35:13-37:85
-70                android:name="com.google.firebase.components:com.google.firebase.FirebaseCommonKtxRegistrar"
-70-->[com.google.firebase:firebase-common:20.4.3] /Users/patrickthomas/.gradle/caches/transforms-4/eb9de7381676153c0a6bc470f0d1d1f5/transformed/jetified-firebase-common-20.4.3/AndroidManifest.xml:36:17-109
-71                android:value="com.google.firebase.components.ComponentRegistrar" />
-71-->[com.google.firebase:firebase-common:20.4.3] /Users/patrickthomas/.gradle/caches/transforms-4/eb9de7381676153c0a6bc470f0d1d1f5/transformed/jetified-firebase-common-20.4.3/AndroidManifest.xml:37:17-82
-72        </service>
-73
-74        <provider
-74-->[:react-native-firebase_app] /Users/patrickthomas/Documents/GitHub/TuneGether/node_modules/@react-native-firebase/app/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:23:9-27:38
-75            android:name="io.invertase.firebase.app.ReactNativeFirebaseAppInitProvider"
-75-->[:react-native-firebase_app] /Users/patrickthomas/Documents/GitHub/TuneGether/node_modules/@react-native-firebase/app/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:24:13-88
-76            android:authorities="com.tunegether.reactnativefirebaseappinitprovider"
-76-->[:react-native-firebase_app] /Users/patrickthomas/Documents/GitHub/TuneGether/node_modules/@react-native-firebase/app/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:25:13-86
-77            android:exported="false"
-77-->[:react-native-firebase_app] /Users/patrickthomas/Documents/GitHub/TuneGether/node_modules/@react-native-firebase/app/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:26:13-37
-78            android:initOrder="99" />
-78-->[:react-native-firebase_app] /Users/patrickthomas/Documents/GitHub/TuneGether/node_modules/@react-native-firebase/app/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:27:13-35
-79
-80        <activity
-80-->[com.facebook.react:react-android:0.74.1] /Users/patrickthomas/.gradle/caches/transforms-4/cff4b1d2c0f2520f59a0aac653ca6b7e/transformed/jetified-react-android-0.74.1-debug/AndroidManifest.xml:19:9-21:40
-81            android:name="com.facebook.react.devsupport.DevSettingsActivity"
-81-->[com.facebook.react:react-android:0.74.1] /Users/patrickthomas/.gradle/caches/transforms-4/cff4b1d2c0f2520f59a0aac653ca6b7e/transformed/jetified-react-android-0.74.1-debug/AndroidManifest.xml:20:13-77
-82            android:exported="false" />
-82-->[com.facebook.react:react-android:0.74.1] /Users/patrickthomas/.gradle/caches/transforms-4/cff4b1d2c0f2520f59a0aac653ca6b7e/transformed/jetified-react-android-0.74.1-debug/AndroidManifest.xml:21:13-37
-83        <activity
-83-->[com.google.android.gms:play-services-auth:21.0.0] /Users/patrickthomas/.gradle/caches/transforms-4/2a2e811599ddc08603cdeed54d6b35e3/transformed/jetified-play-services-auth-21.0.0/AndroidManifest.xml:23:9-27:75
-84            android:name="com.google.android.gms.auth.api.signin.internal.SignInHubActivity"
-84-->[com.google.android.gms:play-services-auth:21.0.0] /Users/patrickthomas/.gradle/caches/transforms-4/2a2e811599ddc08603cdeed54d6b35e3/transformed/jetified-play-services-auth-21.0.0/AndroidManifest.xml:24:13-93
-85            android:excludeFromRecents="true"
-85-->[com.google.android.gms:play-services-auth:21.0.0] /Users/patrickthomas/.gradle/caches/transforms-4/2a2e811599ddc08603cdeed54d6b35e3/transformed/jetified-play-services-auth-21.0.0/AndroidManifest.xml:25:13-46
-86            android:exported="false"
-86-->[com.google.android.gms:play-services-auth:21.0.0] /Users/patrickthomas/.gradle/caches/transforms-4/2a2e811599ddc08603cdeed54d6b35e3/transformed/jetified-play-services-auth-21.0.0/AndroidManifest.xml:26:13-37
-87            android:theme="@android:style/Theme.Translucent.NoTitleBar" />
-87-->[com.google.android.gms:play-services-auth:21.0.0] /Users/patrickthomas/.gradle/caches/transforms-4/2a2e811599ddc08603cdeed54d6b35e3/transformed/jetified-play-services-auth-21.0.0/AndroidManifest.xml:27:13-72
-88        <!--
-89            Service handling Google Sign-In user revocation. For apps that do not integrate with
-90            Google Sign-In, this service will never be started.
-91        -->
-92        <service
-92-->[com.google.android.gms:play-services-auth:21.0.0] /Users/patrickthomas/.gradle/caches/transforms-4/2a2e811599ddc08603cdeed54d6b35e3/transformed/jetified-play-services-auth-21.0.0/AndroidManifest.xml:33:9-37:51
-93            android:name="com.google.android.gms.auth.api.signin.RevocationBoundService"
-93-->[com.google.android.gms:play-services-auth:21.0.0] /Users/patrickthomas/.gradle/caches/transforms-4/2a2e811599ddc08603cdeed54d6b35e3/transformed/jetified-play-services-auth-21.0.0/AndroidManifest.xml:34:13-89
-94            android:exported="true"
-94-->[com.google.android.gms:play-services-auth:21.0.0] /Users/patrickthomas/.gradle/caches/transforms-4/2a2e811599ddc08603cdeed54d6b35e3/transformed/jetified-play-services-auth-21.0.0/AndroidManifest.xml:35:13-36
-95            android:permission="com.google.android.gms.auth.api.signin.permission.REVOCATION_NOTIFICATION"
-95-->[com.google.android.gms:play-services-auth:21.0.0] /Users/patrickthomas/.gradle/caches/transforms-4/2a2e811599ddc08603cdeed54d6b35e3/transformed/jetified-play-services-auth-21.0.0/AndroidManifest.xml:36:13-107
-96            android:visibleToInstantApps="true" />
-96-->[com.google.android.gms:play-services-auth:21.0.0] /Users/patrickthomas/.gradle/caches/transforms-4/2a2e811599ddc08603cdeed54d6b35e3/transformed/jetified-play-services-auth-21.0.0/AndroidManifest.xml:37:13-48
-97
-98        <activity
-98-->[com.google.firebase:firebase-auth:22.3.1] /Users/patrickthomas/.gradle/caches/transforms-4/013bf5045d460d68b34dea0c1b0d4f7c/transformed/jetified-firebase-auth-22.3.1/AndroidManifest.xml:29:9-46:20
-99            android:name="com.google.firebase.auth.internal.GenericIdpActivity"
-99-->[com.google.firebase:firebase-auth:22.3.1] /Users/patrickthomas/.gradle/caches/transforms-4/013bf5045d460d68b34dea0c1b0d4f7c/transformed/jetified-firebase-auth-22.3.1/AndroidManifest.xml:30:13-80
-100            android:excludeFromRecents="true"
-100-->[com.google.firebase:firebase-auth:22.3.1] /Users/patrickthomas/.gradle/caches/transforms-4/013bf5045d460d68b34dea0c1b0d4f7c/transformed/jetified-firebase-auth-22.3.1/AndroidManifest.xml:31:13-46
-101            android:exported="true"
-101-->[com.google.firebase:firebase-auth:22.3.1] /Users/patrickthomas/.gradle/caches/transforms-4/013bf5045d460d68b34dea0c1b0d4f7c/transformed/jetified-firebase-auth-22.3.1/AndroidManifest.xml:32:13-36
-102            android:launchMode="singleTask"
-102-->[com.google.firebase:firebase-auth:22.3.1] /Users/patrickthomas/.gradle/caches/transforms-4/013bf5045d460d68b34dea0c1b0d4f7c/transformed/jetified-firebase-auth-22.3.1/AndroidManifest.xml:33:13-44
-103            android:theme="@android:style/Theme.Translucent.NoTitleBar" >
-103-->[com.google.firebase:firebase-auth:22.3.1] /Users/patrickthomas/.gradle/caches/transforms-4/013bf5045d460d68b34dea0c1b0d4f7c/transformed/jetified-firebase-auth-22.3.1/AndroidManifest.xml:34:13-72
-104            <intent-filter>
-104-->[com.google.firebase:firebase-auth:22.3.1] /Users/patrickthomas/.gradle/caches/transforms-4/013bf5045d460d68b34dea0c1b0d4f7c/transformed/jetified-firebase-auth-22.3.1/AndroidManifest.xml:35:13-45:29
-105                <action android:name="android.intent.action.VIEW" />
-105-->[com.google.firebase:firebase-auth:22.3.1] /Users/patrickthomas/.gradle/caches/transforms-4/013bf5045d460d68b34dea0c1b0d4f7c/transformed/jetified-firebase-auth-22.3.1/AndroidManifest.xml:36:17-69
-105-->[com.google.firebase:firebase-auth:22.3.1] /Users/patrickthomas/.gradle/caches/transforms-4/013bf5045d460d68b34dea0c1b0d4f7c/transformed/jetified-firebase-auth-22.3.1/AndroidManifest.xml:36:25-66
-106
-107                <category android:name="android.intent.category.DEFAULT" />
-107-->[com.google.firebase:firebase-auth:22.3.1] /Users/patrickthomas/.gradle/caches/transforms-4/013bf5045d460d68b34dea0c1b0d4f7c/transformed/jetified-firebase-auth-22.3.1/AndroidManifest.xml:38:17-76
-107-->[com.google.firebase:firebase-auth:22.3.1] /Users/patrickthomas/.gradle/caches/transforms-4/013bf5045d460d68b34dea0c1b0d4f7c/transformed/jetified-firebase-auth-22.3.1/AndroidManifest.xml:38:27-73
-108                <category android:name="android.intent.category.BROWSABLE" />
-108-->[com.google.firebase:firebase-auth:22.3.1] /Users/patrickthomas/.gradle/caches/transforms-4/013bf5045d460d68b34dea0c1b0d4f7c/transformed/jetified-firebase-auth-22.3.1/AndroidManifest.xml:39:17-78
-108-->[com.google.firebase:firebase-auth:22.3.1] /Users/patrickthomas/.gradle/caches/transforms-4/013bf5045d460d68b34dea0c1b0d4f7c/transformed/jetified-firebase-auth-22.3.1/AndroidManifest.xml:39:27-75
-109
-110                <data
-110-->[com.google.firebase:firebase-auth:22.3.1] /Users/patrickthomas/.gradle/caches/transforms-4/013bf5045d460d68b34dea0c1b0d4f7c/transformed/jetified-firebase-auth-22.3.1/AndroidManifest.xml:41:17-44:51
-111                    android:host="firebase.auth"
-111-->[com.google.firebase:firebase-auth:22.3.1] /Users/patrickthomas/.gradle/caches/transforms-4/013bf5045d460d68b34dea0c1b0d4f7c/transformed/jetified-firebase-auth-22.3.1/AndroidManifest.xml:42:21-49
-112                    android:path="/"
-112-->[com.google.firebase:firebase-auth:22.3.1] /Users/patrickthomas/.gradle/caches/transforms-4/013bf5045d460d68b34dea0c1b0d4f7c/transformed/jetified-firebase-auth-22.3.1/AndroidManifest.xml:43:21-37
-113                    android:scheme="genericidp" />
-113-->[com.google.firebase:firebase-auth:22.3.1] /Users/patrickthomas/.gradle/caches/transforms-4/013bf5045d460d68b34dea0c1b0d4f7c/transformed/jetified-firebase-auth-22.3.1/AndroidManifest.xml:44:21-48
-114            </intent-filter>
-115        </activity>
-116        <activity
-116-->[com.google.firebase:firebase-auth:22.3.1] /Users/patrickthomas/.gradle/caches/transforms-4/013bf5045d460d68b34dea0c1b0d4f7c/transformed/jetified-firebase-auth-22.3.1/AndroidManifest.xml:47:9-64:20
-117            android:name="com.google.firebase.auth.internal.RecaptchaActivity"
-117-->[com.google.firebase:firebase-auth:22.3.1] /Users/patrickthomas/.gradle/caches/transforms-4/013bf5045d460d68b34dea0c1b0d4f7c/transformed/jetified-firebase-auth-22.3.1/AndroidManifest.xml:48:13-79
-118            android:excludeFromRecents="true"
-118-->[com.google.firebase:firebase-auth:22.3.1] /Users/patrickthomas/.gradle/caches/transforms-4/013bf5045d460d68b34dea0c1b0d4f7c/transformed/jetified-firebase-auth-22.3.1/AndroidManifest.xml:49:13-46
-119            android:exported="true"
-119-->[com.google.firebase:firebase-auth:22.3.1] /Users/patrickthomas/.gradle/caches/transforms-4/013bf5045d460d68b34dea0c1b0d4f7c/transformed/jetified-firebase-auth-22.3.1/AndroidManifest.xml:50:13-36
-120            android:launchMode="singleTask"
-120-->[com.google.firebase:firebase-auth:22.3.1] /Users/patrickthomas/.gradle/caches/transforms-4/013bf5045d460d68b34dea0c1b0d4f7c/transformed/jetified-firebase-auth-22.3.1/AndroidManifest.xml:51:13-44
-121            android:theme="@android:style/Theme.Translucent.NoTitleBar" >
-121-->[com.google.firebase:firebase-auth:22.3.1] /Users/patrickthomas/.gradle/caches/transforms-4/013bf5045d460d68b34dea0c1b0d4f7c/transformed/jetified-firebase-auth-22.3.1/AndroidManifest.xml:52:13-72
-122            <intent-filter>
-122-->[com.google.firebase:firebase-auth:22.3.1] /Users/patrickthomas/.gradle/caches/transforms-4/013bf5045d460d68b34dea0c1b0d4f7c/transformed/jetified-firebase-auth-22.3.1/AndroidManifest.xml:53:13-63:29
-123                <action android:name="android.intent.action.VIEW" />
-123-->[com.google.firebase:firebase-auth:22.3.1] /Users/patrickthomas/.gradle/caches/transforms-4/013bf5045d460d68b34dea0c1b0d4f7c/transformed/jetified-firebase-auth-22.3.1/AndroidManifest.xml:36:17-69
-123-->[com.google.firebase:firebase-auth:22.3.1] /Users/patrickthomas/.gradle/caches/transforms-4/013bf5045d460d68b34dea0c1b0d4f7c/transformed/jetified-firebase-auth-22.3.1/AndroidManifest.xml:36:25-66
-124
-125                <category android:name="android.intent.category.DEFAULT" />
-125-->[com.google.firebase:firebase-auth:22.3.1] /Users/patrickthomas/.gradle/caches/transforms-4/013bf5045d460d68b34dea0c1b0d4f7c/transformed/jetified-firebase-auth-22.3.1/AndroidManifest.xml:38:17-76
-125-->[com.google.firebase:firebase-auth:22.3.1] /Users/patrickthomas/.gradle/caches/transforms-4/013bf5045d460d68b34dea0c1b0d4f7c/transformed/jetified-firebase-auth-22.3.1/AndroidManifest.xml:38:27-73
-126                <category android:name="android.intent.category.BROWSABLE" />
-126-->[com.google.firebase:firebase-auth:22.3.1] /Users/patrickthomas/.gradle/caches/transforms-4/013bf5045d460d68b34dea0c1b0d4f7c/transformed/jetified-firebase-auth-22.3.1/AndroidManifest.xml:39:17-78
-126-->[com.google.firebase:firebase-auth:22.3.1] /Users/patrickthomas/.gradle/caches/transforms-4/013bf5045d460d68b34dea0c1b0d4f7c/transformed/jetified-firebase-auth-22.3.1/AndroidManifest.xml:39:27-75
-127
-128                <data
-128-->[com.google.firebase:firebase-auth:22.3.1] /Users/patrickthomas/.gradle/caches/transforms-4/013bf5045d460d68b34dea0c1b0d4f7c/transformed/jetified-firebase-auth-22.3.1/AndroidManifest.xml:41:17-44:51
-129                    android:host="firebase.auth"
-129-->[com.google.firebase:firebase-auth:22.3.1] /Users/patrickthomas/.gradle/caches/transforms-4/013bf5045d460d68b34dea0c1b0d4f7c/transformed/jetified-firebase-auth-22.3.1/AndroidManifest.xml:42:21-49
-130                    android:path="/"
-130-->[com.google.firebase:firebase-auth:22.3.1] /Users/patrickthomas/.gradle/caches/transforms-4/013bf5045d460d68b34dea0c1b0d4f7c/transformed/jetified-firebase-auth-22.3.1/AndroidManifest.xml:43:21-37
-131                    android:scheme="recaptcha" />
-131-->[com.google.firebase:firebase-auth:22.3.1] /Users/patrickthomas/.gradle/caches/transforms-4/013bf5045d460d68b34dea0c1b0d4f7c/transformed/jetified-firebase-auth-22.3.1/AndroidManifest.xml:44:21-48
-132            </intent-filter>
-133        </activity>
-134        <activity
-134-->[com.google.android.gms:play-services-base:18.0.1] /Users/patrickthomas/.gradle/caches/transforms-4/c210911f348ce659e3b4445f602a2b19/transformed/jetified-play-services-base-18.0.1/AndroidManifest.xml:20:9-22:45
-135            android:name="com.google.android.gms.common.api.GoogleApiActivity"
-135-->[com.google.android.gms:play-services-base:18.0.1] /Users/patrickthomas/.gradle/caches/transforms-4/c210911f348ce659e3b4445f602a2b19/transformed/jetified-play-services-base-18.0.1/AndroidManifest.xml:20:19-85
-136            android:exported="false"
-136-->[com.google.android.gms:play-services-base:18.0.1] /Users/patrickthomas/.gradle/caches/transforms-4/c210911f348ce659e3b4445f602a2b19/transformed/jetified-play-services-base-18.0.1/AndroidManifest.xml:22:19-43
-137            android:theme="@android:style/Theme.Translucent.NoTitleBar" />
-137-->[com.google.android.gms:play-services-base:18.0.1] /Users/patrickthomas/.gradle/caches/transforms-4/c210911f348ce659e3b4445f602a2b19/transformed/jetified-play-services-base-18.0.1/AndroidManifest.xml:21:19-78
-138
-139        <provider
-139-->[com.google.firebase:firebase-common:20.4.3] /Users/patrickthomas/.gradle/caches/transforms-4/eb9de7381676153c0a6bc470f0d1d1f5/transformed/jetified-firebase-common-20.4.3/AndroidManifest.xml:23:9-28:39
-140            android:name="com.google.firebase.provider.FirebaseInitProvider"
-140-->[com.google.firebase:firebase-common:20.4.3] /Users/patrickthomas/.gradle/caches/transforms-4/eb9de7381676153c0a6bc470f0d1d1f5/transformed/jetified-firebase-common-20.4.3/AndroidManifest.xml:24:13-77
-141            android:authorities="com.tunegether.firebaseinitprovider"
-141-->[com.google.firebase:firebase-common:20.4.3] /Users/patrickthomas/.gradle/caches/transforms-4/eb9de7381676153c0a6bc470f0d1d1f5/transformed/jetified-firebase-common-20.4.3/AndroidManifest.xml:25:13-72
-142            android:directBootAware="true"
-142-->[com.google.firebase:firebase-common:20.4.3] /Users/patrickthomas/.gradle/caches/transforms-4/eb9de7381676153c0a6bc470f0d1d1f5/transformed/jetified-firebase-common-20.4.3/AndroidManifest.xml:26:13-43
-143            android:exported="false"
-143-->[com.google.firebase:firebase-common:20.4.3] /Users/patrickthomas/.gradle/caches/transforms-4/eb9de7381676153c0a6bc470f0d1d1f5/transformed/jetified-firebase-common-20.4.3/AndroidManifest.xml:27:13-37
-144            android:initOrder="100" />
-144-->[com.google.firebase:firebase-common:20.4.3] /Users/patrickthomas/.gradle/caches/transforms-4/eb9de7381676153c0a6bc470f0d1d1f5/transformed/jetified-firebase-common-20.4.3/AndroidManifest.xml:28:13-36
-145
-146        <meta-data
-146-->[com.google.android.gms:play-services-basement:18.3.0] /Users/patrickthomas/.gradle/caches/transforms-4/8aa952f860c5f2aac88cb31a7304f4d9/transformed/jetified-play-services-basement-18.3.0/AndroidManifest.xml:21:9-23:69
-147            android:name="com.google.android.gms.version"
-147-->[com.google.android.gms:play-services-basement:18.3.0] /Users/patrickthomas/.gradle/caches/transforms-4/8aa952f860c5f2aac88cb31a7304f4d9/transformed/jetified-play-services-basement-18.3.0/AndroidManifest.xml:22:13-58
-148            android:value="@integer/google_play_services_version" />
-148-->[com.google.android.gms:play-services-basement:18.3.0] /Users/patrickthomas/.gradle/caches/transforms-4/8aa952f860c5f2aac88cb31a7304f4d9/transformed/jetified-play-services-basement-18.3.0/AndroidManifest.xml:23:13-66
-149
-150        <provider
-150-->[androidx.emoji2:emoji2:1.2.0] /Users/patrickthomas/.gradle/caches/transforms-4/3b1b680518723570f950ef8b4da719d4/transformed/jetified-emoji2-1.2.0/AndroidManifest.xml:24:9-32:20
-151            android:name="androidx.startup.InitializationProvider"
-151-->[androidx.emoji2:emoji2:1.2.0] /Users/patrickthomas/.gradle/caches/transforms-4/3b1b680518723570f950ef8b4da719d4/transformed/jetified-emoji2-1.2.0/AndroidManifest.xml:25:13-67
-152            android:authorities="com.tunegether.androidx-startup"
-152-->[androidx.emoji2:emoji2:1.2.0] /Users/patrickthomas/.gradle/caches/transforms-4/3b1b680518723570f950ef8b4da719d4/transformed/jetified-emoji2-1.2.0/AndroidManifest.xml:26:13-68
-153            android:exported="false" >
-153-->[androidx.emoji2:emoji2:1.2.0] /Users/patrickthomas/.gradle/caches/transforms-4/3b1b680518723570f950ef8b4da719d4/transformed/jetified-emoji2-1.2.0/AndroidManifest.xml:27:13-37
-154            <meta-data
-154-->[androidx.emoji2:emoji2:1.2.0] /Users/patrickthomas/.gradle/caches/transforms-4/3b1b680518723570f950ef8b4da719d4/transformed/jetified-emoji2-1.2.0/AndroidManifest.xml:29:13-31:52
-155                android:name="androidx.emoji2.text.EmojiCompatInitializer"
-155-->[androidx.emoji2:emoji2:1.2.0] /Users/patrickthomas/.gradle/caches/transforms-4/3b1b680518723570f950ef8b4da719d4/transformed/jetified-emoji2-1.2.0/AndroidManifest.xml:30:17-75
-156                android:value="androidx.startup" />
-156-->[androidx.emoji2:emoji2:1.2.0] /Users/patrickthomas/.gradle/caches/transforms-4/3b1b680518723570f950ef8b4da719d4/transformed/jetified-emoji2-1.2.0/AndroidManifest.xml:31:17-49
-157            <meta-data
-157-->[androidx.lifecycle:lifecycle-process:2.4.1] /Users/patrickthomas/.gradle/caches/transforms-4/616b1a23984bf7fc9b8d44f87e73cd07/transformed/jetified-lifecycle-process-2.4.1/AndroidManifest.xml:31:13-33:52
-158                android:name="androidx.lifecycle.ProcessLifecycleInitializer"
-158-->[androidx.lifecycle:lifecycle-process:2.4.1] /Users/patrickthomas/.gradle/caches/transforms-4/616b1a23984bf7fc9b8d44f87e73cd07/transformed/jetified-lifecycle-process-2.4.1/AndroidManifest.xml:32:17-78
-159                android:value="androidx.startup" />
-159-->[androidx.lifecycle:lifecycle-process:2.4.1] /Users/patrickthomas/.gradle/caches/transforms-4/616b1a23984bf7fc9b8d44f87e73cd07/transformed/jetified-lifecycle-process-2.4.1/AndroidManifest.xml:33:17-49
-160        </provider>
-161
-162        <meta-data
-162-->[com.facebook.soloader:soloader:0.10.5] /Users/patrickthomas/.gradle/caches/transforms-4/0ccf8151280c347308f285b20158a8fb/transformed/jetified-soloader-0.10.5/AndroidManifest.xml:12:9-14:37
-163            android:name="com.facebook.soloader.enabled"
-163-->[com.facebook.soloader:soloader:0.10.5] /Users/patrickthomas/.gradle/caches/transforms-4/0ccf8151280c347308f285b20158a8fb/transformed/jetified-soloader-0.10.5/AndroidManifest.xml:13:13-57
-164            android:value="false" />
-164-->[com.facebook.soloader:soloader:0.10.5] /Users/patrickthomas/.gradle/caches/transforms-4/0ccf8151280c347308f285b20158a8fb/transformed/jetified-soloader-0.10.5/AndroidManifest.xml:14:13-34
-165    </application>
-166
-167</manifest>
+21            <category android:name="android.intent.category.BROWSABLE" />
+21-->/Users/patrickthomas/Documents/uni/orbital/TuneGether/android/app/src/main/AndroidManifest.xml:10:7-67
+21-->/Users/patrickthomas/Documents/uni/orbital/TuneGether/android/app/src/main/AndroidManifest.xml:10:17-65
+22
+23            <data android:scheme="https" />
+23-->/Users/patrickthomas/Documents/uni/orbital/TuneGether/android/app/src/main/AndroidManifest.xml:11:7-37
+23-->/Users/patrickthomas/Documents/uni/orbital/TuneGether/android/app/src/main/AndroidManifest.xml:11:13-35
+24        </intent>
+25
+26        <package android:name="host.exp.exponent" /> <!-- Query open documents -->
+26-->[:expo-dev-launcher] /Users/patrickthomas/Documents/uni/orbital/TuneGether/node_modules/expo-dev-launcher/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:8:9-53
+26-->[:expo-dev-launcher] /Users/patrickthomas/Documents/uni/orbital/TuneGether/node_modules/expo-dev-launcher/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:8:18-50
+27        <intent>
+27-->[:expo-file-system] /Users/patrickthomas/Documents/uni/orbital/TuneGether/node_modules/expo-file-system/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:15:9-17:18
+28            <action android:name="android.intent.action.OPEN_DOCUMENT_TREE" />
+28-->[:expo-file-system] /Users/patrickthomas/Documents/uni/orbital/TuneGether/node_modules/expo-file-system/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:16:13-79
+28-->[:expo-file-system] /Users/patrickthomas/Documents/uni/orbital/TuneGether/node_modules/expo-file-system/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:16:21-76
+29        </intent>
+30    </queries>
+31
+32    <uses-permission android:name="android.permission.WAKE_LOCK" />
+32-->[:react-native-firebase_auth] /Users/patrickthomas/Documents/uni/orbital/TuneGether/node_modules/@react-native-firebase/auth/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:8:5-68
+32-->[:react-native-firebase_auth] /Users/patrickthomas/Documents/uni/orbital/TuneGether/node_modules/@react-native-firebase/auth/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:8:22-65
+33    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+33-->[:react-native-firebase_auth] /Users/patrickthomas/Documents/uni/orbital/TuneGether/node_modules/@react-native-firebase/auth/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:9:5-79
+33-->[:react-native-firebase_auth] /Users/patrickthomas/Documents/uni/orbital/TuneGether/node_modules/@react-native-firebase/auth/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:9:22-76
+34    <uses-permission android:name="android.permission.POST_NOTIFICATIONS" /> <!-- Required by older versions of Google Play services to create IID tokens -->
+34-->[com.google.firebase:firebase-messaging:24.0.0] /Users/patrickthomas/.gradle/caches/transforms-4/6f7f0104341dacba85ba463f9cadcc11/transformed/jetified-firebase-messaging-24.0.0/AndroidManifest.xml:23:5-77
+34-->[com.google.firebase:firebase-messaging:24.0.0] /Users/patrickthomas/.gradle/caches/transforms-4/6f7f0104341dacba85ba463f9cadcc11/transformed/jetified-firebase-messaging-24.0.0/AndroidManifest.xml:23:22-74
+35    <uses-permission android:name="com.google.android.c2dm.permission.RECEIVE" />
+35-->[com.google.firebase:firebase-messaging:24.0.0] /Users/patrickthomas/.gradle/caches/transforms-4/6f7f0104341dacba85ba463f9cadcc11/transformed/jetified-firebase-messaging-24.0.0/AndroidManifest.xml:26:5-82
+35-->[com.google.firebase:firebase-messaging:24.0.0] /Users/patrickthomas/.gradle/caches/transforms-4/6f7f0104341dacba85ba463f9cadcc11/transformed/jetified-firebase-messaging-24.0.0/AndroidManifest.xml:26:22-79
+36    <uses-permission android:name="com.google.android.providers.gsf.permission.READ_GSERVICES" />
+36-->[com.google.android.recaptcha:recaptcha:18.4.0] /Users/patrickthomas/.gradle/caches/transforms-4/3c61d45cb4386212331f6a6a2ba17be4/transformed/jetified-recaptcha-18.4.0/AndroidManifest.xml:9:5-98
+36-->[com.google.android.recaptcha:recaptcha:18.4.0] /Users/patrickthomas/.gradle/caches/transforms-4/3c61d45cb4386212331f6a6a2ba17be4/transformed/jetified-recaptcha-18.4.0/AndroidManifest.xml:9:22-95
+37
+38    <permission
+38-->[androidx.core:core:1.12.0] /Users/patrickthomas/.gradle/caches/transforms-4/ced79d408427f48dbbc2045f3670ade4/transformed/core-1.12.0/AndroidManifest.xml:22:5-24:47
+39        android:name="com.TuneGether.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION"
+39-->[androidx.core:core:1.12.0] /Users/patrickthomas/.gradle/caches/transforms-4/ced79d408427f48dbbc2045f3670ade4/transformed/core-1.12.0/AndroidManifest.xml:23:9-81
+40        android:protectionLevel="signature" />
+40-->[androidx.core:core:1.12.0] /Users/patrickthomas/.gradle/caches/transforms-4/ced79d408427f48dbbc2045f3670ade4/transformed/core-1.12.0/AndroidManifest.xml:24:9-44
+41
+42    <uses-permission android:name="com.TuneGether.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION" />
+42-->[androidx.core:core:1.12.0] /Users/patrickthomas/.gradle/caches/transforms-4/ced79d408427f48dbbc2045f3670ade4/transformed/core-1.12.0/AndroidManifest.xml:26:5-97
+42-->[androidx.core:core:1.12.0] /Users/patrickthomas/.gradle/caches/transforms-4/ced79d408427f48dbbc2045f3670ade4/transformed/core-1.12.0/AndroidManifest.xml:26:22-94
+43
+44    <application
+44-->/Users/patrickthomas/Documents/uni/orbital/TuneGether/android/app/src/main/AndroidManifest.xml:14:3-32:17
+45        android:name="com.TuneGether.MainApplication"
+45-->/Users/patrickthomas/Documents/uni/orbital/TuneGether/android/app/src/main/AndroidManifest.xml:14:16-47
+46        android:allowBackup="true"
+46-->/Users/patrickthomas/Documents/uni/orbital/TuneGether/android/app/src/main/AndroidManifest.xml:14:162-188
+47        android:appComponentFactory="androidx.core.app.CoreComponentFactory"
+47-->[androidx.core:core:1.12.0] /Users/patrickthomas/.gradle/caches/transforms-4/ced79d408427f48dbbc2045f3670ade4/transformed/core-1.12.0/AndroidManifest.xml:28:18-86
+48        android:debuggable="true"
+49        android:extractNativeLibs="false"
+50        android:icon="@mipmap/ic_launcher"
+50-->/Users/patrickthomas/Documents/uni/orbital/TuneGether/android/app/src/main/AndroidManifest.xml:14:81-115
+51        android:label="@string/app_name"
+51-->/Users/patrickthomas/Documents/uni/orbital/TuneGether/android/app/src/main/AndroidManifest.xml:14:48-80
+52        android:roundIcon="@mipmap/ic_launcher_round"
+52-->/Users/patrickthomas/Documents/uni/orbital/TuneGether/android/app/src/main/AndroidManifest.xml:14:116-161
+53        android:theme="@style/AppTheme"
+53-->/Users/patrickthomas/Documents/uni/orbital/TuneGether/android/app/src/main/AndroidManifest.xml:14:189-220
+54        android:usesCleartextTraffic="true" >
+54-->/Users/patrickthomas/Documents/uni/orbital/TuneGether/android/app/src/debug/AndroidManifest.xml:6:18-53
+55        <meta-data
+55-->/Users/patrickthomas/Documents/uni/orbital/TuneGether/android/app/src/main/AndroidManifest.xml:15:5-83
+56            android:name="expo.modules.updates.ENABLED"
+56-->/Users/patrickthomas/Documents/uni/orbital/TuneGether/android/app/src/main/AndroidManifest.xml:15:16-59
+57            android:value="false" />
+57-->/Users/patrickthomas/Documents/uni/orbital/TuneGether/android/app/src/main/AndroidManifest.xml:15:60-81
+58        <meta-data
+58-->/Users/patrickthomas/Documents/uni/orbital/TuneGether/android/app/src/main/AndroidManifest.xml:16:5-105
+59            android:name="expo.modules.updates.EXPO_UPDATES_CHECK_ON_LAUNCH"
+59-->/Users/patrickthomas/Documents/uni/orbital/TuneGether/android/app/src/main/AndroidManifest.xml:16:16-80
+60            android:value="ALWAYS" />
+60-->/Users/patrickthomas/Documents/uni/orbital/TuneGether/android/app/src/main/AndroidManifest.xml:16:81-103
+61        <meta-data
+61-->/Users/patrickthomas/Documents/uni/orbital/TuneGether/android/app/src/main/AndroidManifest.xml:17:5-99
+62            android:name="expo.modules.updates.EXPO_UPDATES_LAUNCH_WAIT_MS"
+62-->/Users/patrickthomas/Documents/uni/orbital/TuneGether/android/app/src/main/AndroidManifest.xml:17:16-79
+63            android:value="0" />
+63-->/Users/patrickthomas/Documents/uni/orbital/TuneGether/android/app/src/main/AndroidManifest.xml:17:80-97
+64
+65        <activity
+65-->/Users/patrickthomas/Documents/uni/orbital/TuneGether/android/app/src/main/AndroidManifest.xml:18:5-30:16
+66            android:name="com.TuneGether.MainActivity"
+66-->/Users/patrickthomas/Documents/uni/orbital/TuneGether/android/app/src/main/AndroidManifest.xml:18:15-43
+67            android:configChanges="keyboard|keyboardHidden|orientation|screenSize|screenLayout|uiMode"
+67-->/Users/patrickthomas/Documents/uni/orbital/TuneGether/android/app/src/main/AndroidManifest.xml:18:44-134
+68            android:exported="true"
+68-->/Users/patrickthomas/Documents/uni/orbital/TuneGether/android/app/src/main/AndroidManifest.xml:18:256-279
+69            android:launchMode="singleTask"
+69-->/Users/patrickthomas/Documents/uni/orbital/TuneGether/android/app/src/main/AndroidManifest.xml:18:135-166
+70            android:screenOrientation="portrait"
+70-->/Users/patrickthomas/Documents/uni/orbital/TuneGether/android/app/src/main/AndroidManifest.xml:18:280-316
+71            android:theme="@style/Theme.App.SplashScreen"
+71-->/Users/patrickthomas/Documents/uni/orbital/TuneGether/android/app/src/main/AndroidManifest.xml:18:210-255
+72            android:windowSoftInputMode="adjustResize" >
+72-->/Users/patrickthomas/Documents/uni/orbital/TuneGether/android/app/src/main/AndroidManifest.xml:18:167-209
+73            <intent-filter>
+73-->/Users/patrickthomas/Documents/uni/orbital/TuneGether/android/app/src/main/AndroidManifest.xml:19:7-22:23
+74                <action android:name="android.intent.action.MAIN" />
+74-->/Users/patrickthomas/Documents/uni/orbital/TuneGether/android/app/src/main/AndroidManifest.xml:20:9-60
+74-->/Users/patrickthomas/Documents/uni/orbital/TuneGether/android/app/src/main/AndroidManifest.xml:20:17-58
+75
+76                <category android:name="android.intent.category.LAUNCHER" />
+76-->/Users/patrickthomas/Documents/uni/orbital/TuneGether/android/app/src/main/AndroidManifest.xml:21:9-68
+76-->/Users/patrickthomas/Documents/uni/orbital/TuneGether/android/app/src/main/AndroidManifest.xml:21:19-66
+77            </intent-filter>
+78            <intent-filter>
+78-->/Users/patrickthomas/Documents/uni/orbital/TuneGether/android/app/src/main/AndroidManifest.xml:23:7-29:23
+79                <action android:name="android.intent.action.VIEW" />
+79-->/Users/patrickthomas/Documents/uni/orbital/TuneGether/android/app/src/main/AndroidManifest.xml:9:7-58
+79-->/Users/patrickthomas/Documents/uni/orbital/TuneGether/android/app/src/main/AndroidManifest.xml:9:15-56
+80
+81                <category android:name="android.intent.category.DEFAULT" />
+81-->/Users/patrickthomas/Documents/uni/orbital/TuneGether/android/app/src/main/AndroidManifest.xml:25:9-67
+81-->/Users/patrickthomas/Documents/uni/orbital/TuneGether/android/app/src/main/AndroidManifest.xml:25:19-65
+82                <category android:name="android.intent.category.BROWSABLE" />
+82-->/Users/patrickthomas/Documents/uni/orbital/TuneGether/android/app/src/main/AndroidManifest.xml:10:7-67
+82-->/Users/patrickthomas/Documents/uni/orbital/TuneGether/android/app/src/main/AndroidManifest.xml:10:17-65
+83
+84                <data android:scheme="com.TuneGether" />
+84-->/Users/patrickthomas/Documents/uni/orbital/TuneGether/android/app/src/main/AndroidManifest.xml:11:7-37
+84-->/Users/patrickthomas/Documents/uni/orbital/TuneGether/android/app/src/main/AndroidManifest.xml:11:13-35
+85                <data android:scheme="exp+tunegether" />
+85-->/Users/patrickthomas/Documents/uni/orbital/TuneGether/android/app/src/main/AndroidManifest.xml:11:7-37
+85-->/Users/patrickthomas/Documents/uni/orbital/TuneGether/android/app/src/main/AndroidManifest.xml:11:13-35
+86            </intent-filter>
+87        </activity>
+88        <activity
+88-->/Users/patrickthomas/Documents/uni/orbital/TuneGether/android/app/src/main/AndroidManifest.xml:31:5-106
+89            android:name="com.facebook.react.devsupport.DevSettingsActivity"
+89-->/Users/patrickthomas/Documents/uni/orbital/TuneGether/android/app/src/main/AndroidManifest.xml:31:15-79
+90            android:exported="false" /> <!-- Disable crashlytics by default so we can custom init with CrashlyticsNdk support -->
+90-->/Users/patrickthomas/Documents/uni/orbital/TuneGether/android/app/src/main/AndroidManifest.xml:31:80-104
+91        <meta-data
+91-->[:react-native-firebase_crashlytics] /Users/patrickthomas/Documents/uni/orbital/TuneGether/node_modules/@react-native-firebase/crashlytics/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:10:9-12:37
+92            android:name="firebase_crashlytics_collection_enabled"
+92-->[:react-native-firebase_crashlytics] /Users/patrickthomas/Documents/uni/orbital/TuneGether/node_modules/@react-native-firebase/crashlytics/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:11:13-67
+93            android:value="false" />
+93-->[:react-native-firebase_crashlytics] /Users/patrickthomas/Documents/uni/orbital/TuneGether/node_modules/@react-native-firebase/crashlytics/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:12:13-34
+94
+95        <provider
+95-->[:react-native-firebase_crashlytics] /Users/patrickthomas/Documents/uni/orbital/TuneGether/node_modules/@react-native-firebase/crashlytics/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:14:9-18:38
+96            android:name="io.invertase.firebase.crashlytics.ReactNativeFirebaseCrashlyticsInitProvider"
+96-->[:react-native-firebase_crashlytics] /Users/patrickthomas/Documents/uni/orbital/TuneGether/node_modules/@react-native-firebase/crashlytics/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:15:13-104
+97            android:authorities="com.TuneGether.reactnativefirebasecrashlyticsinitprovider"
+97-->[:react-native-firebase_crashlytics] /Users/patrickthomas/Documents/uni/orbital/TuneGether/node_modules/@react-native-firebase/crashlytics/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:16:13-94
+98            android:exported="false"
+98-->[:react-native-firebase_crashlytics] /Users/patrickthomas/Documents/uni/orbital/TuneGether/node_modules/@react-native-firebase/crashlytics/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:17:13-37
+99            android:initOrder="98" />
+99-->[:react-native-firebase_crashlytics] /Users/patrickthomas/Documents/uni/orbital/TuneGether/node_modules/@react-native-firebase/crashlytics/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:18:13-35
+100
+101        <service
+101-->[:react-native-firebase_messaging] /Users/patrickthomas/Documents/uni/orbital/TuneGether/node_modules/@react-native-firebase/messaging/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:12:9-14:40
+102            android:name="io.invertase.firebase.messaging.ReactNativeFirebaseMessagingHeadlessService"
+102-->[:react-native-firebase_messaging] /Users/patrickthomas/Documents/uni/orbital/TuneGether/node_modules/@react-native-firebase/messaging/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:13:13-103
+103            android:exported="false" />
+103-->[:react-native-firebase_messaging] /Users/patrickthomas/Documents/uni/orbital/TuneGether/node_modules/@react-native-firebase/messaging/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:14:13-37
+104        <service
+104-->[:react-native-firebase_messaging] /Users/patrickthomas/Documents/uni/orbital/TuneGether/node_modules/@react-native-firebase/messaging/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:15:9-21:19
+105            android:name="io.invertase.firebase.messaging.ReactNativeFirebaseMessagingService"
+105-->[:react-native-firebase_messaging] /Users/patrickthomas/Documents/uni/orbital/TuneGether/node_modules/@react-native-firebase/messaging/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:16:13-95
+106            android:exported="false" >
+106-->[:react-native-firebase_messaging] /Users/patrickthomas/Documents/uni/orbital/TuneGether/node_modules/@react-native-firebase/messaging/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:17:13-37
+107            <intent-filter>
+107-->[:react-native-firebase_messaging] /Users/patrickthomas/Documents/uni/orbital/TuneGether/node_modules/@react-native-firebase/messaging/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:18:13-20:29
+108                <action android:name="com.google.firebase.MESSAGING_EVENT" />
+108-->[:react-native-firebase_messaging] /Users/patrickthomas/Documents/uni/orbital/TuneGether/node_modules/@react-native-firebase/messaging/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:19:17-78
+108-->[:react-native-firebase_messaging] /Users/patrickthomas/Documents/uni/orbital/TuneGether/node_modules/@react-native-firebase/messaging/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:19:25-75
+109            </intent-filter>
+110        </service>
+111
+112        <receiver
+112-->[:react-native-firebase_messaging] /Users/patrickthomas/Documents/uni/orbital/TuneGether/node_modules/@react-native-firebase/messaging/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:23:9-30:20
+113            android:name="io.invertase.firebase.messaging.ReactNativeFirebaseMessagingReceiver"
+113-->[:react-native-firebase_messaging] /Users/patrickthomas/Documents/uni/orbital/TuneGether/node_modules/@react-native-firebase/messaging/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:24:13-96
+114            android:exported="true"
+114-->[:react-native-firebase_messaging] /Users/patrickthomas/Documents/uni/orbital/TuneGether/node_modules/@react-native-firebase/messaging/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:25:13-36
+115            android:permission="com.google.android.c2dm.permission.SEND" >
+115-->[:react-native-firebase_messaging] /Users/patrickthomas/Documents/uni/orbital/TuneGether/node_modules/@react-native-firebase/messaging/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:26:13-73
+116            <intent-filter>
+116-->[:react-native-firebase_messaging] /Users/patrickthomas/Documents/uni/orbital/TuneGether/node_modules/@react-native-firebase/messaging/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:27:13-29:29
+117                <action android:name="com.google.android.c2dm.intent.RECEIVE" />
+117-->[:react-native-firebase_messaging] /Users/patrickthomas/Documents/uni/orbital/TuneGether/node_modules/@react-native-firebase/messaging/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:28:17-81
+117-->[:react-native-firebase_messaging] /Users/patrickthomas/Documents/uni/orbital/TuneGether/node_modules/@react-native-firebase/messaging/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:28:25-78
+118            </intent-filter>
+119        </receiver>
+120
+121        <meta-data
+121-->[:react-native-firebase_messaging] /Users/patrickthomas/Documents/uni/orbital/TuneGether/node_modules/@react-native-firebase/messaging/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:32:9-34:36
+122            android:name="firebase_messaging_auto_init_enabled"
+122-->[:react-native-firebase_messaging] /Users/patrickthomas/Documents/uni/orbital/TuneGether/node_modules/@react-native-firebase/messaging/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:33:13-64
+123            android:value="true" />
+123-->[:react-native-firebase_messaging] /Users/patrickthomas/Documents/uni/orbital/TuneGether/node_modules/@react-native-firebase/messaging/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:34:13-33
+124        <meta-data
+124-->[:react-native-firebase_messaging] /Users/patrickthomas/Documents/uni/orbital/TuneGether/node_modules/@react-native-firebase/messaging/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:35:9-37:32
+125            android:name="com.google.firebase.messaging.default_notification_channel_id"
+125-->[:react-native-firebase_messaging] /Users/patrickthomas/Documents/uni/orbital/TuneGether/node_modules/@react-native-firebase/messaging/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:36:13-89
+126            android:value="" />
+126-->[:react-native-firebase_messaging] /Users/patrickthomas/Documents/uni/orbital/TuneGether/node_modules/@react-native-firebase/messaging/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:37:13-29
+127        <meta-data
+127-->[:react-native-firebase_messaging] /Users/patrickthomas/Documents/uni/orbital/TuneGether/node_modules/@react-native-firebase/messaging/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:38:9-40:47
+128            android:name="com.google.firebase.messaging.default_notification_color"
+128-->[:react-native-firebase_messaging] /Users/patrickthomas/Documents/uni/orbital/TuneGether/node_modules/@react-native-firebase/messaging/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:39:13-84
+129            android:resource="@color/white" />
+129-->[:react-native-firebase_messaging] /Users/patrickthomas/Documents/uni/orbital/TuneGether/node_modules/@react-native-firebase/messaging/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:40:13-44
+130        <meta-data
+130-->[:react-native-firebase_app] /Users/patrickthomas/Documents/uni/orbital/TuneGether/node_modules/@react-native-firebase/app/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:9:9-11:36
+131            android:name="app_data_collection_default_enabled"
+131-->[:react-native-firebase_app] /Users/patrickthomas/Documents/uni/orbital/TuneGether/node_modules/@react-native-firebase/app/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:10:13-63
+132            android:value="true" />
+132-->[:react-native-firebase_app] /Users/patrickthomas/Documents/uni/orbital/TuneGether/node_modules/@react-native-firebase/app/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:11:13-33
+133
+134        <service
+134-->[:react-native-firebase_app] /Users/patrickthomas/Documents/uni/orbital/TuneGether/node_modules/@react-native-firebase/app/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:13:9-21:19
+135            android:name="com.google.firebase.components.ComponentDiscoveryService"
+135-->[:react-native-firebase_app] /Users/patrickthomas/Documents/uni/orbital/TuneGether/node_modules/@react-native-firebase/app/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:14:13-84
+136            android:directBootAware="true"
+136-->[:react-native-firebase_app] /Users/patrickthomas/Documents/uni/orbital/TuneGether/node_modules/@react-native-firebase/app/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:15:13-43
+137            android:exported="false" >
+137-->[:react-native-firebase_app] /Users/patrickthomas/Documents/uni/orbital/TuneGether/node_modules/@react-native-firebase/app/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:16:13-37
+138            <meta-data
+138-->[:react-native-firebase_app] /Users/patrickthomas/Documents/uni/orbital/TuneGether/node_modules/@react-native-firebase/app/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:18:13-20:85
+139                android:name="com.google.firebase.components:io.invertase.firebase.app.ReactNativeFirebaseAppRegistrar"
+139-->[:react-native-firebase_app] /Users/patrickthomas/Documents/uni/orbital/TuneGether/node_modules/@react-native-firebase/app/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:19:17-120
+140                android:value="com.google.firebase.components.ComponentRegistrar" />
+140-->[:react-native-firebase_app] /Users/patrickthomas/Documents/uni/orbital/TuneGether/node_modules/@react-native-firebase/app/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:20:17-82
+141            <meta-data
+141-->[com.google.firebase:firebase-auth:23.0.0] /Users/patrickthomas/.gradle/caches/transforms-4/5fba87c216ad0ecdbe0fa1573a4deb33/transformed/jetified-firebase-auth-23.0.0/AndroidManifest.xml:69:13-71:85
+142                android:name="com.google.firebase.components:com.google.firebase.auth.FirebaseAuthRegistrar"
+142-->[com.google.firebase:firebase-auth:23.0.0] /Users/patrickthomas/.gradle/caches/transforms-4/5fba87c216ad0ecdbe0fa1573a4deb33/transformed/jetified-firebase-auth-23.0.0/AndroidManifest.xml:70:17-109
+143                android:value="com.google.firebase.components.ComponentRegistrar" />
+143-->[com.google.firebase:firebase-auth:23.0.0] /Users/patrickthomas/.gradle/caches/transforms-4/5fba87c216ad0ecdbe0fa1573a4deb33/transformed/jetified-firebase-auth-23.0.0/AndroidManifest.xml:71:17-82
+144            <meta-data
+144-->[com.google.firebase:firebase-messaging:24.0.0] /Users/patrickthomas/.gradle/caches/transforms-4/6f7f0104341dacba85ba463f9cadcc11/transformed/jetified-firebase-messaging-24.0.0/AndroidManifest.xml:57:13-59:85
+145                android:name="com.google.firebase.components:com.google.firebase.messaging.FirebaseMessagingKtxRegistrar"
+145-->[com.google.firebase:firebase-messaging:24.0.0] /Users/patrickthomas/.gradle/caches/transforms-4/6f7f0104341dacba85ba463f9cadcc11/transformed/jetified-firebase-messaging-24.0.0/AndroidManifest.xml:58:17-122
+146                android:value="com.google.firebase.components.ComponentRegistrar" />
+146-->[com.google.firebase:firebase-messaging:24.0.0] /Users/patrickthomas/.gradle/caches/transforms-4/6f7f0104341dacba85ba463f9cadcc11/transformed/jetified-firebase-messaging-24.0.0/AndroidManifest.xml:59:17-82
+147            <meta-data
+147-->[com.google.firebase:firebase-messaging:24.0.0] /Users/patrickthomas/.gradle/caches/transforms-4/6f7f0104341dacba85ba463f9cadcc11/transformed/jetified-firebase-messaging-24.0.0/AndroidManifest.xml:60:13-62:85
+148                android:name="com.google.firebase.components:com.google.firebase.messaging.FirebaseMessagingRegistrar"
+148-->[com.google.firebase:firebase-messaging:24.0.0] /Users/patrickthomas/.gradle/caches/transforms-4/6f7f0104341dacba85ba463f9cadcc11/transformed/jetified-firebase-messaging-24.0.0/AndroidManifest.xml:61:17-119
+149                android:value="com.google.firebase.components.ComponentRegistrar" />
+149-->[com.google.firebase:firebase-messaging:24.0.0] /Users/patrickthomas/.gradle/caches/transforms-4/6f7f0104341dacba85ba463f9cadcc11/transformed/jetified-firebase-messaging-24.0.0/AndroidManifest.xml:62:17-82
+150            <meta-data
+150-->[com.google.firebase:firebase-storage:21.0.0] /Users/patrickthomas/.gradle/caches/transforms-4/4c315b7da0745ae1cb39b22980b7230a/transformed/jetified-firebase-storage-21.0.0/AndroidManifest.xml:30:13-32:85
+151                android:name="com.google.firebase.components:com.google.firebase.storage.FirebaseStorageKtxRegistrar"
+151-->[com.google.firebase:firebase-storage:21.0.0] /Users/patrickthomas/.gradle/caches/transforms-4/4c315b7da0745ae1cb39b22980b7230a/transformed/jetified-firebase-storage-21.0.0/AndroidManifest.xml:31:17-118
+152                android:value="com.google.firebase.components.ComponentRegistrar" />
+152-->[com.google.firebase:firebase-storage:21.0.0] /Users/patrickthomas/.gradle/caches/transforms-4/4c315b7da0745ae1cb39b22980b7230a/transformed/jetified-firebase-storage-21.0.0/AndroidManifest.xml:32:17-82
+153            <meta-data
+153-->[com.google.firebase:firebase-storage:21.0.0] /Users/patrickthomas/.gradle/caches/transforms-4/4c315b7da0745ae1cb39b22980b7230a/transformed/jetified-firebase-storage-21.0.0/AndroidManifest.xml:33:13-35:85
+154                android:name="com.google.firebase.components:com.google.firebase.storage.StorageRegistrar"
+154-->[com.google.firebase:firebase-storage:21.0.0] /Users/patrickthomas/.gradle/caches/transforms-4/4c315b7da0745ae1cb39b22980b7230a/transformed/jetified-firebase-storage-21.0.0/AndroidManifest.xml:34:17-107
+155                android:value="com.google.firebase.components.ComponentRegistrar" />
+155-->[com.google.firebase:firebase-storage:21.0.0] /Users/patrickthomas/.gradle/caches/transforms-4/4c315b7da0745ae1cb39b22980b7230a/transformed/jetified-firebase-storage-21.0.0/AndroidManifest.xml:35:17-82
+156            <meta-data
+156-->[com.google.firebase:firebase-database:21.0.0] /Users/patrickthomas/.gradle/caches/transforms-4/843c92cb72aac5903132a343e7716744/transformed/jetified-firebase-database-21.0.0/AndroidManifest.xml:29:13-31:85
+157                android:name="com.google.firebase.components:com.google.firebase.database.FirebaseDatabaseKtxRegistrar"
+157-->[com.google.firebase:firebase-database:21.0.0] /Users/patrickthomas/.gradle/caches/transforms-4/843c92cb72aac5903132a343e7716744/transformed/jetified-firebase-database-21.0.0/AndroidManifest.xml:30:17-120
+158                android:value="com.google.firebase.components.ComponentRegistrar" />
+158-->[com.google.firebase:firebase-database:21.0.0] /Users/patrickthomas/.gradle/caches/transforms-4/843c92cb72aac5903132a343e7716744/transformed/jetified-firebase-database-21.0.0/AndroidManifest.xml:31:17-82
+159            <meta-data
+159-->[com.google.firebase:firebase-database:21.0.0] /Users/patrickthomas/.gradle/caches/transforms-4/843c92cb72aac5903132a343e7716744/transformed/jetified-firebase-database-21.0.0/AndroidManifest.xml:32:13-34:85
+160                android:name="com.google.firebase.components:com.google.firebase.database.DatabaseRegistrar"
+160-->[com.google.firebase:firebase-database:21.0.0] /Users/patrickthomas/.gradle/caches/transforms-4/843c92cb72aac5903132a343e7716744/transformed/jetified-firebase-database-21.0.0/AndroidManifest.xml:33:17-109
+161                android:value="com.google.firebase.components.ComponentRegistrar" />
+161-->[com.google.firebase:firebase-database:21.0.0] /Users/patrickthomas/.gradle/caches/transforms-4/843c92cb72aac5903132a343e7716744/transformed/jetified-firebase-database-21.0.0/AndroidManifest.xml:34:17-82
+162            <meta-data
+162-->[com.google.firebase:firebase-appcheck:18.0.0] /Users/patrickthomas/.gradle/caches/transforms-4/ebe5be8ef4535ddd5aa0be41a22a1a23/transformed/jetified-firebase-appcheck-18.0.0/AndroidManifest.xml:25:13-27:85
+163                android:name="com.google.firebase.components:com.google.firebase.appcheck.FirebaseAppCheckKtxRegistrar"
+163-->[com.google.firebase:firebase-appcheck:18.0.0] /Users/patrickthomas/.gradle/caches/transforms-4/ebe5be8ef4535ddd5aa0be41a22a1a23/transformed/jetified-firebase-appcheck-18.0.0/AndroidManifest.xml:26:17-120
+164                android:value="com.google.firebase.components.ComponentRegistrar" />
+164-->[com.google.firebase:firebase-appcheck:18.0.0] /Users/patrickthomas/.gradle/caches/transforms-4/ebe5be8ef4535ddd5aa0be41a22a1a23/transformed/jetified-firebase-appcheck-18.0.0/AndroidManifest.xml:27:17-82
+165            <meta-data
+165-->[com.google.firebase:firebase-appcheck:18.0.0] /Users/patrickthomas/.gradle/caches/transforms-4/ebe5be8ef4535ddd5aa0be41a22a1a23/transformed/jetified-firebase-appcheck-18.0.0/AndroidManifest.xml:28:13-30:85
+166                android:name="com.google.firebase.components:com.google.firebase.appcheck.FirebaseAppCheckRegistrar"
+166-->[com.google.firebase:firebase-appcheck:18.0.0] /Users/patrickthomas/.gradle/caches/transforms-4/ebe5be8ef4535ddd5aa0be41a22a1a23/transformed/jetified-firebase-appcheck-18.0.0/AndroidManifest.xml:29:17-117
+167                android:value="com.google.firebase.components.ComponentRegistrar" />
+167-->[com.google.firebase:firebase-appcheck:18.0.0] /Users/patrickthomas/.gradle/caches/transforms-4/ebe5be8ef4535ddd5aa0be41a22a1a23/transformed/jetified-firebase-appcheck-18.0.0/AndroidManifest.xml:30:17-82
+168            <meta-data
+168-->[com.google.firebase:firebase-crashlytics-ndk:19.0.0] /Users/patrickthomas/.gradle/caches/transforms-4/21399d84202cbf1cfd68e94986641881/transformed/jetified-firebase-crashlytics-ndk-19.0.0/AndroidManifest.xml:32:13-34:85
+169                android:name="com.google.firebase.components:com.google.firebase.crashlytics.ndk.CrashlyticsNdkRegistrar"
+169-->[com.google.firebase:firebase-crashlytics-ndk:19.0.0] /Users/patrickthomas/.gradle/caches/transforms-4/21399d84202cbf1cfd68e94986641881/transformed/jetified-firebase-crashlytics-ndk-19.0.0/AndroidManifest.xml:33:17-122
+170                android:value="com.google.firebase.components.ComponentRegistrar" />
+170-->[com.google.firebase:firebase-crashlytics-ndk:19.0.0] /Users/patrickthomas/.gradle/caches/transforms-4/21399d84202cbf1cfd68e94986641881/transformed/jetified-firebase-crashlytics-ndk-19.0.0/AndroidManifest.xml:34:17-82
+171            <meta-data
+171-->[com.google.firebase:firebase-crashlytics:19.0.0] /Users/patrickthomas/.gradle/caches/transforms-4/c5ffb93cf6272f7259723bd44a710ec2/transformed/jetified-firebase-crashlytics-19.0.0/AndroidManifest.xml:15:13-17:85
+172                android:name="com.google.firebase.components:com.google.firebase.crashlytics.FirebaseCrashlyticsKtxRegistrar"
+172-->[com.google.firebase:firebase-crashlytics:19.0.0] /Users/patrickthomas/.gradle/caches/transforms-4/c5ffb93cf6272f7259723bd44a710ec2/transformed/jetified-firebase-crashlytics-19.0.0/AndroidManifest.xml:16:17-126
+173                android:value="com.google.firebase.components.ComponentRegistrar" />
+173-->[com.google.firebase:firebase-crashlytics:19.0.0] /Users/patrickthomas/.gradle/caches/transforms-4/c5ffb93cf6272f7259723bd44a710ec2/transformed/jetified-firebase-crashlytics-19.0.0/AndroidManifest.xml:17:17-82
+174            <meta-data
+174-->[com.google.firebase:firebase-crashlytics:19.0.0] /Users/patrickthomas/.gradle/caches/transforms-4/c5ffb93cf6272f7259723bd44a710ec2/transformed/jetified-firebase-crashlytics-19.0.0/AndroidManifest.xml:18:13-20:85
+175                android:name="com.google.firebase.components:com.google.firebase.crashlytics.CrashlyticsRegistrar"
+175-->[com.google.firebase:firebase-crashlytics:19.0.0] /Users/patrickthomas/.gradle/caches/transforms-4/c5ffb93cf6272f7259723bd44a710ec2/transformed/jetified-firebase-crashlytics-19.0.0/AndroidManifest.xml:19:17-115
+176                android:value="com.google.firebase.components.ComponentRegistrar" />
+176-->[com.google.firebase:firebase-crashlytics:19.0.0] /Users/patrickthomas/.gradle/caches/transforms-4/c5ffb93cf6272f7259723bd44a710ec2/transformed/jetified-firebase-crashlytics-19.0.0/AndroidManifest.xml:20:17-82
+177            <meta-data
+177-->[com.google.firebase:firebase-sessions:2.0.0] /Users/patrickthomas/.gradle/caches/transforms-4/febf6971d170f19a3bd4ee9acac579c0/transformed/jetified-firebase-sessions-2.0.0/AndroidManifest.xml:29:13-31:85
+178                android:name="com.google.firebase.components:com.google.firebase.sessions.FirebaseSessionsRegistrar"
+178-->[com.google.firebase:firebase-sessions:2.0.0] /Users/patrickthomas/.gradle/caches/transforms-4/febf6971d170f19a3bd4ee9acac579c0/transformed/jetified-firebase-sessions-2.0.0/AndroidManifest.xml:30:17-117
+179                android:value="com.google.firebase.components.ComponentRegistrar" />
+179-->[com.google.firebase:firebase-sessions:2.0.0] /Users/patrickthomas/.gradle/caches/transforms-4/febf6971d170f19a3bd4ee9acac579c0/transformed/jetified-firebase-sessions-2.0.0/AndroidManifest.xml:31:17-82
+180            <meta-data
+180-->[com.google.firebase:firebase-installations:18.0.0] /Users/patrickthomas/.gradle/caches/transforms-4/3cc18eda8c3972e8f9bc4877b2b968aa/transformed/jetified-firebase-installations-18.0.0/AndroidManifest.xml:15:13-17:85
+181                android:name="com.google.firebase.components:com.google.firebase.installations.FirebaseInstallationsKtxRegistrar"
+181-->[com.google.firebase:firebase-installations:18.0.0] /Users/patrickthomas/.gradle/caches/transforms-4/3cc18eda8c3972e8f9bc4877b2b968aa/transformed/jetified-firebase-installations-18.0.0/AndroidManifest.xml:16:17-130
+182                android:value="com.google.firebase.components.ComponentRegistrar" />
+182-->[com.google.firebase:firebase-installations:18.0.0] /Users/patrickthomas/.gradle/caches/transforms-4/3cc18eda8c3972e8f9bc4877b2b968aa/transformed/jetified-firebase-installations-18.0.0/AndroidManifest.xml:17:17-82
+183            <meta-data
+183-->[com.google.firebase:firebase-installations:18.0.0] /Users/patrickthomas/.gradle/caches/transforms-4/3cc18eda8c3972e8f9bc4877b2b968aa/transformed/jetified-firebase-installations-18.0.0/AndroidManifest.xml:18:13-20:85
+184                android:name="com.google.firebase.components:com.google.firebase.installations.FirebaseInstallationsRegistrar"
+184-->[com.google.firebase:firebase-installations:18.0.0] /Users/patrickthomas/.gradle/caches/transforms-4/3cc18eda8c3972e8f9bc4877b2b968aa/transformed/jetified-firebase-installations-18.0.0/AndroidManifest.xml:19:17-127
+185                android:value="com.google.firebase.components.ComponentRegistrar" />
+185-->[com.google.firebase:firebase-installations:18.0.0] /Users/patrickthomas/.gradle/caches/transforms-4/3cc18eda8c3972e8f9bc4877b2b968aa/transformed/jetified-firebase-installations-18.0.0/AndroidManifest.xml:20:17-82
+186            <meta-data
+186-->[com.google.firebase:firebase-common-ktx:21.0.0] /Users/patrickthomas/.gradle/caches/transforms-4/20cd66bceda8e49edb43a4377683cbe0/transformed/jetified-firebase-common-ktx-21.0.0/AndroidManifest.xml:12:13-14:85
+187                android:name="com.google.firebase.components:com.google.firebase.ktx.FirebaseCommonLegacyRegistrar"
+187-->[com.google.firebase:firebase-common-ktx:21.0.0] /Users/patrickthomas/.gradle/caches/transforms-4/20cd66bceda8e49edb43a4377683cbe0/transformed/jetified-firebase-common-ktx-21.0.0/AndroidManifest.xml:13:17-116
+188                android:value="com.google.firebase.components.ComponentRegistrar" />
+188-->[com.google.firebase:firebase-common-ktx:21.0.0] /Users/patrickthomas/.gradle/caches/transforms-4/20cd66bceda8e49edb43a4377683cbe0/transformed/jetified-firebase-common-ktx-21.0.0/AndroidManifest.xml:14:17-82
+189            <meta-data
+189-->[com.google.firebase:firebase-common:21.0.0] /Users/patrickthomas/.gradle/caches/transforms-4/38c9c7c2652c3cb839c88a894172ec36/transformed/jetified-firebase-common-21.0.0/AndroidManifest.xml:35:13-37:85
+190                android:name="com.google.firebase.components:com.google.firebase.FirebaseCommonKtxRegistrar"
+190-->[com.google.firebase:firebase-common:21.0.0] /Users/patrickthomas/.gradle/caches/transforms-4/38c9c7c2652c3cb839c88a894172ec36/transformed/jetified-firebase-common-21.0.0/AndroidManifest.xml:36:17-109
+191                android:value="com.google.firebase.components.ComponentRegistrar" />
+191-->[com.google.firebase:firebase-common:21.0.0] /Users/patrickthomas/.gradle/caches/transforms-4/38c9c7c2652c3cb839c88a894172ec36/transformed/jetified-firebase-common-21.0.0/AndroidManifest.xml:37:17-82
+192            <meta-data
+192-->[com.google.firebase:firebase-datatransport:18.2.0] /Users/patrickthomas/.gradle/caches/transforms-4/e1a13342b7e96cecc8be89029802fe1f/transformed/jetified-firebase-datatransport-18.2.0/AndroidManifest.xml:25:13-27:85
+193                android:name="com.google.firebase.components:com.google.firebase.datatransport.TransportRegistrar"
+193-->[com.google.firebase:firebase-datatransport:18.2.0] /Users/patrickthomas/.gradle/caches/transforms-4/e1a13342b7e96cecc8be89029802fe1f/transformed/jetified-firebase-datatransport-18.2.0/AndroidManifest.xml:26:17-115
+194                android:value="com.google.firebase.components.ComponentRegistrar" />
+194-->[com.google.firebase:firebase-datatransport:18.2.0] /Users/patrickthomas/.gradle/caches/transforms-4/e1a13342b7e96cecc8be89029802fe1f/transformed/jetified-firebase-datatransport-18.2.0/AndroidManifest.xml:27:17-82
+195        </service>
+196
+197        <provider
+197-->[:react-native-firebase_app] /Users/patrickthomas/Documents/uni/orbital/TuneGether/node_modules/@react-native-firebase/app/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:23:9-27:38
+198            android:name="io.invertase.firebase.app.ReactNativeFirebaseAppInitProvider"
+198-->[:react-native-firebase_app] /Users/patrickthomas/Documents/uni/orbital/TuneGether/node_modules/@react-native-firebase/app/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:24:13-88
+199            android:authorities="com.TuneGether.reactnativefirebaseappinitprovider"
+199-->[:react-native-firebase_app] /Users/patrickthomas/Documents/uni/orbital/TuneGether/node_modules/@react-native-firebase/app/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:25:13-86
+200            android:exported="false"
+200-->[:react-native-firebase_app] /Users/patrickthomas/Documents/uni/orbital/TuneGether/node_modules/@react-native-firebase/app/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:26:13-37
+201            android:initOrder="99" />
+201-->[:react-native-firebase_app] /Users/patrickthomas/Documents/uni/orbital/TuneGether/node_modules/@react-native-firebase/app/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:27:13-35
+202
+203        <activity
+203-->[:expo-dev-launcher] /Users/patrickthomas/Documents/uni/orbital/TuneGether/node_modules/expo-dev-launcher/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:12:9-25:20
+204            android:name="expo.modules.devlauncher.launcher.DevLauncherActivity"
+204-->[:expo-dev-launcher] /Users/patrickthomas/Documents/uni/orbital/TuneGether/node_modules/expo-dev-launcher/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:13:13-81
+205            android:exported="true"
+205-->[:expo-dev-launcher] /Users/patrickthomas/Documents/uni/orbital/TuneGether/node_modules/expo-dev-launcher/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:14:13-36
+206            android:launchMode="singleTask"
+206-->[:expo-dev-launcher] /Users/patrickthomas/Documents/uni/orbital/TuneGether/node_modules/expo-dev-launcher/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:15:13-44
+207            android:theme="@style/Theme.DevLauncher.LauncherActivity" >
+207-->[:expo-dev-launcher] /Users/patrickthomas/Documents/uni/orbital/TuneGether/node_modules/expo-dev-launcher/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:16:13-70
+208            <intent-filter>
+208-->[:expo-dev-launcher] /Users/patrickthomas/Documents/uni/orbital/TuneGether/node_modules/expo-dev-launcher/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:17:13-24:29
+209                <action android:name="android.intent.action.VIEW" />
+209-->/Users/patrickthomas/Documents/uni/orbital/TuneGether/android/app/src/main/AndroidManifest.xml:9:7-58
+209-->/Users/patrickthomas/Documents/uni/orbital/TuneGether/android/app/src/main/AndroidManifest.xml:9:15-56
+210
+211                <category android:name="android.intent.category.DEFAULT" />
+211-->/Users/patrickthomas/Documents/uni/orbital/TuneGether/android/app/src/main/AndroidManifest.xml:25:9-67
+211-->/Users/patrickthomas/Documents/uni/orbital/TuneGether/android/app/src/main/AndroidManifest.xml:25:19-65
+212                <category android:name="android.intent.category.BROWSABLE" />
+212-->/Users/patrickthomas/Documents/uni/orbital/TuneGether/android/app/src/main/AndroidManifest.xml:10:7-67
+212-->/Users/patrickthomas/Documents/uni/orbital/TuneGether/android/app/src/main/AndroidManifest.xml:10:17-65
+213
+214                <data android:scheme="expo-dev-launcher" />
+214-->/Users/patrickthomas/Documents/uni/orbital/TuneGether/android/app/src/main/AndroidManifest.xml:11:7-37
+214-->/Users/patrickthomas/Documents/uni/orbital/TuneGether/android/app/src/main/AndroidManifest.xml:11:13-35
+215            </intent-filter>
+216        </activity>
+217        <activity
+217-->[:expo-dev-launcher] /Users/patrickthomas/Documents/uni/orbital/TuneGether/node_modules/expo-dev-launcher/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:26:9-29:70
+218            android:name="expo.modules.devlauncher.launcher.errors.DevLauncherErrorActivity"
+218-->[:expo-dev-launcher] /Users/patrickthomas/Documents/uni/orbital/TuneGether/node_modules/expo-dev-launcher/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:27:13-93
+219            android:screenOrientation="portrait"
+219-->[:expo-dev-launcher] /Users/patrickthomas/Documents/uni/orbital/TuneGether/node_modules/expo-dev-launcher/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:28:13-49
+220            android:theme="@style/Theme.DevLauncher.ErrorActivity" />
+220-->[:expo-dev-launcher] /Users/patrickthomas/Documents/uni/orbital/TuneGether/node_modules/expo-dev-launcher/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:29:13-67
+221        <activity
+221-->[:expo-dev-menu] /Users/patrickthomas/Documents/uni/orbital/TuneGether/node_modules/expo-dev-menu/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:8:9-21:20
+222            android:name="expo.modules.devmenu.DevMenuActivity"
+222-->[:expo-dev-menu] /Users/patrickthomas/Documents/uni/orbital/TuneGether/node_modules/expo-dev-menu/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:9:13-64
+223            android:exported="true"
+223-->[:expo-dev-menu] /Users/patrickthomas/Documents/uni/orbital/TuneGether/node_modules/expo-dev-menu/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:10:13-36
+224            android:launchMode="singleTask"
+224-->[:expo-dev-menu] /Users/patrickthomas/Documents/uni/orbital/TuneGether/node_modules/expo-dev-menu/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:11:13-44
+225            android:theme="@style/Theme.AppCompat.Transparent.NoActionBar" >
+225-->[:expo-dev-menu] /Users/patrickthomas/Documents/uni/orbital/TuneGether/node_modules/expo-dev-menu/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:12:13-75
+226            <intent-filter>
+226-->[:expo-dev-menu] /Users/patrickthomas/Documents/uni/orbital/TuneGether/node_modules/expo-dev-menu/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:13:13-20:29
+227                <action android:name="android.intent.action.VIEW" />
+227-->/Users/patrickthomas/Documents/uni/orbital/TuneGether/android/app/src/main/AndroidManifest.xml:9:7-58
+227-->/Users/patrickthomas/Documents/uni/orbital/TuneGether/android/app/src/main/AndroidManifest.xml:9:15-56
+228
+229                <category android:name="android.intent.category.DEFAULT" />
+229-->/Users/patrickthomas/Documents/uni/orbital/TuneGether/android/app/src/main/AndroidManifest.xml:25:9-67
+229-->/Users/patrickthomas/Documents/uni/orbital/TuneGether/android/app/src/main/AndroidManifest.xml:25:19-65
+230                <category android:name="android.intent.category.BROWSABLE" />
+230-->/Users/patrickthomas/Documents/uni/orbital/TuneGether/android/app/src/main/AndroidManifest.xml:10:7-67
+230-->/Users/patrickthomas/Documents/uni/orbital/TuneGether/android/app/src/main/AndroidManifest.xml:10:17-65
+231
+232                <data android:scheme="expo-dev-menu" />
+232-->/Users/patrickthomas/Documents/uni/orbital/TuneGether/android/app/src/main/AndroidManifest.xml:11:7-37
+232-->/Users/patrickthomas/Documents/uni/orbital/TuneGether/android/app/src/main/AndroidManifest.xml:11:13-35
+233            </intent-filter>
+234        </activity>
+235
+236        <provider
+236-->[:expo-file-system] /Users/patrickthomas/Documents/uni/orbital/TuneGether/node_modules/expo-file-system/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:21:9-30:20
+237            android:name="expo.modules.filesystem.FileSystemFileProvider"
+237-->[:expo-file-system] /Users/patrickthomas/Documents/uni/orbital/TuneGether/node_modules/expo-file-system/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:22:13-74
+238            android:authorities="com.TuneGether.FileSystemFileProvider"
+238-->[:expo-file-system] /Users/patrickthomas/Documents/uni/orbital/TuneGether/node_modules/expo-file-system/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:23:13-74
+239            android:exported="false"
+239-->[:expo-file-system] /Users/patrickthomas/Documents/uni/orbital/TuneGether/node_modules/expo-file-system/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:24:13-37
+240            android:grantUriPermissions="true" >
+240-->[:expo-file-system] /Users/patrickthomas/Documents/uni/orbital/TuneGether/node_modules/expo-file-system/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:25:13-47
+241            <meta-data
+241-->[:expo-file-system] /Users/patrickthomas/Documents/uni/orbital/TuneGether/node_modules/expo-file-system/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:27:13-29:70
+242                android:name="android.support.FILE_PROVIDER_PATHS"
+242-->[:expo-file-system] /Users/patrickthomas/Documents/uni/orbital/TuneGether/node_modules/expo-file-system/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:28:17-67
+243                android:resource="@xml/file_system_provider_paths" />
+243-->[:expo-file-system] /Users/patrickthomas/Documents/uni/orbital/TuneGether/node_modules/expo-file-system/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:29:17-67
+244        </provider>
+245
+246        <meta-data
+246-->[:expo-modules-core] /Users/patrickthomas/Documents/uni/orbital/TuneGether/node_modules/expo-modules-core/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:9:9-11:89
+247            android:name="org.unimodules.core.AppLoader#react-native-headless"
+247-->[:expo-modules-core] /Users/patrickthomas/Documents/uni/orbital/TuneGether/node_modules/expo-modules-core/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:10:13-79
+248            android:value="expo.modules.adapters.react.apploader.RNHeadlessAppLoader" />
+248-->[:expo-modules-core] /Users/patrickthomas/Documents/uni/orbital/TuneGether/node_modules/expo-modules-core/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:11:13-86
+249        <meta-data
+249-->[:expo-modules-core] /Users/patrickthomas/Documents/uni/orbital/TuneGether/node_modules/expo-modules-core/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:12:9-15:45
+250            android:name="com.facebook.soloader.enabled"
+250-->[:expo-modules-core] /Users/patrickthomas/Documents/uni/orbital/TuneGether/node_modules/expo-modules-core/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:13:13-57
+251            android:value="true" />
+251-->[:expo-modules-core] /Users/patrickthomas/Documents/uni/orbital/TuneGether/node_modules/expo-modules-core/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:14:13-33
+252
+253        <activity
+253-->[com.google.firebase:firebase-auth:23.0.0] /Users/patrickthomas/.gradle/caches/transforms-4/5fba87c216ad0ecdbe0fa1573a4deb33/transformed/jetified-firebase-auth-23.0.0/AndroidManifest.xml:29:9-46:20
+254            android:name="com.google.firebase.auth.internal.GenericIdpActivity"
+254-->[com.google.firebase:firebase-auth:23.0.0] /Users/patrickthomas/.gradle/caches/transforms-4/5fba87c216ad0ecdbe0fa1573a4deb33/transformed/jetified-firebase-auth-23.0.0/AndroidManifest.xml:30:13-80
+255            android:excludeFromRecents="true"
+255-->[com.google.firebase:firebase-auth:23.0.0] /Users/patrickthomas/.gradle/caches/transforms-4/5fba87c216ad0ecdbe0fa1573a4deb33/transformed/jetified-firebase-auth-23.0.0/AndroidManifest.xml:31:13-46
+256            android:exported="true"
+256-->[com.google.firebase:firebase-auth:23.0.0] /Users/patrickthomas/.gradle/caches/transforms-4/5fba87c216ad0ecdbe0fa1573a4deb33/transformed/jetified-firebase-auth-23.0.0/AndroidManifest.xml:32:13-36
+257            android:launchMode="singleTask"
+257-->[com.google.firebase:firebase-auth:23.0.0] /Users/patrickthomas/.gradle/caches/transforms-4/5fba87c216ad0ecdbe0fa1573a4deb33/transformed/jetified-firebase-auth-23.0.0/AndroidManifest.xml:33:13-44
+258            android:theme="@android:style/Theme.Translucent.NoTitleBar" >
+258-->[com.google.firebase:firebase-auth:23.0.0] /Users/patrickthomas/.gradle/caches/transforms-4/5fba87c216ad0ecdbe0fa1573a4deb33/transformed/jetified-firebase-auth-23.0.0/AndroidManifest.xml:34:13-72
+259            <intent-filter>
+259-->[com.google.firebase:firebase-auth:23.0.0] /Users/patrickthomas/.gradle/caches/transforms-4/5fba87c216ad0ecdbe0fa1573a4deb33/transformed/jetified-firebase-auth-23.0.0/AndroidManifest.xml:35:13-45:29
+260                <action android:name="android.intent.action.VIEW" />
+260-->/Users/patrickthomas/Documents/uni/orbital/TuneGether/android/app/src/main/AndroidManifest.xml:9:7-58
+260-->/Users/patrickthomas/Documents/uni/orbital/TuneGether/android/app/src/main/AndroidManifest.xml:9:15-56
+261
+262                <category android:name="android.intent.category.DEFAULT" />
+262-->/Users/patrickthomas/Documents/uni/orbital/TuneGether/android/app/src/main/AndroidManifest.xml:25:9-67
+262-->/Users/patrickthomas/Documents/uni/orbital/TuneGether/android/app/src/main/AndroidManifest.xml:25:19-65
+263                <category android:name="android.intent.category.BROWSABLE" />
+263-->/Users/patrickthomas/Documents/uni/orbital/TuneGether/android/app/src/main/AndroidManifest.xml:10:7-67
+263-->/Users/patrickthomas/Documents/uni/orbital/TuneGether/android/app/src/main/AndroidManifest.xml:10:17-65
+264
+265                <data
+265-->/Users/patrickthomas/Documents/uni/orbital/TuneGether/android/app/src/main/AndroidManifest.xml:11:7-37
+266                    android:host="firebase.auth"
+267                    android:path="/"
+268                    android:scheme="genericidp" />
+268-->/Users/patrickthomas/Documents/uni/orbital/TuneGether/android/app/src/main/AndroidManifest.xml:11:13-35
+269            </intent-filter>
+270        </activity>
+271        <activity
+271-->[com.google.firebase:firebase-auth:23.0.0] /Users/patrickthomas/.gradle/caches/transforms-4/5fba87c216ad0ecdbe0fa1573a4deb33/transformed/jetified-firebase-auth-23.0.0/AndroidManifest.xml:47:9-64:20
+272            android:name="com.google.firebase.auth.internal.RecaptchaActivity"
+272-->[com.google.firebase:firebase-auth:23.0.0] /Users/patrickthomas/.gradle/caches/transforms-4/5fba87c216ad0ecdbe0fa1573a4deb33/transformed/jetified-firebase-auth-23.0.0/AndroidManifest.xml:48:13-79
+273            android:excludeFromRecents="true"
+273-->[com.google.firebase:firebase-auth:23.0.0] /Users/patrickthomas/.gradle/caches/transforms-4/5fba87c216ad0ecdbe0fa1573a4deb33/transformed/jetified-firebase-auth-23.0.0/AndroidManifest.xml:49:13-46
+274            android:exported="true"
+274-->[com.google.firebase:firebase-auth:23.0.0] /Users/patrickthomas/.gradle/caches/transforms-4/5fba87c216ad0ecdbe0fa1573a4deb33/transformed/jetified-firebase-auth-23.0.0/AndroidManifest.xml:50:13-36
+275            android:launchMode="singleTask"
+275-->[com.google.firebase:firebase-auth:23.0.0] /Users/patrickthomas/.gradle/caches/transforms-4/5fba87c216ad0ecdbe0fa1573a4deb33/transformed/jetified-firebase-auth-23.0.0/AndroidManifest.xml:51:13-44
+276            android:theme="@android:style/Theme.Translucent.NoTitleBar" >
+276-->[com.google.firebase:firebase-auth:23.0.0] /Users/patrickthomas/.gradle/caches/transforms-4/5fba87c216ad0ecdbe0fa1573a4deb33/transformed/jetified-firebase-auth-23.0.0/AndroidManifest.xml:52:13-72
+277            <intent-filter>
+277-->[com.google.firebase:firebase-auth:23.0.0] /Users/patrickthomas/.gradle/caches/transforms-4/5fba87c216ad0ecdbe0fa1573a4deb33/transformed/jetified-firebase-auth-23.0.0/AndroidManifest.xml:53:13-63:29
+278                <action android:name="android.intent.action.VIEW" />
+278-->/Users/patrickthomas/Documents/uni/orbital/TuneGether/android/app/src/main/AndroidManifest.xml:9:7-58
+278-->/Users/patrickthomas/Documents/uni/orbital/TuneGether/android/app/src/main/AndroidManifest.xml:9:15-56
+279
+280                <category android:name="android.intent.category.DEFAULT" />
+280-->/Users/patrickthomas/Documents/uni/orbital/TuneGether/android/app/src/main/AndroidManifest.xml:25:9-67
+280-->/Users/patrickthomas/Documents/uni/orbital/TuneGether/android/app/src/main/AndroidManifest.xml:25:19-65
+281                <category android:name="android.intent.category.BROWSABLE" />
+281-->/Users/patrickthomas/Documents/uni/orbital/TuneGether/android/app/src/main/AndroidManifest.xml:10:7-67
+281-->/Users/patrickthomas/Documents/uni/orbital/TuneGether/android/app/src/main/AndroidManifest.xml:10:17-65
+282
+283                <data
+283-->/Users/patrickthomas/Documents/uni/orbital/TuneGether/android/app/src/main/AndroidManifest.xml:11:7-37
+284                    android:host="firebase.auth"
+285                    android:path="/"
+286                    android:scheme="recaptcha" />
+286-->/Users/patrickthomas/Documents/uni/orbital/TuneGether/android/app/src/main/AndroidManifest.xml:11:13-35
+287            </intent-filter>
+288        </activity>
+289
+290        <service
+290-->[androidx.credentials:credentials-play-services-auth:1.2.0-rc01] /Users/patrickthomas/.gradle/caches/transforms-4/1ef72b75cbf4bb6342312578608938e8/transformed/jetified-credentials-play-services-auth-1.2.0-rc01/AndroidManifest.xml:24:9-32:19
+291            android:name="androidx.credentials.playservices.CredentialProviderMetadataHolder"
+291-->[androidx.credentials:credentials-play-services-auth:1.2.0-rc01] /Users/patrickthomas/.gradle/caches/transforms-4/1ef72b75cbf4bb6342312578608938e8/transformed/jetified-credentials-play-services-auth-1.2.0-rc01/AndroidManifest.xml:25:13-94
+292            android:enabled="true"
+292-->[androidx.credentials:credentials-play-services-auth:1.2.0-rc01] /Users/patrickthomas/.gradle/caches/transforms-4/1ef72b75cbf4bb6342312578608938e8/transformed/jetified-credentials-play-services-auth-1.2.0-rc01/AndroidManifest.xml:26:13-35
+293            android:exported="false" >
+293-->[androidx.credentials:credentials-play-services-auth:1.2.0-rc01] /Users/patrickthomas/.gradle/caches/transforms-4/1ef72b75cbf4bb6342312578608938e8/transformed/jetified-credentials-play-services-auth-1.2.0-rc01/AndroidManifest.xml:27:13-37
+294            <meta-data
+294-->[androidx.credentials:credentials-play-services-auth:1.2.0-rc01] /Users/patrickthomas/.gradle/caches/transforms-4/1ef72b75cbf4bb6342312578608938e8/transformed/jetified-credentials-play-services-auth-1.2.0-rc01/AndroidManifest.xml:29:13-31:104
+295                android:name="androidx.credentials.CREDENTIAL_PROVIDER_KEY"
+295-->[androidx.credentials:credentials-play-services-auth:1.2.0-rc01] /Users/patrickthomas/.gradle/caches/transforms-4/1ef72b75cbf4bb6342312578608938e8/transformed/jetified-credentials-play-services-auth-1.2.0-rc01/AndroidManifest.xml:30:17-76
+296                android:value="androidx.credentials.playservices.CredentialProviderPlayServicesImpl" />
+296-->[androidx.credentials:credentials-play-services-auth:1.2.0-rc01] /Users/patrickthomas/.gradle/caches/transforms-4/1ef72b75cbf4bb6342312578608938e8/transformed/jetified-credentials-play-services-auth-1.2.0-rc01/AndroidManifest.xml:31:17-101
+297        </service>
+298
+299        <activity
+299-->[androidx.credentials:credentials-play-services-auth:1.2.0-rc01] /Users/patrickthomas/.gradle/caches/transforms-4/1ef72b75cbf4bb6342312578608938e8/transformed/jetified-credentials-play-services-auth-1.2.0-rc01/AndroidManifest.xml:34:9-41:20
+300            android:name="androidx.credentials.playservices.HiddenActivity"
+300-->[androidx.credentials:credentials-play-services-auth:1.2.0-rc01] /Users/patrickthomas/.gradle/caches/transforms-4/1ef72b75cbf4bb6342312578608938e8/transformed/jetified-credentials-play-services-auth-1.2.0-rc01/AndroidManifest.xml:35:13-76
+301            android:configChanges="orientation|screenSize|screenLayout|keyboardHidden"
+301-->[androidx.credentials:credentials-play-services-auth:1.2.0-rc01] /Users/patrickthomas/.gradle/caches/transforms-4/1ef72b75cbf4bb6342312578608938e8/transformed/jetified-credentials-play-services-auth-1.2.0-rc01/AndroidManifest.xml:36:13-87
+302            android:enabled="true"
+302-->[androidx.credentials:credentials-play-services-auth:1.2.0-rc01] /Users/patrickthomas/.gradle/caches/transforms-4/1ef72b75cbf4bb6342312578608938e8/transformed/jetified-credentials-play-services-auth-1.2.0-rc01/AndroidManifest.xml:37:13-35
+303            android:exported="false"
+303-->[androidx.credentials:credentials-play-services-auth:1.2.0-rc01] /Users/patrickthomas/.gradle/caches/transforms-4/1ef72b75cbf4bb6342312578608938e8/transformed/jetified-credentials-play-services-auth-1.2.0-rc01/AndroidManifest.xml:38:13-37
+304            android:fitsSystemWindows="true"
+304-->[androidx.credentials:credentials-play-services-auth:1.2.0-rc01] /Users/patrickthomas/.gradle/caches/transforms-4/1ef72b75cbf4bb6342312578608938e8/transformed/jetified-credentials-play-services-auth-1.2.0-rc01/AndroidManifest.xml:39:13-45
+305            android:theme="@style/Theme.Hidden" >
+305-->[androidx.credentials:credentials-play-services-auth:1.2.0-rc01] /Users/patrickthomas/.gradle/caches/transforms-4/1ef72b75cbf4bb6342312578608938e8/transformed/jetified-credentials-play-services-auth-1.2.0-rc01/AndroidManifest.xml:40:13-48
+306        </activity>
+307        <activity
+307-->[com.google.android.gms:play-services-auth:21.1.1] /Users/patrickthomas/.gradle/caches/transforms-4/551aad934bfac7cf25c61a87bd9aee66/transformed/jetified-play-services-auth-21.1.1/AndroidManifest.xml:23:9-27:75
+308            android:name="com.google.android.gms.auth.api.signin.internal.SignInHubActivity"
+308-->[com.google.android.gms:play-services-auth:21.1.1] /Users/patrickthomas/.gradle/caches/transforms-4/551aad934bfac7cf25c61a87bd9aee66/transformed/jetified-play-services-auth-21.1.1/AndroidManifest.xml:24:13-93
+309            android:excludeFromRecents="true"
+309-->[com.google.android.gms:play-services-auth:21.1.1] /Users/patrickthomas/.gradle/caches/transforms-4/551aad934bfac7cf25c61a87bd9aee66/transformed/jetified-play-services-auth-21.1.1/AndroidManifest.xml:25:13-46
+310            android:exported="false"
+310-->[com.google.android.gms:play-services-auth:21.1.1] /Users/patrickthomas/.gradle/caches/transforms-4/551aad934bfac7cf25c61a87bd9aee66/transformed/jetified-play-services-auth-21.1.1/AndroidManifest.xml:26:13-37
+311            android:theme="@android:style/Theme.Translucent.NoTitleBar" />
+311-->[com.google.android.gms:play-services-auth:21.1.1] /Users/patrickthomas/.gradle/caches/transforms-4/551aad934bfac7cf25c61a87bd9aee66/transformed/jetified-play-services-auth-21.1.1/AndroidManifest.xml:27:13-72
+312        <!--
+313            Service handling Google Sign-In user revocation. For apps that do not integrate with
+314            Google Sign-In, this service will never be started.
+315        -->
+316        <service
+316-->[com.google.android.gms:play-services-auth:21.1.1] /Users/patrickthomas/.gradle/caches/transforms-4/551aad934bfac7cf25c61a87bd9aee66/transformed/jetified-play-services-auth-21.1.1/AndroidManifest.xml:33:9-37:51
+317            android:name="com.google.android.gms.auth.api.signin.RevocationBoundService"
+317-->[com.google.android.gms:play-services-auth:21.1.1] /Users/patrickthomas/.gradle/caches/transforms-4/551aad934bfac7cf25c61a87bd9aee66/transformed/jetified-play-services-auth-21.1.1/AndroidManifest.xml:34:13-89
+318            android:exported="true"
+318-->[com.google.android.gms:play-services-auth:21.1.1] /Users/patrickthomas/.gradle/caches/transforms-4/551aad934bfac7cf25c61a87bd9aee66/transformed/jetified-play-services-auth-21.1.1/AndroidManifest.xml:35:13-36
+319            android:permission="com.google.android.gms.auth.api.signin.permission.REVOCATION_NOTIFICATION"
+319-->[com.google.android.gms:play-services-auth:21.1.1] /Users/patrickthomas/.gradle/caches/transforms-4/551aad934bfac7cf25c61a87bd9aee66/transformed/jetified-play-services-auth-21.1.1/AndroidManifest.xml:36:13-107
+320            android:visibleToInstantApps="true" />
+320-->[com.google.android.gms:play-services-auth:21.1.1] /Users/patrickthomas/.gradle/caches/transforms-4/551aad934bfac7cf25c61a87bd9aee66/transformed/jetified-play-services-auth-21.1.1/AndroidManifest.xml:37:13-48
+321
+322        <receiver
+322-->[com.google.firebase:firebase-messaging:24.0.0] /Users/patrickthomas/.gradle/caches/transforms-4/6f7f0104341dacba85ba463f9cadcc11/transformed/jetified-firebase-messaging-24.0.0/AndroidManifest.xml:29:9-40:20
+323            android:name="com.google.firebase.iid.FirebaseInstanceIdReceiver"
+323-->[com.google.firebase:firebase-messaging:24.0.0] /Users/patrickthomas/.gradle/caches/transforms-4/6f7f0104341dacba85ba463f9cadcc11/transformed/jetified-firebase-messaging-24.0.0/AndroidManifest.xml:30:13-78
+324            android:exported="true"
+324-->[com.google.firebase:firebase-messaging:24.0.0] /Users/patrickthomas/.gradle/caches/transforms-4/6f7f0104341dacba85ba463f9cadcc11/transformed/jetified-firebase-messaging-24.0.0/AndroidManifest.xml:31:13-36
+325            android:permission="com.google.android.c2dm.permission.SEND" >
+325-->[com.google.firebase:firebase-messaging:24.0.0] /Users/patrickthomas/.gradle/caches/transforms-4/6f7f0104341dacba85ba463f9cadcc11/transformed/jetified-firebase-messaging-24.0.0/AndroidManifest.xml:32:13-73
+326            <intent-filter>
+326-->[:react-native-firebase_messaging] /Users/patrickthomas/Documents/uni/orbital/TuneGether/node_modules/@react-native-firebase/messaging/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:27:13-29:29
+327                <action android:name="com.google.android.c2dm.intent.RECEIVE" />
+327-->[:react-native-firebase_messaging] /Users/patrickthomas/Documents/uni/orbital/TuneGether/node_modules/@react-native-firebase/messaging/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:28:17-81
+327-->[:react-native-firebase_messaging] /Users/patrickthomas/Documents/uni/orbital/TuneGether/node_modules/@react-native-firebase/messaging/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:28:25-78
+328            </intent-filter>
+329
+330            <meta-data
+330-->[com.google.firebase:firebase-messaging:24.0.0] /Users/patrickthomas/.gradle/caches/transforms-4/6f7f0104341dacba85ba463f9cadcc11/transformed/jetified-firebase-messaging-24.0.0/AndroidManifest.xml:37:13-39:40
+331                android:name="com.google.android.gms.cloudmessaging.FINISHED_AFTER_HANDLED"
+331-->[com.google.firebase:firebase-messaging:24.0.0] /Users/patrickthomas/.gradle/caches/transforms-4/6f7f0104341dacba85ba463f9cadcc11/transformed/jetified-firebase-messaging-24.0.0/AndroidManifest.xml:38:17-92
+332                android:value="true" />
+332-->[com.google.firebase:firebase-messaging:24.0.0] /Users/patrickthomas/.gradle/caches/transforms-4/6f7f0104341dacba85ba463f9cadcc11/transformed/jetified-firebase-messaging-24.0.0/AndroidManifest.xml:39:17-37
+333        </receiver>
+334        <!--
+335             FirebaseMessagingService performs security checks at runtime,
+336             but set to not exported to explicitly avoid allowing another app to call it.
+337        -->
+338        <service
+338-->[com.google.firebase:firebase-messaging:24.0.0] /Users/patrickthomas/.gradle/caches/transforms-4/6f7f0104341dacba85ba463f9cadcc11/transformed/jetified-firebase-messaging-24.0.0/AndroidManifest.xml:46:9-53:19
+339            android:name="com.google.firebase.messaging.FirebaseMessagingService"
+339-->[com.google.firebase:firebase-messaging:24.0.0] /Users/patrickthomas/.gradle/caches/transforms-4/6f7f0104341dacba85ba463f9cadcc11/transformed/jetified-firebase-messaging-24.0.0/AndroidManifest.xml:47:13-82
+340            android:directBootAware="true"
+340-->[com.google.firebase:firebase-messaging:24.0.0] /Users/patrickthomas/.gradle/caches/transforms-4/6f7f0104341dacba85ba463f9cadcc11/transformed/jetified-firebase-messaging-24.0.0/AndroidManifest.xml:48:13-43
+341            android:exported="false" >
+341-->[com.google.firebase:firebase-messaging:24.0.0] /Users/patrickthomas/.gradle/caches/transforms-4/6f7f0104341dacba85ba463f9cadcc11/transformed/jetified-firebase-messaging-24.0.0/AndroidManifest.xml:49:13-37
+342            <intent-filter android:priority="-500" >
+342-->[:react-native-firebase_messaging] /Users/patrickthomas/Documents/uni/orbital/TuneGether/node_modules/@react-native-firebase/messaging/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:18:13-20:29
+343                <action android:name="com.google.firebase.MESSAGING_EVENT" />
+343-->[:react-native-firebase_messaging] /Users/patrickthomas/Documents/uni/orbital/TuneGether/node_modules/@react-native-firebase/messaging/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:19:17-78
+343-->[:react-native-firebase_messaging] /Users/patrickthomas/Documents/uni/orbital/TuneGether/node_modules/@react-native-firebase/messaging/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:19:25-75
+344            </intent-filter>
+345        </service>
+346
+347        <activity
+347-->[com.google.android.gms:play-services-base:18.3.0] /Users/patrickthomas/.gradle/caches/transforms-4/0586a9041ee1141092eae762145cb506/transformed/jetified-play-services-base-18.3.0/AndroidManifest.xml:20:9-22:45
+348            android:name="com.google.android.gms.common.api.GoogleApiActivity"
+348-->[com.google.android.gms:play-services-base:18.3.0] /Users/patrickthomas/.gradle/caches/transforms-4/0586a9041ee1141092eae762145cb506/transformed/jetified-play-services-base-18.3.0/AndroidManifest.xml:20:19-85
+349            android:exported="false"
+349-->[com.google.android.gms:play-services-base:18.3.0] /Users/patrickthomas/.gradle/caches/transforms-4/0586a9041ee1141092eae762145cb506/transformed/jetified-play-services-base-18.3.0/AndroidManifest.xml:22:19-43
+350            android:theme="@android:style/Theme.Translucent.NoTitleBar" />
+350-->[com.google.android.gms:play-services-base:18.3.0] /Users/patrickthomas/.gradle/caches/transforms-4/0586a9041ee1141092eae762145cb506/transformed/jetified-play-services-base-18.3.0/AndroidManifest.xml:21:19-78
+351
+352        <service
+352-->[com.google.firebase:firebase-sessions:2.0.0] /Users/patrickthomas/.gradle/caches/transforms-4/febf6971d170f19a3bd4ee9acac579c0/transformed/jetified-firebase-sessions-2.0.0/AndroidManifest.xml:22:9-25:40
+353            android:name="com.google.firebase.sessions.SessionLifecycleService"
+353-->[com.google.firebase:firebase-sessions:2.0.0] /Users/patrickthomas/.gradle/caches/transforms-4/febf6971d170f19a3bd4ee9acac579c0/transformed/jetified-firebase-sessions-2.0.0/AndroidManifest.xml:23:13-80
+354            android:enabled="true"
+354-->[com.google.firebase:firebase-sessions:2.0.0] /Users/patrickthomas/.gradle/caches/transforms-4/febf6971d170f19a3bd4ee9acac579c0/transformed/jetified-firebase-sessions-2.0.0/AndroidManifest.xml:24:13-35
+355            android:exported="false" />
+355-->[com.google.firebase:firebase-sessions:2.0.0] /Users/patrickthomas/.gradle/caches/transforms-4/febf6971d170f19a3bd4ee9acac579c0/transformed/jetified-firebase-sessions-2.0.0/AndroidManifest.xml:25:13-37
+356
+357        <provider
+357-->[com.google.firebase:firebase-common:21.0.0] /Users/patrickthomas/.gradle/caches/transforms-4/38c9c7c2652c3cb839c88a894172ec36/transformed/jetified-firebase-common-21.0.0/AndroidManifest.xml:23:9-28:39
+358            android:name="com.google.firebase.provider.FirebaseInitProvider"
+358-->[com.google.firebase:firebase-common:21.0.0] /Users/patrickthomas/.gradle/caches/transforms-4/38c9c7c2652c3cb839c88a894172ec36/transformed/jetified-firebase-common-21.0.0/AndroidManifest.xml:24:13-77
+359            android:authorities="com.TuneGether.firebaseinitprovider"
+359-->[com.google.firebase:firebase-common:21.0.0] /Users/patrickthomas/.gradle/caches/transforms-4/38c9c7c2652c3cb839c88a894172ec36/transformed/jetified-firebase-common-21.0.0/AndroidManifest.xml:25:13-72
+360            android:directBootAware="true"
+360-->[com.google.firebase:firebase-common:21.0.0] /Users/patrickthomas/.gradle/caches/transforms-4/38c9c7c2652c3cb839c88a894172ec36/transformed/jetified-firebase-common-21.0.0/AndroidManifest.xml:26:13-43
+361            android:exported="false"
+361-->[com.google.firebase:firebase-common:21.0.0] /Users/patrickthomas/.gradle/caches/transforms-4/38c9c7c2652c3cb839c88a894172ec36/transformed/jetified-firebase-common-21.0.0/AndroidManifest.xml:27:13-37
+362            android:initOrder="100" />
+362-->[com.google.firebase:firebase-common:21.0.0] /Users/patrickthomas/.gradle/caches/transforms-4/38c9c7c2652c3cb839c88a894172ec36/transformed/jetified-firebase-common-21.0.0/AndroidManifest.xml:28:13-36
+363
+364        <meta-data
+364-->[com.google.android.gms:play-services-basement:18.3.0] /Users/patrickthomas/.gradle/caches/transforms-4/28bf240e282669b020baefce2f1e9cad/transformed/jetified-play-services-basement-18.3.0/AndroidManifest.xml:21:9-23:69
+365            android:name="com.google.android.gms.version"
+365-->[com.google.android.gms:play-services-basement:18.3.0] /Users/patrickthomas/.gradle/caches/transforms-4/28bf240e282669b020baefce2f1e9cad/transformed/jetified-play-services-basement-18.3.0/AndroidManifest.xml:22:13-58
+366            android:value="@integer/google_play_services_version" />
+366-->[com.google.android.gms:play-services-basement:18.3.0] /Users/patrickthomas/.gradle/caches/transforms-4/28bf240e282669b020baefce2f1e9cad/transformed/jetified-play-services-basement-18.3.0/AndroidManifest.xml:23:13-66
+367
+368        <provider
+368-->[androidx.emoji2:emoji2:1.2.0] /Users/patrickthomas/.gradle/caches/transforms-4/3fc9bc68ed489fce964e960022cfc47e/transformed/jetified-emoji2-1.2.0/AndroidManifest.xml:24:9-32:20
+369            android:name="androidx.startup.InitializationProvider"
+369-->[androidx.emoji2:emoji2:1.2.0] /Users/patrickthomas/.gradle/caches/transforms-4/3fc9bc68ed489fce964e960022cfc47e/transformed/jetified-emoji2-1.2.0/AndroidManifest.xml:25:13-67
+370            android:authorities="com.TuneGether.androidx-startup"
+370-->[androidx.emoji2:emoji2:1.2.0] /Users/patrickthomas/.gradle/caches/transforms-4/3fc9bc68ed489fce964e960022cfc47e/transformed/jetified-emoji2-1.2.0/AndroidManifest.xml:26:13-68
+371            android:exported="false" >
+371-->[androidx.emoji2:emoji2:1.2.0] /Users/patrickthomas/.gradle/caches/transforms-4/3fc9bc68ed489fce964e960022cfc47e/transformed/jetified-emoji2-1.2.0/AndroidManifest.xml:27:13-37
+372            <meta-data
+372-->[androidx.emoji2:emoji2:1.2.0] /Users/patrickthomas/.gradle/caches/transforms-4/3fc9bc68ed489fce964e960022cfc47e/transformed/jetified-emoji2-1.2.0/AndroidManifest.xml:29:13-31:52
+373                android:name="androidx.emoji2.text.EmojiCompatInitializer"
+373-->[androidx.emoji2:emoji2:1.2.0] /Users/patrickthomas/.gradle/caches/transforms-4/3fc9bc68ed489fce964e960022cfc47e/transformed/jetified-emoji2-1.2.0/AndroidManifest.xml:30:17-75
+374                android:value="androidx.startup" />
+374-->[androidx.emoji2:emoji2:1.2.0] /Users/patrickthomas/.gradle/caches/transforms-4/3fc9bc68ed489fce964e960022cfc47e/transformed/jetified-emoji2-1.2.0/AndroidManifest.xml:31:17-49
+375            <meta-data
+375-->[androidx.lifecycle:lifecycle-process:2.4.1] /Users/patrickthomas/.gradle/caches/transforms-4/8d78b29cd8f06472c75cd28782f86903/transformed/jetified-lifecycle-process-2.4.1/AndroidManifest.xml:31:13-33:52
+376                android:name="androidx.lifecycle.ProcessLifecycleInitializer"
+376-->[androidx.lifecycle:lifecycle-process:2.4.1] /Users/patrickthomas/.gradle/caches/transforms-4/8d78b29cd8f06472c75cd28782f86903/transformed/jetified-lifecycle-process-2.4.1/AndroidManifest.xml:32:17-78
+377                android:value="androidx.startup" />
+377-->[androidx.lifecycle:lifecycle-process:2.4.1] /Users/patrickthomas/.gradle/caches/transforms-4/8d78b29cd8f06472c75cd28782f86903/transformed/jetified-lifecycle-process-2.4.1/AndroidManifest.xml:33:17-49
+378        </provider>
+379
+380        <service
+380-->[com.google.android.datatransport:transport-backend-cct:3.1.9] /Users/patrickthomas/.gradle/caches/transforms-4/4ef867a0331a508fd6b8c8007fa95dfd/transformed/jetified-transport-backend-cct-3.1.9/AndroidManifest.xml:28:9-34:19
+381            android:name="com.google.android.datatransport.runtime.backends.TransportBackendDiscovery"
+381-->[com.google.android.datatransport:transport-backend-cct:3.1.9] /Users/patrickthomas/.gradle/caches/transforms-4/4ef867a0331a508fd6b8c8007fa95dfd/transformed/jetified-transport-backend-cct-3.1.9/AndroidManifest.xml:29:13-103
+382            android:exported="false" >
+382-->[com.google.android.datatransport:transport-backend-cct:3.1.9] /Users/patrickthomas/.gradle/caches/transforms-4/4ef867a0331a508fd6b8c8007fa95dfd/transformed/jetified-transport-backend-cct-3.1.9/AndroidManifest.xml:30:13-37
+383            <meta-data
+383-->[com.google.android.datatransport:transport-backend-cct:3.1.9] /Users/patrickthomas/.gradle/caches/transforms-4/4ef867a0331a508fd6b8c8007fa95dfd/transformed/jetified-transport-backend-cct-3.1.9/AndroidManifest.xml:31:13-33:39
+384                android:name="backend:com.google.android.datatransport.cct.CctBackendFactory"
+384-->[com.google.android.datatransport:transport-backend-cct:3.1.9] /Users/patrickthomas/.gradle/caches/transforms-4/4ef867a0331a508fd6b8c8007fa95dfd/transformed/jetified-transport-backend-cct-3.1.9/AndroidManifest.xml:32:17-94
+385                android:value="cct" />
+385-->[com.google.android.datatransport:transport-backend-cct:3.1.9] /Users/patrickthomas/.gradle/caches/transforms-4/4ef867a0331a508fd6b8c8007fa95dfd/transformed/jetified-transport-backend-cct-3.1.9/AndroidManifest.xml:33:17-36
+386        </service>
+387        <service
+387-->[com.google.android.datatransport:transport-runtime:3.1.9] /Users/patrickthomas/.gradle/caches/transforms-4/edd59e357902500bab52f10a58816a88/transformed/jetified-transport-runtime-3.1.9/AndroidManifest.xml:26:9-30:19
+388            android:name="com.google.android.datatransport.runtime.scheduling.jobscheduling.JobInfoSchedulerService"
+388-->[com.google.android.datatransport:transport-runtime:3.1.9] /Users/patrickthomas/.gradle/caches/transforms-4/edd59e357902500bab52f10a58816a88/transformed/jetified-transport-runtime-3.1.9/AndroidManifest.xml:27:13-117
+389            android:exported="false"
+389-->[com.google.android.datatransport:transport-runtime:3.1.9] /Users/patrickthomas/.gradle/caches/transforms-4/edd59e357902500bab52f10a58816a88/transformed/jetified-transport-runtime-3.1.9/AndroidManifest.xml:28:13-37
+390            android:permission="android.permission.BIND_JOB_SERVICE" >
+390-->[com.google.android.datatransport:transport-runtime:3.1.9] /Users/patrickthomas/.gradle/caches/transforms-4/edd59e357902500bab52f10a58816a88/transformed/jetified-transport-runtime-3.1.9/AndroidManifest.xml:29:13-69
+391        </service>
+392
+393        <receiver
+393-->[com.google.android.datatransport:transport-runtime:3.1.9] /Users/patrickthomas/.gradle/caches/transforms-4/edd59e357902500bab52f10a58816a88/transformed/jetified-transport-runtime-3.1.9/AndroidManifest.xml:32:9-34:40
+394            android:name="com.google.android.datatransport.runtime.scheduling.jobscheduling.AlarmManagerSchedulerBroadcastReceiver"
+394-->[com.google.android.datatransport:transport-runtime:3.1.9] /Users/patrickthomas/.gradle/caches/transforms-4/edd59e357902500bab52f10a58816a88/transformed/jetified-transport-runtime-3.1.9/AndroidManifest.xml:33:13-132
+395            android:exported="false" />
+395-->[com.google.android.datatransport:transport-runtime:3.1.9] /Users/patrickthomas/.gradle/caches/transforms-4/edd59e357902500bab52f10a58816a88/transformed/jetified-transport-runtime-3.1.9/AndroidManifest.xml:34:13-37
+396    </application>
+397
+398</manifest>
