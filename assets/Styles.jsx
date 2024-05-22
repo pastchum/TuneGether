@@ -2,7 +2,7 @@ import { Dimensions, StyleSheet } from "react-native";
 
 export const {phoneWidth, phoneHeight} = Dimensions.get("window");
 
-const styles = StyleSheet.create({
+export const Styles = StyleSheet.create({
     container: {
       flex: 1,
       padding: 20,
@@ -70,4 +70,3 @@ const styles = StyleSheet.create({
 
   });
 
-export default styles;
