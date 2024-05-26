@@ -4,6 +4,7 @@ import LoginScreen from '../../screens/login/LoginScreen';
 import ProfileScreen from '../../screens/login/ProfileScreen'
 import CreateAccountScreen from '../../screens/login/CreateAccountScreen';
 import { useAuth } from '../../authContext/Auth-Context'
+import CreateProfileScreen from '../../screens/login/CreateProfileScreen';
 
 const LoginStack = createNativeStackNavigator();
 
@@ -18,8 +19,9 @@ function LoginStackScreen() {
         ) : (
           //if user not signed in
           <>
-            <LoginStack.Screen name="Sign In" component={LoginScreen} />
-            <LoginStack.Screen name="CreateAccount" component={CreateAccountScreen} />
+            <LoginStack.Screen name="Login" component={LoginScreen} />
+            <LoginStack.Screen name="CreateAccount" component={CreateAccountScreen} initialParams={{inUse:false}}/>
+            <LoginStack.Screen name="CreateProfile" component={CreateProfileScreen} />
           </>
         )}
       </LoginStack.Navigator>
