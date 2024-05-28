@@ -1,35 +1,25 @@
 import React, { useState } from 'react';
 import { View, Text, Platform, Button, TextInput } from 'react-native';
 import { Styles } from '../../../assets/Styles';
+import { renderProfile } from '../../profile/RenderProfiles';
 
 //import auth context
 import { useAuth } from '../../authContext/Auth-Context'
 
-function ProfileScreen() {
-    const {user, signOut, profileData } = useAuth();
+function ProfileScreen({ navigation }) {
+    const {user, profileData } = useAuth();
     console.log("profile: " + profileData);
     
     return (
         <View style={Styles.container}>
             { profileData ? (
-                <>
-                    <Text>
-                        Name:
-                        {profileData.name}
-                    </Text>
-                    <Text>
-                        Instrument:
-                        {profileData.instrument}
-                    </Text>
-                    <Text>
-                        Bio:
-                        {profileData.bio}
-                    </Text> 
-                </>
+                <View style={Styles.profileContainer}>
+                    {renderProfile(profileData)}
+                    <Button title='Profile settings' onPress={() => navigation.navigate("ProfileSettings")} />
+                </View >
                 ) : (
                     <Text> data not found</Text>
                 )}
-            <Button title='sign out' onPress={signOut}></Button>
         </View>
     )
 }

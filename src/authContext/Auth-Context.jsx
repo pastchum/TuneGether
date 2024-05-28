@@ -15,13 +15,10 @@ export const AuthProvider = ({ children }) => {
     useEffect(() => {
         const unsubscribe = auth().onAuthStateChanged(async authenticatedUser => {
             setUser(authenticatedUser);
-            setLoading(false);
             if (authenticatedUser) {
                 fetchUserProfile(authenticatedUser);
-                if (profileData != null) {
-                    setProfileCreated(true);
-                }
             }
+            setLoading(false);
         });
 
         return unsubscribe;
@@ -63,7 +60,10 @@ export const AuthProvider = ({ children }) => {
             return (await firestore()
                             .collection('users')
                             .doc(user.uid)
-                            .onSnapshot(snapshot => setProfileData(snapshot.data())));
+                            .onSnapshot(snapshot => {
+                                setProfileData(snapshot.data());
+                                setProfileCreated(snapshot.exists);
+                            }));
         } catch (error) {
             console.error('Fetching user profile failed: ', error);
             throw error;
@@ -89,7 +89,9 @@ export const AuthProvider = ({ children }) => {
     // add profile data function
     const addProfileData = async(user, profileData) => {
         try {
-            await firestore().collection('users').doc(user.uid).set(profileData).then(() => setProfileCreated(true));
+            await firestore().collection('users').doc(user.uid).set(profileData).then(() => {
+                    setProfileCreated(true);
+                });
         } catch (error) {
             console.error('Adding profile data failed: ', error);
             throw error;

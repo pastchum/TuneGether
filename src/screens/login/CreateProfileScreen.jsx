@@ -31,8 +31,10 @@ function CreateProfileScreen({ navigation }) {
                 <Text>What instruments do you play?</Text>
                 <SearchableDropDown 
                     placeholder="Your instrument"
+                    items={['Bass', 'Guitar', 'Keys', 'Piano', 'Vocals']}
                     value={instrument}
-                    onChangeText={setInstrument}/>
+                    multi={true}
+                    onItemSelect={setInstrument}/>
             </View>
             <View style={Styles.container}>
                 <Text>Add your biography</Text>
