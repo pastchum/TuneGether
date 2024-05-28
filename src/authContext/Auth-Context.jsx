@@ -1,5 +1,6 @@
 import React, { createContext, useContext, useEffect, useState } from 'react';
 import auth from '@react-native-firebase/auth';
+import firestore from '@react-native-firebase/firestore';
 
 const AuthContext = createContext(null);
 
@@ -48,6 +49,26 @@ export const AuthProvider = ({ children }) => {
         }
     };
 
+    // fetch profile function
+    const fetchUserProfile = async (user) => {
+        try {
+            await firestore().collection('users').doc(userId).get()
+        } catch (error) {
+            console.error('Fetching user profile failed: ', error);
+            throw error;
+        }
+    };
+
+    // create user profile function
+    const createUserProfile = async(userId, profileData) => {
+        try {
+            await firestore().collection('users').doc(userId).set(profileData);
+        } catch (error) {
+            console.error('Creating user profile failed: ', error);
+            throw error;
+        }
+    }
+
     // context object:
     const value = {
         user,
@@ -55,6 +76,8 @@ export const AuthProvider = ({ children }) => {
         signIn,
         createAcc,
         signOut,
+        fetchUserProfile,
+        createUserProfile
     };
 
     return (
