@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { View, Text, Platform, Button, TextInput } from 'react-native';
+import { Styles } from '../../../assets/Styles';
 
 //import auth context
 import { useAuth } from '../../authContext/Auth-Context'
@@ -9,7 +10,7 @@ function ProfileScreen() {
     console.log("profile: " + profileData);
     
     return (
-        <View>
+        <View style={Styles.container}>
             { profileData ? (
                 <>
                     <Text>

@@ -16,9 +16,11 @@ export const AuthProvider = ({ children }) => {
         const unsubscribe = auth().onAuthStateChanged(async authenticatedUser => {
             setUser(authenticatedUser);
             setLoading(false);
-            fetchUserProfile(authenticatedUser);
-            if (profileData != null) {
-                setProfileCreated(true);
+            if (authenticatedUser) {
+                fetchUserProfile(authenticatedUser);
+                if (profileData != null) {
+                    setProfileCreated(true);
+                }
             }
         });
 

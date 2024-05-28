@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { View, Text, Button, TextInput, ScrollView } from 'react-native';
+import SearchableDropDown from 'react-native-searchable-dropdown';
 
 //import styles
 import { Styles } from '../../../assets/Styles'
@@ -17,34 +18,36 @@ function CreateProfileScreen({ navigation }) {
     const [bio, setBio] = useState("");
 
     return (
-        <ScrollView>
-            <View>
+        <View style={Styles.container}>
+            <View style={Styles.container}>
                 <Text>Enter your name</Text>
                 <TextInput 
+                    style={Styles.input}
                     placeholder="Your name"
                     value={name}
                     onChangeText={setName}/>
             </View>
-            <View>
+            <View style={Styles.container}>
                 <Text>What instruments do you play?</Text>
-                <TextInput 
+                <SearchableDropDown 
                     placeholder="Your instrument"
                     value={instrument}
                     onChangeText={setInstrument}/>
             </View>
-            <View>
+            <View style={Styles.container}>
                 <Text>Add your biography</Text>
                 <TextInput 
+                    style={Styles.input}
                     placeholder="Your biography"
                     value={bio}
                     onChangeText={setBio}/>
             </View>
 
             <Button title='Save your profile'
-                onPress={() => 
-                    createUserProfile(user, name, instrument, bio)
-                }/>
-        </ScrollView>
+                onPress={() => {
+                    return createUserProfile(user, name, instrument, bio);
+                }}/>
+        </View>
     );
 }
 
