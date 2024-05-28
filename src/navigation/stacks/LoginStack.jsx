@@ -9,19 +9,21 @@ import CreateProfileScreen from '../../screens/login/CreateProfileScreen';
 const LoginStack = createNativeStackNavigator();
 
 function LoginStackScreen() {
-  const { user } = useAuth();
-
+  const { user, profileCreated } = useAuth();
+  
   return (
       <LoginStack.Navigator>
-        { user ? (
+        { user && profileCreated ? (
           //if user is signed in, direct here
           <LoginStack.Screen name="Profile" component={ProfileScreen} />
+        ) : user ? (
+          //user signed in but no profile created
+          <LoginStack.Screen name="CreateProfile" component={CreateProfileScreen} />
         ) : (
           //if user not signed in
           <>
             <LoginStack.Screen name="Login" component={LoginScreen} />
-            <LoginStack.Screen name="CreateAccount" component={CreateAccountScreen} initialParams={{inUse:false}}/>
-            <LoginStack.Screen name="CreateProfile" component={CreateProfileScreen} />
+            <LoginStack.Screen name="CreateAccount" component={CreateAccountScreen}/>
           </>
         )}
       </LoginStack.Navigator>

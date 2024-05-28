@@ -8,12 +8,18 @@ const AuthContext = createContext(null);
 export const AuthProvider = ({ children }) => {
     const [user, setUser] = useState(null);
     const [loading, setLoading] = useState(true);
+    const [profileCreated, setProfileCreated] = useState(false);
+    const [profileData, setProfileData] = useState(null);
 
     //set user state based on firebase auth context
     useEffect(() => {
         const unsubscribe = auth().onAuthStateChanged(async authenticatedUser => {
             setUser(authenticatedUser);
             setLoading(false);
+            fetchUserProfile(authenticatedUser);
+            if (profileData != null) {
+                setProfileCreated(true);
+            }
         });
 
         return unsubscribe;
@@ -52,7 +58,10 @@ export const AuthProvider = ({ children }) => {
     // fetch profile function
     const fetchUserProfile = async (user) => {
         try {
-            await firestore().collection('users').doc(userId).get()
+            return (await firestore()
+                            .collection('users')
+                            .doc(user.uid)
+                            .onSnapshot(snapshot => setProfileData(snapshot.data())));
         } catch (error) {
             console.error('Fetching user profile failed: ', error);
             throw error;
@@ -60,11 +69,27 @@ export const AuthProvider = ({ children }) => {
     };
 
     // create user profile function
-    const createUserProfile = async(userId, profileData) => {
+    const createUserProfile = async(user, name, instrument, bio) => {
         try {
-            await firestore().collection('users').doc(userId).set(profileData);
+            const profileData = {
+                 name,
+                 instrument, 
+                 bio
+            };
+
+            await addProfileData(user, profileData);
         } catch (error) {
             console.error('Creating user profile failed: ', error);
+            throw error;
+        }
+    }
+
+    // add profile data function
+    const addProfileData = async(user, profileData) => {
+        try {
+            await firestore().collection('users').doc(user.uid).set(profileData).then(() => setProfileCreated(true));
+        } catch (error) {
+            console.error('Adding profile data failed: ', error);
             throw error;
         }
     }
@@ -73,11 +98,14 @@ export const AuthProvider = ({ children }) => {
     const value = {
         user,
         loading,
+        profileCreated,
+        profileData,
         signIn,
         createAcc,
         signOut,
         fetchUserProfile,
-        createUserProfile
+        createUserProfile,
+        addProfileData,
     };
 
     return (

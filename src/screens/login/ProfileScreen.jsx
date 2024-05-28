@@ -5,15 +5,29 @@ import { View, Text, Platform, Button, TextInput } from 'react-native';
 import { useAuth } from '../../authContext/Auth-Context'
 
 function ProfileScreen() {
-    const {user} = useAuth();
-    const { signOut } = useAuth();
-
+    const {user, signOut, profileData } = useAuth();
+    console.log("profile: " + profileData);
+    
     return (
         <View>
-            <Text>
-                User Profile Screen
-                {/* full implementation to be done at later date */}
-            </Text>
+            { profileData ? (
+                <>
+                    <Text>
+                        Name:
+                        {profileData.name}
+                    </Text>
+                    <Text>
+                        Instrument:
+                        {profileData.instrument}
+                    </Text>
+                    <Text>
+                        Bio:
+                        {profileData.bio}
+                    </Text> 
+                </>
+                ) : (
+                    <Text> data not found</Text>
+                )}
             <Button title='sign out' onPress={signOut}></Button>
         </View>
     )
