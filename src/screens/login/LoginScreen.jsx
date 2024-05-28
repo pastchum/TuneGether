@@ -15,7 +15,7 @@ function LoginScreen({ navigation, route }) {
         return (
             <View>
                 {errorMsg == "noInput" && <Text>Fields cannot be empty</Text>}
-                {errorMsg == "invalidPass" && <Text>Invalid Password</Text>}
+                {errorMsg == "invalidPass" && <Text>Invalid Details</Text>}
                 {errorMsg == "invalidEmail" && <Text>Invalid Email</Text>}
                 {errorMsg == "noEmail" && <Text>Email not found</Text>}
                 {errorMsg == "requestFailed" && <Text>Network Request Failed. Try again later</Text>}
