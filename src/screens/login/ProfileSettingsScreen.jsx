@@ -11,7 +11,7 @@ function ProfileSettingsScreen({ navigation }) {
     return (
         <View style={Styles.container}>
             <View style={Styles.profileContainer}>
-                <Button title='Edit your profile' onPress={() => navigation.navigate("ProfileSettings")} />
+                <Button title='Edit your profile' onPress={() => navigation.navigate("UpdateProfile")} />
                 <Button title='sign out' onPress={signOut} />
             </View >
         </View>

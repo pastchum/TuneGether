@@ -5,7 +5,7 @@ import defaultPFP from "./DefaultPFP.png";
 
 export const renderProfile = (profileData) => {
     console.log("Rendering profile for:", profileData.name); 
-    return (
+    return profileData != null ? (
         <ScrollView style={Styles.profileContainer}>
             <View style={{justifyContent:'center', alignItems: 'center'}}>
                 <Text style={Styles.titleText}>{profileData.name}</Text>
@@ -20,5 +20,11 @@ export const renderProfile = (profileData) => {
                     </View>
             </View>
         </ScrollView>
-    );
+    ) : (
+        <View style={Styles.container}>
+            <Text>
+                No Profile Available
+            </Text>
+        </View>
+    )
 };

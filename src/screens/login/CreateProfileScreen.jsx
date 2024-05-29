@@ -17,6 +17,30 @@ function CreateProfileScreen({ navigation }) {
     const [instrument, setInstrument] = useState("");
     const [bio, setBio] = useState("");
 
+    //list of instruments
+    const instruments = [
+        {
+            instrumentName: 'Vocals',
+            instrumentId: 0
+        }, 
+        {
+            instrumentName: 'Bass',
+            instrumentId: 1 
+        }, 
+        {
+            instrumentName: 'Guitar',
+            instrumentId: 2
+        }, 
+        {
+            instrumentName: 'Drums',
+            instrumentId: 3 
+        }, 
+        {
+            instrumentName: 'Keyboard/Piano',
+            instrumentId: 4 
+        }];
+    
+
     return (
         <View style={Styles.container}>
             <View style={Styles.container}>
@@ -31,7 +55,7 @@ function CreateProfileScreen({ navigation }) {
                 <Text>What instruments do you play?</Text>
                 <SearchableDropDown 
                     placeholder="Your instrument"
-                    items={['Bass', 'Guitar', 'Keys', 'Piano', 'Vocals']}
+                    items={instruments}
                     value={instrument}
                     multi={true}
                     onItemSelect={setInstrument}/>

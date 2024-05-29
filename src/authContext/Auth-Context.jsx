@@ -72,11 +72,13 @@ export const AuthProvider = ({ children }) => {
 
     // create user profile function
     const createUserProfile = async(user, name, instrument, bio) => {
+        const userId = user.uid;
         try {
             const profileData = {
                  name,
                  instrument, 
-                 bio
+                 bio,
+                 userId
             };
 
             await addProfileData(user, profileData);
