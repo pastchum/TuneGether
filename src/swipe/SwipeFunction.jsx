@@ -24,11 +24,13 @@ function SwipeFunction( { navigation } ) {
         //get all but own profile
         const loadData = async() => {
             try {
-                const profilesSnapshots = await firestore().collection('users').get();
-                const profiles = profilesSnapshots.docs
-                    .filter(docs => docs.data().userId !== user.uid)
-                    .map(doc => doc.data());
-                setCurrentProfile(profiles);
+                if (user) {
+                    const profilesSnapshots = await firestore().collection('users').get();
+                    const profiles = profilesSnapshots.docs
+                        .filter(docs => docs.data().userId !== user.uid)
+                        .map(doc => doc.data());
+                    setCurrentProfile(profiles);
+                }
             } catch (error) {
                 console.error("Error loading profiles", error);
                 throw error;

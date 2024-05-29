@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import { View, Text, Button, TextInput, ScrollView } from 'react-native';
-import SearchableDropDown from 'react-native-searchable-dropdown';
 
 //import styles
 import { Styles } from '../../../assets/Styles'
@@ -53,12 +52,7 @@ function UpdateProfileScreen({ navigation }) {
             </View>
             <View style={Styles.container}>
                 <Text>What instruments do you play?</Text>
-                <SearchableDropDown 
-                    placeholder={profileData.instrument}
-                    items={instruments}
-                    value={instrument}
-                    multi={true}
-                    onItemSelect={setInstrument}/>
+
             </View>
             <View style={Styles.container}>
                 <Text>Add your biography</Text>
