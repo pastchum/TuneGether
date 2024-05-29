@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import { View, Text, Button, TextInput, ScrollView } from 'react-native';
-import SearchableDropDown from 'react-native-searchable-dropdown';
 
 //import styles
 import { Styles } from '../../../assets/Styles'
@@ -17,6 +16,30 @@ function CreateProfileScreen({ navigation }) {
     const [instrument, setInstrument] = useState("");
     const [bio, setBio] = useState("");
 
+    //list of instruments
+    const instruments = [
+        {
+            instrumentName: 'Vocals',
+            instrumentId: 0
+        }, 
+        {
+            instrumentName: 'Bass',
+            instrumentId: 1 
+        }, 
+        {
+            instrumentName: 'Guitar',
+            instrumentId: 2
+        }, 
+        {
+            instrumentName: 'Drums',
+            instrumentId: 3 
+        }, 
+        {
+            instrumentName: 'Keyboard/Piano',
+            instrumentId: 4 
+        }];
+    
+
     return (
         <View style={Styles.container}>
             <View style={Styles.container}>
@@ -29,10 +52,7 @@ function CreateProfileScreen({ navigation }) {
             </View>
             <View style={Styles.container}>
                 <Text>What instruments do you play?</Text>
-                <SearchableDropDown 
-                    placeholder="Your instrument"
-                    value={instrument}
-                    onChangeText={setInstrument}/>
+                
             </View>
             <View style={Styles.container}>
                 <Text>Add your biography</Text>
