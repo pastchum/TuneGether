@@ -22,6 +22,16 @@ export const Styles = StyleSheet.create({
       backgroundColor: "#8392ab"
     },
 
+    //input containers
+    inputContainer: {
+      flex: 1,
+      flexGrow: 2,
+      padding: 20, 
+      width: "80%",
+      alignContent:"stretch",
+      paddingBottom: 20
+    },
+
     input: {
         height: 40,
         marginBottom: 12,
@@ -66,7 +76,31 @@ export const Styles = StyleSheet.create({
     displayPhoto: {
       width: 300,
       height: 300
-    }
+    },
 
-  });
+
+
+    //for flatlist dropdown menu
+
+    dropdownContainer: {
+      flex: 1,
+      alignContent: "center",
+      padding: 10,
+      width: "100%",
+      backgroundColor: "#8392ab"
+    },
+
+    selectedContainer: {
+      marginTop: 20,
+    },
+    selectedText: {
+      fontSize: 16,
+      color: 'blue',
+    },
+    noResultsText: {
+      fontSize: 16,
+      color: 'red',
+    },
+});
+
 

@@ -4,9 +4,9 @@ import LoginScreen from '../../screens/login/LoginScreen';
 import ProfileScreen from '../../screens/login/ProfileScreen'
 import CreateAccountScreen from '../../screens/login/CreateAccountScreen';
 import { useAuth } from '../../authContext/Auth-Context'
-import CreateProfileScreen from '../../screens/login/CreateProfileScreen';
+import CreateProfileScreen from '../../screens/login/profileCreation/CreateProfileScreen';
 import ProfileSettingsScreen from '../../screens/login/ProfileSettingsScreen';
-import UpdateProfileScreen from '../../screens/login/UpdateProfileScreen';
+import UpdateProfileScreen from '../../screens/login/profileCreation/UpdateProfileScreen';
 
 const LoginStack = createNativeStackNavigator();
 
@@ -20,11 +20,17 @@ function LoginStackScreen() {
           <>
             <LoginStack.Screen name="Profile" component={ProfileScreen} />
             <LoginStack.Screen name="ProfileSettings" component={ProfileSettingsScreen} />
-            <LoginStack.Screen name="UpdateProfile" component={UpdateProfileScreen} />
+            <LoginStack.Screen 
+              name="UpdateProfile" 
+              component={UpdateProfileScreen} 
+              initialParams={{invalidName: false, invalidInstrument: false}}/>
           </>
         ) : user ? (
           //user signed in but no profile created
-          <LoginStack.Screen name="CreateProfile" component={CreateProfileScreen} />
+          <LoginStack.Screen 
+            name="CreateProfile" 
+            component={CreateProfileScreen} 
+            initialParams={{invalidName: false, invalidInstrument: false}}/>
         ) : (
           //if user not signed in
           <>
