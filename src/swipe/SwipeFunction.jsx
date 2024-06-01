@@ -3,7 +3,7 @@ import { View, TouchableOpacity, FlatList} from 'react-native';
 import { Styles, phoneWidth } from '../../assets/Styles';
 import { renderProfile } from '../profile/RenderProfiles';
 import { useAuth } from '../authContext/Auth-Context';
-import firestore, { collection } from '@react-native-firebase/firestore'
+import firestore from '@react-native-firebase/firestore'
 
 function SwipeFunction( { navigation } ) {
     const [currentProfile, setCurrentProfile] = useState([]);
@@ -51,7 +51,10 @@ function SwipeFunction( { navigation } ) {
         //display profiles as flatlist
         <FlatList 
             data={currentProfile}
-            renderItem ={profileRender} 
+            renderItem ={(profile) => {
+                console.log(profile);
+                return profileRender(profile);
+            }} 
             initialNumToRender={1}
             horizontal={true} 
             pagingEnabled={true}
