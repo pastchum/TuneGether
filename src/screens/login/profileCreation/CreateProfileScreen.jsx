@@ -11,7 +11,7 @@ import { useAuth } from '../../../authContext/Auth-Context'
 import { instrumentPicker } from './instrumentPicker/InstrumentPicker';
 
 function CreateProfileScreen({ navigation, route }) {
-    const { invalidName, invalidInstrument } = route?.params;
+    const { invalidName, invalidInstrument } = route?.params || {};
 
     //get create user profile function
     const { createUserProfile, user } = useAuth();
@@ -49,6 +49,7 @@ function CreateProfileScreen({ navigation, route }) {
             {invalidInstrument && <Text>You must select at least one instrument</Text>}
 
             <Button title='Save your profile'
+                color='burlywood'
                 onPress={() => {
                     if (name && instrument) {
                         return createUserProfile(user, name, instrument, bio);

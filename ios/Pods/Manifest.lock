@@ -2612,6 +2612,8 @@ PODS:
     - React-perflogger (= 0.74.1)
     - React-utils (= 0.74.1)
   - RecaptchaInterop (100.0.0)
+  - RNCPicker (2.7.5):
+    - React-Core
   - RNFBApp (20.0.0):
     - Firebase/CoreOnly (= 10.25.0)
     - React-Core
@@ -2642,6 +2644,48 @@ PODS:
     - Firebase/Storage (= 10.25.0)
     - React-Core
     - RNFBApp
+  - RNGestureHandler (2.16.2):
+    - DoubleConversion
+    - glog
+    - hermes-engine
+    - RCT-Folly (= 2024.01.01.00)
+    - RCTRequired
+    - RCTTypeSafety
+    - React-Codegen
+    - React-Core
+    - React-debug
+    - React-Fabric
+    - React-featureflags
+    - React-graphics
+    - React-ImageManager
+    - React-NativeModulesApple
+    - React-RCTFabric
+    - React-rendererdebug
+    - React-utils
+    - ReactCommon/turbomodule/bridging
+    - ReactCommon/turbomodule/core
+    - Yoga
+  - RNReanimated (3.10.1):
+    - DoubleConversion
+    - glog
+    - hermes-engine
+    - RCT-Folly (= 2024.01.01.00)
+    - RCTRequired
+    - RCTTypeSafety
+    - React-Codegen
+    - React-Core
+    - React-debug
+    - React-Fabric
+    - React-featureflags
+    - React-graphics
+    - React-ImageManager
+    - React-NativeModulesApple
+    - React-RCTFabric
+    - React-rendererdebug
+    - React-utils
+    - ReactCommon/turbomodule/bridging
+    - ReactCommon/turbomodule/core
+    - Yoga
   - RNScreens (3.31.1):
     - DoubleConversion
     - glog
@@ -2659,6 +2703,27 @@ PODS:
     - React-NativeModulesApple
     - React-RCTFabric
     - React-RCTImage
+    - React-rendererdebug
+    - React-utils
+    - ReactCommon/turbomodule/bridging
+    - ReactCommon/turbomodule/core
+    - Yoga
+  - RNVectorIcons (10.1.0):
+    - DoubleConversion
+    - glog
+    - hermes-engine
+    - RCT-Folly (= 2024.01.01.00)
+    - RCTRequired
+    - RCTTypeSafety
+    - React-Codegen
+    - React-Core
+    - React-debug
+    - React-Fabric
+    - React-featureflags
+    - React-graphics
+    - React-ImageManager
+    - React-NativeModulesApple
+    - React-RCTFabric
     - React-rendererdebug
     - React-utils
     - ReactCommon/turbomodule/bridging
@@ -2740,6 +2805,7 @@ DEPENDENCIES:
   - React-runtimescheduler (from `../node_modules/react-native/ReactCommon/react/renderer/runtimescheduler`)
   - React-utils (from `../node_modules/react-native/ReactCommon/react/utils`)
   - ReactCommon/turbomodule/core (from `../node_modules/react-native/ReactCommon`)
+  - "RNCPicker (from `../node_modules/@react-native-picker/picker`)"
   - "RNFBApp (from `../node_modules/@react-native-firebase/app`)"
   - "RNFBAuth (from `../node_modules/@react-native-firebase/auth`)"
   - "RNFBCrashlytics (from `../node_modules/@react-native-firebase/crashlytics`)"
@@ -2747,7 +2813,10 @@ DEPENDENCIES:
   - "RNFBFirestore (from `../node_modules/@react-native-firebase/firestore`)"
   - "RNFBMessaging (from `../node_modules/@react-native-firebase/messaging`)"
   - "RNFBStorage (from `../node_modules/@react-native-firebase/storage`)"
+  - RNGestureHandler (from `../node_modules/react-native-gesture-handler`)
+  - RNReanimated (from `../node_modules/react-native-reanimated`)
   - RNScreens (from `../node_modules/react-native-screens`)
+  - RNVectorIcons (from `../node_modules/react-native-vector-icons`)
   - Yoga (from `../node_modules/react-native/ReactCommon/yoga`)
 
 SPEC REPOS:
@@ -2925,6 +2994,8 @@ EXTERNAL SOURCES:
     :path: "../node_modules/react-native/ReactCommon/react/utils"
   ReactCommon:
     :path: "../node_modules/react-native/ReactCommon"
+  RNCPicker:
+    :path: "../node_modules/@react-native-picker/picker"
   RNFBApp:
     :path: "../node_modules/@react-native-firebase/app"
   RNFBAuth:
@@ -2939,8 +3010,14 @@ EXTERNAL SOURCES:
     :path: "../node_modules/@react-native-firebase/messaging"
   RNFBStorage:
     :path: "../node_modules/@react-native-firebase/storage"
+  RNGestureHandler:
+    :path: "../node_modules/react-native-gesture-handler"
+  RNReanimated:
+    :path: "../node_modules/react-native-reanimated"
   RNScreens:
     :path: "../node_modules/react-native-screens"
+  RNVectorIcons:
+    :path: "../node_modules/react-native-vector-icons"
   Yoga:
     :path: "../node_modules/react-native/ReactCommon/yoga"
 
@@ -3044,6 +3121,7 @@ SPEC CHECKSUMS:
   React-utils: 8e9c5cd66f0788e156a1fcb5cd69593ec8607611
   ReactCommon: eb4c4a9c43fcc0d93f922d0fdada24638429e515
   RecaptchaInterop: 7d1a4a01a6b2cb1610a47ef3f85f0c411434cb21
+  RNCPicker: 3e2c37a8328f368ce14da050cdc8231deb5fc9f9
   RNFBApp: b404b7224b5e0d3a3bf9c555bac0fe135b13a896
   RNFBAuth: 206eb4321c2718309ae9ec6fa40352a7a6bf5fe5
   RNFBCrashlytics: 0a61250c420d9141f4540bf8581b7cfc821c6033
@@ -3051,7 +3129,10 @@ SPEC CHECKSUMS:
   RNFBFirestore: f23fab683c4ac4cae94ad2807322181507b3f401
   RNFBMessaging: 98ef21f3db1a54d82aa228d88eee36c02b0d938e
   RNFBStorage: 1b754b1100be79eff39409f9da64e6985468270d
+  RNGestureHandler: 20a4307fd21cbff339abfcfa68192f3f0a6a518b
+  RNReanimated: d51431fd3597a8f8320319dce8e42cee82a5445f
   RNScreens: 30249f9331c3b00ae7cb7922e11f58b3ed369c07
+  RNVectorIcons: 7ac7aaa83f8f3d4c7c0f7daea5a431e91a29b0cd
   SocketRocket: abac6f5de4d4d62d24e11868d7a2f427e0ef940d
   Yoga: d02ee88821190d82b2daa5cd15640a82ffafaaab
 

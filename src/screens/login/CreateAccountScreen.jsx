@@ -1,5 +1,7 @@
 import React, { useEffect, useState } from 'react';
-import { View, Button, TextInput, Text } from 'react-native';
+import { View, Button, TextInput, Text, StyleSheet } from 'react-native';
+import { TouchableOpacity } from 'react-native';
+import Ionicons from 'react-native-vector-icons/Ionicons';
 
 //import styles
 import { Styles } from '../../../assets/Styles'
@@ -13,6 +15,9 @@ function CreateAccountScreen({ navigation, route }) {
     const [password, setPassword] = useState('');
     const [confirmPassword, setConfirmPassword] = useState('');
     const [passwordMatch, setPasswordMatch] = useState(true);
+    const [passwordVisible, setPassWordVisible] = useState(false);
+    const [passwordVisible1, setPassWordVisible1] = useState(false);
+
 
     //get routes
     const createAccountError = route.params?.issue;
@@ -55,25 +60,42 @@ function CreateAccountScreen({ navigation, route }) {
             />
 
             <Text>Enter your password</Text>
-            <TextInput
-                style={Styles.input}
-                placeholder="Password"
-                value={password}
-                onChangeText={setPassword}
-                secureTextEntry
-            />
+            <View style = {styles.passwordContainer}>
+                <TextInput
+                    style={Styles.input}
+                    placeholder="Password"
+                    value={password}
+                    onChangeText={setPassword}
+                    secureTextEntry={!passwordVisible}
+                    />
+                    <TouchableOpacity 
+                        onPress={() => setPassWordVisible(!passwordVisible)}
+                        style={styles.iconContainer1}>
+                        <Ionicons name={passwordVisible ? "eye" : "eye-off"} size = {24} color='gray'/>
+                    </TouchableOpacity>
+
+            </View>
             <Text>Re-enter your password</Text>
-            <TextInput 
+            <View style = {styles.confirmPasswordContainer}>
+                <TextInput
                 style={Styles.input}
                 placeholder='Password'
                 onChangeText={setConfirmPassword}
-                secureTextEntry
+                secureTextEntry = {!passwordVisible1}
             />
+            <TouchableOpacity 
+                onPress={() => setPassWordVisible1(!passwordVisible1)}
+                style={styles.iconContainer1}>
+                <Ionicons name={passwordVisible1 ? "eye" : "eye-off"} size = {24} color='gray'/>
+            </TouchableOpacity>
+            </View>
             {!passwordMatch && <Text>Passwords do not match</Text>}
 
             {createAccountErrorMessage(createAccountError)}
 
-            <Button title='Create Account' onPress={() => 
+            <Button title='Create Account' 
+                    color='burlywood'
+                    onPress={() => 
                     createAcc(email, password)
                     .catch(error => {
                         if (error.code === "auth/email-already-in-use") {
@@ -89,5 +111,32 @@ function CreateAccountScreen({ navigation, route }) {
         </View> 
     );
 }
+
+const styles = StyleSheet.create({
+    container: {
+        flex: 1,
+        justifyContent: 'center',
+        alignItems: 'center',
+        backgroundColor: '#fff',
+    },
+    passwordContainer: {
+        flexDirection: 'row',
+        alignItems: 'center',
+        width: '65%',
+        marginVertical: 10,
+        paddingLeft: 35
+    },
+    confirmPasswordContainer: {
+        flexDirection: 'row',
+        alignItems: 'center',
+        width: '65%',
+        marginVertical: 10,
+        paddingLeft: 35
+    },
+    iconContainer1: {
+        marginLeft: 10,
+        marginBottom: 8,
+    },
+});
 
 export default CreateAccountScreen;

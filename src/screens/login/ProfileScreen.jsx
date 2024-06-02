@@ -14,8 +14,7 @@ function ProfileScreen({ navigation }) {
         <View style={Styles.container}>
             { profileData ? (
                 <View style={Styles.profileContainer}>
-                    {renderProfile(profileData)}
-                    <Button title='Profile settings' onPress={() => navigation.navigate("ProfileSettings")} />
+                    {renderProfile(profileData)}       
                 </View >
                 ) : (
                     <Text> data not found</Text>

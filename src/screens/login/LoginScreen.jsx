@@ -1,12 +1,14 @@
 import React, { useState } from 'react';
-import { View, Text, Button, TextInput } from 'react-native';
+import { View, Image, StyleSheet, Text, Button, TextInput, TouchableOpacity } from 'react-native';
 import { useAuth } from '../../authContext/Auth-Context'
 import { Styles } from '../../../assets/Styles';
+import Ionicons from 'react-native-vector-icons/Ionicons';
 
 function LoginScreen({ navigation, route }) {
     //set hooks for emails and password
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
+    const [passwordVisible, setPassWordVisible] = useState(false);
 
     //get route for login issues
     const loginError = route.params?.issue;
@@ -28,24 +30,36 @@ function LoginScreen({ navigation, route }) {
 
     return (
         <View style = {Styles.container}>
+            <Image
+                source={require('../../../assets/pictures/profile.png')}
+                style={styles.image}
+            />
             <TextInput
                 style={Styles.input}
                 placeholder="Email"
                 value={email}
                 onChangeText={setEmail}
             />
-            <TextInput
-                style={Styles.input}
-                placeholder="Password"
-                value={password}
-                onChangeText={setPassword}
-                secureTextEntry
-            />
-
+            <View style = {styles.passwordContainer}>
+                <TextInput
+                    style={[Styles.input, { flex: 1}]}
+                    placeholder="Password"
+                    value={password}
+                    onChangeText={setPassword}
+                    secureTextEntry={!passwordVisible}
+                />
+                <TouchableOpacity 
+                    onPress={() => setPassWordVisible(!passwordVisible)}
+                    style={styles.iconContainer}>
+                    <Ionicons name={passwordVisible ? "eye" : "eye-off"} size = {24} color='gray'/>
+                </TouchableOpacity>
+            </View>
             {loginErrorMessage(loginError)}
 
-            <Button title='Log In' onPress={() => {
-                    if (email != "" && password != "") {
+            <Button title='Log In'
+                    color='burlywood'
+                    onPress={() => {
+                        if (email != "" && password != "") {
                             return signIn(email, password)
                                 .catch (error => {
                                     if (error.code === 'auth/invalid-email') {
@@ -69,9 +83,10 @@ function LoginScreen({ navigation, route }) {
             <View style = {{
                 marginTop: 50
             }}>
-                <Text style={Styles.subHeader}>Don't have an account?</Text>
+                <Text style={Styles.subHeader}>  Don't have an account?</Text>
                 <Button 
                     title='Create an account'
+                    color='burlywood'
                     onPress={() => navigation.navigate('CreateAccount')}>
                 </Button>
             </View>
@@ -79,5 +94,31 @@ function LoginScreen({ navigation, route }) {
         </View>
     )
 };
+
+const styles = StyleSheet.create({
+    container: {
+        flex: 1,
+        justifyContent: 'center',
+        alignItems: 'center',
+        backgroundColor: '#fff',
+    },
+    image: {
+        width: 150,
+        height: 150,
+        resizeMode: 'contain',
+        margin: 40,
+    },
+    passwordContainer: {
+        flexDirection: 'row',
+        alignItems: 'center',
+        width: '85%',
+        marginVertical: 10,
+        paddingLeft: 35
+    },
+    iconContainer: {
+        marginLeft: 10,
+        marginBottom: 8,
+    },
+});
 
 export default LoginScreen;

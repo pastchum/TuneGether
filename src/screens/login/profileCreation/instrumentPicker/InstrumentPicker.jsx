@@ -47,7 +47,7 @@ export const instrumentPicker = (fn) => {
                                 toggleSelection(item);
                             }}
                         >
-                            <Text style={Styles.buttonText}>
+                            <Text style={[Styles.buttonText, {color: 'black'}]}>
                                 {item ? 
                                     item.instrumentName
                                     : "No instruments found"

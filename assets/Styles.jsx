@@ -77,30 +77,6 @@ export const Styles = StyleSheet.create({
       width: 300,
       height: 300
     },
-
-
-
-    //for flatlist dropdown menu
-
-    dropdownContainer: {
-      flex: 1,
-      alignContent: "center",
-      padding: 10,
-      width: "100%",
-      backgroundColor: "#8392ab"
-    },
-
-    selectedContainer: {
-      marginTop: 20,
-    },
-    selectedText: {
-      fontSize: 16,
-      color: 'blue',
-    },
-    noResultsText: {
-      fontSize: 16,
-      color: 'red',
-    },
-});
-
+    
+  });
 
