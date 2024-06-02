@@ -66,7 +66,7 @@ export const Styles = StyleSheet.create({
     displayPhoto: {
       width: 300,
       height: 300
-    }
-
+    },
+    
   });
 

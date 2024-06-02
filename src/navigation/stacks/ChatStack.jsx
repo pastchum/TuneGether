@@ -6,7 +6,12 @@ const ChatStack = createNativeStackNavigator();
 
 function ChatStackScreen() {
     return (
-      <ChatStack.Navigator>
+      <ChatStack.Navigator
+      screenOptions={{
+        headerStyle: {
+          backgroundColor: 'burlywood',
+        },
+      }}>
         <ChatStack.Screen name="Chat" component={ChatScreen} />
       </ChatStack.Navigator>
     );
