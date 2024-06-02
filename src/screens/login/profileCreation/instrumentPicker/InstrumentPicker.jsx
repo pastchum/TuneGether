@@ -2,10 +2,12 @@ import React, { useState } from "react";
 import { View, Text, TextInput, TouchableOpacity, FlatList } from "react-native";
 import { Styles } from "../../../../../assets/Styles";
 import { instruments } from "./Instruments";
+import { useAuth } from "../../../../authContext/Auth-Context";
 
 export const instrumentPicker = (fn) => {
     const [input, setInput] = useState('');
     const [selected, setSelected] = useState([]);
+    const { profileData } = useAuth();
 
     const toggleSelection = (instrument) => {
         setSelected(previousSelection => {
@@ -26,7 +28,11 @@ export const instrumentPicker = (fn) => {
         <View style={Styles.selectedContainer}>
             <TextInput
                 style={Styles.input}
-                placeholder="Search Instruments..."
+                placeholder={profileData 
+                    ? profileData.instrument
+                    .map(id => instruments
+                                .find(instrument => id == instrument.instrumentId).instrumentName + ",")
+                    : "Search Instruments..."}
                 onChangeText={setInput}
                 value={input}
             />
