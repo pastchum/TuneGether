@@ -15,7 +15,7 @@ import Ionicons from 'react-native-vector-icons/Ionicons';
 //import auth context
 import { useAuth } from '../../authContext/Auth-Context'
 
-export default function SettingsScreen() {
+export default function SettingsScreen({ navigation }) {
 
   const {user, signOut } = useAuth();
   const [form, setForm] = useState({
@@ -32,9 +32,7 @@ export default function SettingsScreen() {
             <View style={styles.sectionBody}>
               <View style={[styles.rowWrapper, styles.rowFirst]}>
                 <TouchableOpacity
-                  onPress={() => {
-                    // handle onPress
-                  }}
+                  onPress={() => navigation.navigate("UpdateProfile")}
                   style={styles.row}>
                   <View
                     style={styles.rowIcon}>

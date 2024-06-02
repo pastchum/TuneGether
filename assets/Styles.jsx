@@ -22,6 +22,16 @@ export const Styles = StyleSheet.create({
       backgroundColor: "#8392ab"
     },
 
+    //input containers
+    inputContainer: {
+      flex: 1,
+      flexGrow: 2,
+      padding: 20, 
+      width: "80%",
+      alignContent:"stretch",
+      paddingBottom: 20
+    },
+
     input: {
         height: 40,
         marginBottom: 12,

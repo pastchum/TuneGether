@@ -6,7 +6,6 @@ import ProfileScreen from '../../screens/login/ProfileScreen'
 import CreateAccountScreen from '../../screens/login/CreateAccountScreen';
 import { useAuth } from '../../authContext/Auth-Context'
 import CreateProfileScreen from '../../screens/login/profileCreation/CreateProfileScreen';
-import ProfileSettingsScreen from '../../screens/login/ProfileSettingsScreen';
 import UpdateProfileScreen from '../../screens/login/profileCreation/UpdateProfileScreen';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import NewProfileSettingsScreen from '../../screens/login/NewProfileSettingsScreen';
@@ -46,7 +45,10 @@ function LoginStackScreen() {
           </>
         ) : user ? (
           //user signed in but no profile created
-          <LoginStack.Screen name="CreateProfile" component={CreateProfileScreen} />
+          <LoginStack.Screen 
+            name="CreateProfile" 
+            component={CreateProfileScreen} 
+            initialParams={{invalidName: false, invalidInstrument: false}}/>
         ) : (
           //if user not signed in
           <>
