@@ -4,7 +4,7 @@ function HomeScreen() {
     return (
         <View>
             <Text>
-                ChatScreen ahsdkjfalskdjf
+                ChatScreen not implemented yet
             </Text>
         </View>
     )
