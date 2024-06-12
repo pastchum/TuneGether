@@ -4,10 +4,10 @@ import { TouchableOpacity } from 'react-native';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 
 //import styles
-import { Styles } from '../../../assets/Styles'
+import { Styles } from '../../../assets/Styles';
 
 //import auth context
-import { useAuth } from '../../authContext/Auth-Context'
+import { useAuth } from '../../authContext/Auth-Context';
 
 function CreateAccountScreen({ navigation, route }) {
     //set hooks for emails and password

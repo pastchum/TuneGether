@@ -1,8 +1,8 @@
-import React, { useState } from "react";
+import React from "react";
 import { ScrollView, View, Text, Image } from "react-native";
-import { Styles } from "../../assets/Styles";
+import { Styles } from "../../../assets/Styles";
 import defaultPFP from "./DefaultPFP.png";
-import { instruments } from "../screens/login/profileCreation/instrumentPicker/Instruments";
+import { instruments } from "../../../assets/instruments/Instruments";
 
 export const renderProfile = (profileData) => {
     console.log("Rendering profile for:", profileData.name, profileData.instrument); 

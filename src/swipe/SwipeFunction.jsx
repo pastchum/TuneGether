@@ -3,7 +3,7 @@ import { View, TouchableOpacity, FlatList, RefreshControl } from 'react-native';
 import { Styles, phoneWidth } from '../../assets/Styles';
 
 //get profile rendering function
-import { renderProfile } from '../profile/RenderProfiles';
+import { renderProfile } from './profile_rendering/RenderProfiles';
 
 //get auth context for current user
 import { useAuth } from '../authContext/Auth-Context';

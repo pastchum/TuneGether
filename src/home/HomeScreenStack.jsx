@@ -1,11 +1,11 @@
 import React from 'react';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
-import SplashScreen from '../../splash/SplashScreen';
-import HomeScreen from '../../screens/home/HomeScreen';
+import SplashScreen from '../splash/SplashScreen';
+import HomeScreen from './screens/HomeScreen';
 
 const HomeStack = createNativeStackNavigator();
 
-function HomeStackScreen() {
+function HomeScreenStack() {
     return (
       <HomeStack.Navigator 
         initialRouteName="Splash"
@@ -25,4 +25,4 @@ function HomeStackScreen() {
     );
   }
 
-export default HomeStackScreen;
+export default HomeScreenStack;

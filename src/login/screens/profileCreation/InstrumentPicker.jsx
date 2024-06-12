@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import { View, Text, TextInput, TouchableOpacity, FlatList } from "react-native";
-import { Styles } from "../../../../../assets/Styles";
-import { instruments } from "./Instruments";
-import { useAuth } from "../../../../authContext/Auth-Context";
+import { Styles } from "../../../../assets/Styles";
+import { instruments } from "../../../../assets/instruments/Instruments";
+import { useAuth } from "../../../authContext/Auth-Context";
 
 export const instrumentPicker = (fn) => {
     const [input, setInput] = useState('');
