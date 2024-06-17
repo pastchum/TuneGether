@@ -1,20 +1,13 @@
 import * as React from 'react';
-import { Image } from 'react-native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-import HomeStackScreen from './stacks/HomeScreenStack';
-import ChatStackScreen from './stacks/ChatStack';
-import LoginStackScreen from './stacks/LoginStack';
+import HomeScreenStack from '../home/HomeScreenStack'
+import ChatScreenStack from '../chat/ChatScreenStack';
+import ProfileScreenStack from '../profile/ProfileScreenStack';
 import Ionicons from 'react-native-vector-icons/Ionicons';
-
-import ProfileIcon from '../../assets/pictures/profile.png';
 
 const Tabs = createBottomTabNavigator();
 
 function BottomNavBar() {
-    return;
-}
-
-function BottomTabNavigator() {
     return (
       <Tabs.Navigator 
         screenOptions={({ route }) => ({
@@ -27,7 +20,7 @@ function BottomTabNavigator() {
               iconName = focused ? 'home' : 'home-outline';
             } else if (rn === "ChatStack") {
               iconName = focused ? 'chatbox-ellipses' : 'chatbox-ellipses-outline';
-            } else if (rn == "LoginStack") {
+            } else if (rn == "ProfileStack") {
               iconName = focused ? 'person' : 'person-outline';
             }
 
@@ -41,20 +34,20 @@ function BottomTabNavigator() {
       >
           <Tabs.Screen 
             name="HomeStack" 
-            component={HomeStackScreen} 
+            component={HomeScreenStack} 
             options={{
               tabBarLabel: "Home",
             }}
             />
           <Tabs.Screen 
             name="ChatStack" 
-            component={ChatStackScreen} 
+            component={ChatScreenStack} 
             options={{
               tabBarLabel: "Chat",
             }}/>
           <Tabs.Screen 
             name="LoginStack" 
-            component={LoginStackScreen} 
+            component={ProfileScreenStack} 
             options={{
               tabBarLabel: "Profile",
             }}/>
@@ -62,4 +55,4 @@ function BottomTabNavigator() {
     );
   }
   
-  export default BottomTabNavigator;
+  export default BottomNavBar;

@@ -2,13 +2,13 @@ import React, { useState } from 'react';
 import { View, Text, Button, TextInput, ScrollView } from 'react-native';
 
 //import styles
-import { Styles } from '../../../../assets/Styles'
+import { Styles } from '../../../assets/Styles';
 
 //import auth context
-import { useAuth } from '../../../authContext/Auth-Context'
+import { useAuth } from '../../authContext/Auth-Context';
 
 //import instrumentPicker function
-import { instrumentPicker } from './instrumentPicker/InstrumentPicker';
+import { instrumentPicker } from '../../login/screens/profileCreation/InstrumentPicker';
 
 function UpdateProfileScreen({ navigation, route }) {
     const { invalidName, invalidInstrument } = route?.params;

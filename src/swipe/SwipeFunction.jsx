@@ -3,7 +3,7 @@ import { View, TouchableOpacity, FlatList, RefreshControl } from 'react-native';
 import { Styles, phoneWidth } from '../../assets/Styles';
 
 //get profile rendering function
-import { renderProfile } from '../profile/RenderProfiles';
+import { renderProfile } from './profile_rendering/RenderProfiles';
 
 //get auth context for current user
 import { useAuth } from '../authContext/Auth-Context';
@@ -12,6 +12,7 @@ import { useAuth } from '../authContext/Auth-Context';
 import firestore from '@react-native-firebase/firestore'
 
 function SwipeFunction( { navigation } ) {
+    console.log(navigation);
     //set current profile for rendering
     const [currentProfile, setCurrentProfile] = useState([]);
 
@@ -49,10 +50,14 @@ function SwipeFunction( { navigation } ) {
     }, []);
 
     //function to render profiles as a button that navigates to its own details screen
-    const profileRender = ({ item }) => (
+    const swipeProfile = ({ item }) => (
         <View style={Styles.container}>
             <TouchableOpacity 
-                //onPress={() => navigation.navigate("ProfileDetails", { profileId: item.getId()})}
+                onPress={() => {
+                    const id = item.userId;
+                    console.log('item.uid: ', item)
+                    navigation.navigate("ProfileDetails", { userId: id});
+                }}
             >
                 {renderProfile(item)}
             </TouchableOpacity>
@@ -72,7 +77,7 @@ function SwipeFunction( { navigation } ) {
             data={currentProfile}
             renderItem ={(profile) => {
                 console.log(profile);
-                return profileRender(profile);
+                return swipeProfile(profile);
             }} 
             refreshControl={
                 <RefreshControl refreshing={refreshing} onRefresh={onRefresh} />

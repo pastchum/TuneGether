@@ -13,7 +13,7 @@ import FeatherIcon from 'react-native-vector-icons/Feather';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 
 //import auth context
-import { useAuth } from '../../authContext/Auth-Context'
+import { useAuth } from '../../authContext/Auth-Context';
 
 export default function SettingsScreen({ navigation }) {
 

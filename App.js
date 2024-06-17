@@ -1,14 +1,8 @@
 import { StatusBar } from 'expo-status-bar';
 import { SafeAreaView, StyleSheet, Text, View } from 'react-native';
-import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { NavigationContainer } from '@react-navigation/native';
-import BottomNavBar from './src/navigation/BottomNavBar';
 import { AuthProvider } from './src/authContext/Auth-Context';
-import { createDrawerNavigator } from '@react-navigation/drawer';
-
-const Drawer = createDrawerNavigator();
-
-const Stack = createNativeStackNavigator();
+import AppNavigator from './src/navigation/AppNavigator';
 
 export default function App() {
   
@@ -20,7 +14,7 @@ export default function App() {
             <StatusBar style="auto" />
           </View>
         </SafeAreaView>
-        <BottomNavBar />
+        <AppNavigator />
       </NavigationContainer>
     </AuthProvider>
   );

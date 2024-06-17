@@ -1,10 +1,10 @@
 import React from 'react';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
-import ChatScreen from '../../screens/chat/ChatScreen';
+import ChatScreen from './screens/ChatScreen';
 
 const ChatStack = createNativeStackNavigator();
 
-function ChatStackScreen() {
+function ChatScreenStack() {
     return (
       <ChatStack.Navigator
       screenOptions={{
@@ -17,4 +17,4 @@ function ChatStackScreen() {
     );
   }
 
-export default ChatStackScreen;
+export default ChatScreenStack;

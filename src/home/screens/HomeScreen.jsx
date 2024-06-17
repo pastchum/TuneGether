@@ -3,12 +3,12 @@ import { useAuth } from "../../authContext/Auth-Context";
 import SwipeFunction from "../../swipe/SwipeFunction";
 import { Styles } from "../../../assets/Styles";
 
-function HomeScreen() {
-    const { user, fetchProfileData } = useAuth();
+function HomeScreen( { navigation }) {
+    const { user } = useAuth();
 
     return (
         <View style={Styles.container}>
-            { user ? (<SwipeFunction />)
+            { user ? (<SwipeFunction navigation={navigation} />)
                 : (
                     <Text>
                         Please Log in to Swipe
