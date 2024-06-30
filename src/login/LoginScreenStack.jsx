@@ -3,7 +3,9 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import LoginScreen from './screens/LoginScreen';
 import CreateAccountScreen from './screens/CreateAccountScreen';
 import { useAuth } from '../authContext/Auth-Context';
-import CreateProfileScreen from './screens/profileCreation/CreateProfileScreen';
+import SetName from './screens/profileCreation/createProfilePages/SetName';
+import SetInstrument from './screens/profileCreation/createProfilePages/SetInstrument';
+import SetBio from './screens/profileCreation/createProfilePages/SetBio';
 import SplashScreen from '../splash/SplashScreen';
 
 const LoginStack = createNativeStackNavigator();
@@ -13,19 +15,31 @@ function LoginScreenStack() {
   
   return (
       <LoginStack.Navigator
-      initialRouteName="Splash"
-      screenOptions={{
-        headerStyle: {
-          backgroundColor: 'burlywood',
-        },
-      }}>
+        initialRouteName="Splash"
+        screenOptions={{
+          headerStyle: {
+            backgroundColor: 'burlywood',
+          },
+        }}>
         
         { user ? (
           //user signed in but no profile created
-          <LoginStack.Screen 
-            name="CreateProfile" 
-            component={CreateProfileScreen} 
-            initialParams={{invalidName: false, invalidInstrument: false}}/>
+          <>
+            <LoginStack.Screen 
+              name="SetName" 
+              component={SetName} 
+              initialParams={{invalidName: false}}
+              />
+            <LoginStack.Screen
+              name="SetInstrument"
+              component={SetInstrument}
+              initialParams={{invalidInstrument: false}}
+              />
+            <LoginStack.Screen
+              name="SetBio"
+              component={SetBio}
+              />
+          </>
         ) : (
           //if user not signed in
           <>

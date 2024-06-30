@@ -3,30 +3,20 @@ import { StyleSheet, View, Text, Button } from 'react-native';
 import { TouchableOpacity } from 'react-native-gesture-handler';
 import SectionedMultiSelect from 'react-native-sectioned-multi-select';
 import Icon from 'react-native-vector-icons/MaterialIcons';
+import { Styles } from '../../../../../assets/Styles';
+import { instruments } from '../../../../../assets/instruments/Instruments';
 
-const items = [
-  { name: 'Vocals', id: 1},
-  { name: 'Electric Guitar', id: 2},
-  { name: 'Acoustic Guitar', id: 3},
-  { name: 'Classical Guitar', id: 4 },
-  { name: 'Bass', id: 5},
-  { name: 'Keyboard/Piano', id: 6},
-  { name: 'Drums', id: 7},
-  
-];
-
-export default function PickInstrument() {
+export default function SetInstrument( { navigation, route }) {
   const [selectedItems, setSelectedItems] = useState([]);
+  const { name, invalidInstrument } = route?.params || {};
   console.log('Selected:', selectedItems);
-
-
 
   return (
     <View style={styles.container}>
       <View>
         <Text style={styles.labelText}>What instruments do you play?</Text>
         <SectionedMultiSelect
-            items={items}
+            items={instruments}
             IconRenderer={Icon}
             uniqueKey="id"
             onSelectedItemsChange={setSelectedItems}
@@ -43,11 +33,23 @@ export default function PickInstrument() {
               }}
         />
       </View>
-
-        <Button title='Next'
-        color='burlywood'/>
-
+      <View>
+        {invalidInstrument && <Text style={Styles.errorText}>You must select an instrument</Text>}
+      </View>
+      <TouchableOpacity 
+        onPress={() => {
+          if (selectedItems.length > 0) {
+            return navigation.navigate("SetBio", { name: name, instrument: selectedItems });
+          } else {
+            return navigation.navigate("SetInstrument", { name: name, invalidInstrument:false })
+          }
+        }}>
+        <View style={Styles.startChatButton}>
+          <Text style={Styles.buttonText}>Next</Text>
+        </View>
+      </TouchableOpacity>
     </View>
+
   );
 }
 

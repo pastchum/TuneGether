@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { View, Text, Button, TextInput, ScrollView } from 'react-native';
+import { View, Text, Button, TextInput } from 'react-native';
 
 //import styles
 import { Styles } from '../../../assets/Styles';
@@ -8,7 +8,7 @@ import { Styles } from '../../../assets/Styles';
 import { useAuth } from '../../authContext/Auth-Context';
 
 //import instrumentPicker function
-import { instrumentPicker } from '../../login/screens/profileCreation/InstrumentPicker';
+//import { instrumentPicker } from '../../login/screens/profileCreation/InstrumentPicker';
 
 function UpdateProfileScreen({ navigation, route }) {
     const { invalidName, invalidInstrument } = route?.params;
@@ -34,7 +34,7 @@ function UpdateProfileScreen({ navigation, route }) {
 
             <View style={Styles.inputContainer}>
                 <Text>What instruments do you play?</Text>
-                {instrumentPicker(setInstrument)}
+                {/*instrumentPicker(setInstrument)*/}
             </View>
             {invalidInstrument && <Text>You must select at least one instrument</Text>}
 

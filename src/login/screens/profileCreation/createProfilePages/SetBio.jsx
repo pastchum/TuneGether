@@ -1,49 +1,79 @@
 import React, { useState } from 'react';
-import { View, Text, Button, TextInput, ScrollView } from 'react-native';
+import { View, Text, TextInput, TouchableOpacity } from 'react-native';
 
 //import styles
-import { Styles } from '../../../../assets/Styles';
+import { Styles } from '../../../../../assets/Styles';
 
 //import auth context
-import { useAuth } from '../../../authContext/Auth-Context';
+import { useAuth } from '../../../../authContext/Auth-Context';
 
-//import instrumentPicker function
-import { instrumentPicker } from './InstrumentPicker';
 
-function setBio({ navigation, route }) {
-    const { invalidName, invalidInstrument } = route?.params || {};
+function SetBio({ navigation, route }) {
+    //get params
+    const { name, instrument } = route?.params || {};
 
     //get create user profile function
     const { createUserProfile, user } = useAuth();
     
     //params for user profile details
-    const [bio, setBio] = useState("");
+    const [biography, setBiography] = useState("");
+    const [inputHeight, setInputHeight] = useState(40);
 
     return (
-        <View style={Styles.container}>
-            <View style={Styles.container}>
+        <View style={styles.container}>
+            <View style={[styles.container, {height: Math.max(100, inputHeight)}]}>
                 <Text>Add your biography</Text>
                 <TextInput 
-                    style={Styles.input}
+                    style={styles.input}
                     placeholder="Your biography"
-                    value={bio}
-                    onChangeText={setBio}/>
+                    value={biography}
+                    onChangeText={setBiography}
+                    multiline
+                    onContentSizeChange={(event) => 
+                        setInputHeight(event.nativeEvent.contentSize.height)}   
+                    />
             </View>
-            {invalidInstrument && <Text>You must select at least one instrument</Text>}
 
-            <Button title='Save your profile'
-                color='burlywood'
+            <TouchableOpacity 
+                style={Styles.button}
                 onPress={() => {
-                    if (name && instrument) {
-                        return createUserProfile(user, name, instrument, bio);
-                    } else {
-                        const noName = name === "";
-                        const noInst = instrument === null;
-                        return navigation.navigate("CreateProfile", { invalidName:noName, invalidInstrument:noInst })
-                    }
-                }}/>
+                    console.log(user);
+                    console.log(name);
+                    console.log(instrument);
+                    console.log(biography);
+                    createUserProfile(user, name, instrument, biography);
+                }}>
+                <View style={Styles.startChatButton}>
+                    <Text style={Styles.buttonText}>Create Profile</Text>
+                </View>
+            </TouchableOpacity>
+
         </View>
     );
 }
 
-export default CreateProfileScreen;
+const styles = {
+    container: {
+        flex: 1,
+        justifyContent: 'center',
+        maxWidth: '95%',
+        alignItems: 'center',
+        padding: 16,
+        backgroundColor: '#f0f0f0',
+    },
+    inputContainer: {
+        width: '90%',
+        marginBottom: 16,
+    },
+    input: {
+        width: (300), 
+        borderColor: 'gray',
+        borderWidth: 1,
+        borderRadius: 5,
+        paddingHorizontal: 8,
+        backgroundColor: '#fff',
+        textAlignVertical: 'top'
+    }
+};
+
+export default SetBio;

@@ -1,22 +1,11 @@
 import React, { useState } from 'react';
 import { View, Text, TextInput, TouchableOpacity, StyleSheet } from 'react-native';
 
-//import auth context
-import { useAuth } from '../../../../authContext/Auth-Context';
-
-//import instrumentPicker function
-import { instrumentPicker } from './profileCreation/InstrumentPicker';
-
-function EnterName({ navigation, route }) {
-    const { invalidName, invalidInstrument } = route?.params || {};
-
-    //get create user profile function
-    const { createUserProfile, user } = useAuth();
+function SetName({ navigation, route }) {
+    const { invalidName } = route?.params || {};
     
     //params for user profile details
     const [name, setName] = useState("");
-    const [instrument, setInstrument] = useState("");
-    const [bio, setBio] = useState("");
 
     return (
         <View style={Styles.container}>
@@ -30,17 +19,15 @@ function EnterName({ navigation, route }) {
             </View>
             {invalidName && <Text style={Styles.errorText}>Name cannot be empty</Text>}
 
-            {invalidInstrument && <Text style={Styles.errorText}>You must select at least one instrument</Text>}
-
             <TouchableOpacity 
                 style={Styles.button}
                 onPress={() => {
-                    if (name && instrument) {
-                        return createUserProfile(user, name, instrument, bio);
+                    if (name) {
+                        return navigation.navigate("SetInstrument", { name: name });
                     } else {
+                        //test for no name
                         const noName = name === "";
-                        const noInst = instrument === null;
-                        return navigation.navigate("CreateProfile", { invalidName:noName, invalidInstrument:noInst })
+                        return navigation.navigate("SetName", { invalidName:noName })
                     }
                 }}>
                 <Text style={Styles.buttonText}>Next</Text>
@@ -93,4 +80,4 @@ const Styles = StyleSheet.create({
     },
 });
 
-export default EnterName;
+export default SetName;
