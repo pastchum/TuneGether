@@ -5,40 +5,48 @@ import { Styles } from '../../assets/Styles';
 //get render profile function
 import { renderProfile } from './profile_rendering/RenderProfiles';
 
+//get auth context
+import { useAuth } from '../authContext/Auth-Context';
+
 //get firestore
 import firestore from '@react-native-firebase/firestore'
 
+//get match function
+import matchFunction from '../match/MatchFunction';
+
 function ProfileDetailsScreen({ navigation, route }) {
-    const userId = route?.params.userId;
+    const { matchingId } = route?.params;
+    const { profileData } = useAuth();
+    const userId = profileData.userId;
 
-    //profiledata state
-    const [profileData, setProfileData] = useState(null);
+    //currentProfile state
+    const [currentProfile, setCurrentProfile] = useState(null);
 
-    console.log('profileId: ', userId)
+    console.log('profileId: ', matchingId)
 
     useEffect(() => {
-        const fetchProfileData = async() => {
+        const fetchCurrentProfileData = async() => {
             try {
                 const profileDataSnapshot = await firestore().collection('users')
-                        .doc(userId)
+                        .doc(matchingId)
                         .get();
-                setProfileData(profileDataSnapshot.data());
+                setCurrentProfile(profileDataSnapshot.data());
             } catch (error) {
                 console.error('Error fetching profile data: ', error);
                 throw error;
             }
         };
 
-        fetchProfileData();
-    }, [userId]);
+        fetchCurrentProfileData();
+    }, [matchingId]);
 
-    console.log("profile: " + profileData);
+    console.log("profile: " + currentProfile);
     
     return (
         <View style={Styles.container}>
-            { profileData ? (
+            { currentProfile ? (
                 <View style={Styles.profileContainer}>
-                    {renderProfile(profileData)} 
+                    {renderProfile(currentProfile)} 
                 </View >
                 ) : (
                     <Text> data not found</Text>
@@ -46,7 +54,7 @@ function ProfileDetailsScreen({ navigation, route }) {
             <View>
                 <TouchableOpacity
                     style={Styles.startChatButton}
-                    onPress={() => {}}>
+                    onPress={() => {matchFunction(matchingId , userId)}}>
                     <View >
                         <Text>Match</Text>
                     </View>
