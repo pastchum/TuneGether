@@ -1,22 +1,22 @@
 //list of instruments
 export const instruments = [
     {
-        instrumentName: 'Vocals',
-        instrumentId: '0'
+        name: 'Vocals',
+        id: '0'
     }, 
     {
-        instrumentName: 'Bass',
-        instrumentId: '1' 
+        name: 'Bass',
+        id: '1' 
     }, 
     {
-        instrumentName: 'Guitar',
-        instrumentId: '2'
+        name: 'Guitar',
+        id: '2'
     }, 
     {
-        instrumentName: 'Drums',
-        instrumentId: '3' 
+        name: 'Drums',
+        id: '3' 
     }, 
     {
-        instrumentName: 'Keyboard/Piano',
-        instrumentId: '4' 
+        name: 'Keyboard/Piano',
+        id: '4' 
 }];

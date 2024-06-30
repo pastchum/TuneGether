@@ -43,7 +43,7 @@ function CreateAccountScreen({ navigation, route }) {
         } else {
             setPasswordMatch(true);
         }
-    }, [setPassword, setConfirmPassword])
+    }, [password, confirmPassword])
 
     return (
         <View style = {{
@@ -89,13 +89,13 @@ function CreateAccountScreen({ navigation, route }) {
                 <Ionicons name={passwordVisible1 ? "eye" : "eye-off"} size = {24} color='gray'/>
             </TouchableOpacity>
             </View>
-            {!passwordMatch && <Text>Passwords do not match</Text>}
+            {!passwordMatch && <Text style={styles.errorText}>Passwords do not match</Text>}
 
             {createAccountErrorMessage(createAccountError)}
 
-            <Button title='Create Account' 
-                    color='burlywood'
-                    onPress={() => 
+            <TouchableOpacity 
+                disabled={!passwordMatch}
+                onPress={() => 
                     createAcc(email, password)
                     .catch(error => {
                         if (error.code === "auth/email-already-in-use") {
@@ -107,7 +107,11 @@ function CreateAccountScreen({ navigation, route }) {
                         } 
                     })
                 
-            } />
+            }>
+                <View style={Styles.startChatButton}>
+                    <Text style={Styles.buttonText}>Create Account</Text>
+                </View>
+            </TouchableOpacity>
         </View> 
     );
 }
@@ -137,6 +141,12 @@ const styles = StyleSheet.create({
         marginLeft: 10,
         marginBottom: 8,
     },
+    errorText: {
+        color: 'red',
+        marginBottom: 16,
+        fontFamily: 'Lora-Italic-VariableFont',
+        fontSize: 14,
+    }
 });
 
 export default CreateAccountScreen;

@@ -7,7 +7,7 @@ function HomeScreen( { navigation }) {
     const { user } = useAuth();
 
     return (
-        <View style={Styles.container}>
+        <View>
             { user ? (<SwipeFunction navigation={navigation} />)
                 : (
                     <Text>

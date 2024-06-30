@@ -18,7 +18,7 @@ export const renderProfile = (profileData) => {
                     <Text>
                         {profileData.instrument
                             .map(id => instruments
-                                        .find(instrument => id == instrument.instrumentId).instrumentName + "\n")
+                                        .find(instrument => id == instrument.id).name + "\n")
                         }
                     </Text>
                     <View style={{marginTop: 30}}>

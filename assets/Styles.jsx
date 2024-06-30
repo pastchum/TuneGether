@@ -77,6 +77,21 @@ export const Styles = StyleSheet.create({
       width: 300,
       height: 300
     },
+
+    card: {
+      width: "90%",
+      height: "70%",
+      position: 'absolute',
+      borderRadius: 10,
+      backgroundColor: '#fff',
+      shadowColor: '#000',
+      shadowOffset: { width: 0, height: 2 },
+      shadowOpacity: 0.8,
+      shadowRadius: 2,
+      elevation: 5,
+      justifyContent: 'center',
+      alignItems: 'center',
+    },
     
   });
 

@@ -1,7 +1,7 @@
 {
   "expo": {
     "name": "TuneGether",
-    "slug": "TuneGether",
+    "slug": "tunegether-6267",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
@@ -41,6 +41,15 @@
           }
         }
       ]
-    ]
+    ],
+    "extra": {
+      "router": {
+        "origin": false
+      },
+      "eas": {
+        "projectId": "68b42165-027c-489d-9308-52a44abf606b"
+      }
+    },
+    "owner": "tunegethertest"
   }
 }
