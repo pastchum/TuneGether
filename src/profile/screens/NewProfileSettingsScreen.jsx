@@ -17,9 +17,9 @@ import { useAuth } from '../../authContext/Auth-Context';
 
 export default function SettingsScreen({ navigation }) {
 
+  const [darkMode, setDarkMode] = useState(false);
   const {user, signOut } = useAuth();
   const [form, setForm] = useState({
-    darkMode: false,
     emailNotifications: true,
     pushNotifications: false,
   });
@@ -84,8 +84,11 @@ export default function SettingsScreen({ navigation }) {
                   <Text style={styles.rowLabel}>Dark Mode</Text>
                   <View style={styles.rowSpacer} />
                   <Switch
-                    onValueChange={darkMode => setForm({ ...form, darkMode })}
-                    value={form.darkMode} />
+                    value={darkMode}
+                    onValueChange={(value) => {
+                      setDarkMode(value);
+                    }}
+                    />
                 </View>
               </View>
               <View style={styles.rowWrapper}>
