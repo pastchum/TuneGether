@@ -9,18 +9,12 @@ const HomeStack = createNativeStackNavigator();
 function HomeScreenStack() {
     return (
       <HomeStack.Navigator 
-        initialRouteName="Splash"
         screenOptions={{
           headerStyle: {
             backgroundColor: 'burlywood',
           },
         }}
       >
-        <HomeStack.Screen
-        name = "Splash"
-        component={SplashScreen}
-        options={{ headerShown: false }}
-        />
         <HomeStack.Screen name="Home" component={HomeScreen} />
         <HomeStack.Screen name="ProfileDetails" component={ProfileDetailsScreen} />
       </HomeStack.Navigator>
