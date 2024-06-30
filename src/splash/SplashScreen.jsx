@@ -13,7 +13,7 @@ function SplashScreen() {
             duration: 2000,
             useNativeDriver: true,
         }).start(() => {
-            navigation.replace('Home');
+            navigation.replace('Login');
         });
     }, [fadeAnim, navigation]);
 

@@ -20,7 +20,7 @@ function BottomNavBar() {
               iconName = focused ? 'home' : 'home-outline';
             } else if (rn === "ChatStack") {
               iconName = focused ? 'chatbox-ellipses' : 'chatbox-ellipses-outline';
-            } else if (rn == "ProfileStack") {
+            } else if (rn == "LoginStack") {
               iconName = focused ? 'person' : 'person-outline';
             }
 
