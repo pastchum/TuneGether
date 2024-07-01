@@ -29,6 +29,7 @@ function SwipeFunction( { navigation } ) {
 
     //set last seen profile
     const [lastViewedProfile, setLastViewedProfile] = useState("");
+    const currProfileRef = useRef(null);
 
     //thresholds
     const swipeThreshold = 120;
@@ -79,24 +80,29 @@ function SwipeFunction( { navigation } ) {
         loadData();
     }, []);
 
+    function handleRender(profile) {
+        currProfileRef.current = profile.userId;
+        return renderProfile(profile);
+    }
+
     //on swipe left -> reject
-    function onSwipeLeft(index) {
-        let userId = profilesLoadedRef.current[index].userId;
+    function onSwipeLeft() {
+        let userId = currProfileRef.current;
         console.log("Swiped Left: " + userId);
         return rejectFunction(userId, profileData.userId);
     };
 
     //on swipe right -> match
-    function onSwipeRight(index) {
-        let userId = profilesLoadedRef.current[index].userId;
+    function onSwipeRight() {
+        let userId = currProfileRef.current;
         console.log("Swiped right: " + userId);
         console.log("matching: " + userId + " " + profileData.userId);
         return matchFunction(userId, profileData.userId);
     };
 
     //on tap -> navigate to profile screen
-    function onPress(index) {
-        let userId = profilesLoadedRef.current[index].userId;
+    function onPress() {
+        let userId = currProfileRef.current;
         console.log("View profile: " + userId);
         navigation.navigate("ProfileDetails", 
                             { matchingId: userId});
@@ -114,14 +120,14 @@ function SwipeFunction( { navigation } ) {
         onPanResponderRelease: (event, gesture) => {
           if (Math.abs(gesture.dx) < tapThreshold && Math.abs(gesture.dy) < tapThreshold) {
             //press
-            onPress(currentIndex);
+            onPress();
           } else if (gesture.dx > swipeThreshold) {
             //swipe right
             Animated.spring(position, {
               toValue: { x: width + 100, y: 0 },
               useNativeDriver: false,
             }).start(() => {
-              onSwipeRight(currentIndex);
+              onSwipeRight();
               setCurrentIndex((prevIndex) => prevIndex + 1);
               position.setValue({ x: startMargin, y: 10 });
             });
@@ -131,7 +137,7 @@ function SwipeFunction( { navigation } ) {
               toValue: { x: -width - 100, y: 10 },
               useNativeDriver: false,
             }).start(() => {
-              onSwipeLeft(currentIndex);
+              onSwipeLeft();
               setCurrentIndex((prevIndex) => prevIndex + 1);
               position.setValue({ x: startMargin, y: 10 });
             });
@@ -164,7 +170,7 @@ function SwipeFunction( { navigation } ) {
                         style={[styles.card, position.getLayout()]}
                         {...panResponder.panHandlers}
                     >
-                        {renderProfile(profile)}
+                        {handleRender(profile)}
                     </Animated.View>
                 ) : null;
             } else if (index === currentIndex + 1) {
