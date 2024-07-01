@@ -1,37 +1,38 @@
 import firestore from "@react-native-firebase/firestore";
-import { useAuth } from "../authContext/Auth-Context";
 
-function matchFunction(matchingId) {
+function matchFunction(matchingId, userId) {
     //matchingId is other profile Id, userId is user profile Id
-    //get list of matches
-    const { profileData } = useAuth();
-    const userId = profileData.userId
 
     console.log("MatchId " + matchingId);
     console.log("UserId " + userId);
 
-    const matches = firestore().collection('matches')
-                        .where('user2Id', '==', userId)
-                        .where('user1Id', '==', matchingId)
-                        .get();
-
-    if (matches.exists) {
-        firestore().collection('matches')
-                        .where('user2Id', '==', userId)
-                        .where('user1Id', '==', matchingId)
-                        .update({
-                            status: 'matched'
-                        })
-                        .then(() => console.log("Match created"));
-    } else if (matches.docs.data().status == "pending") {
-        //if matches doesnt exist or matchingId not found in matches
-        firestore().collection('matches').add({
-            user1Id: userId,
-            user2Id: matchingId,
-            status: 'pending',
-            createdAt: new Date().toISOString()
-        });
-    }
+        //get list of matches
+    firestore()
+        .collection('matches')
+        .where('user2Id', '==', userId)
+        .where('user1Id', '==', matchingId)
+        .get()
+        .then((matches) => {
+            //if match found
+            if (!matches.empty) {
+                matches.forEach((doc) => {
+                if (doc.data().status === "pending") {
+                    doc.ref.update({ status: 'matched' }).then(() => console.log("Match created"));
+                }
+                });
+            } else {
+                //create match
+                firestore().collection('matches').add({
+                user1Id: userId,
+                user2Id: matchingId,
+                status: 'pending',
+                createdAt: new Date().toISOString()
+                }).then(() => console.log("Pending match created"));
+            }
+            })
+        .catch((error) => {
+            console.error("Error matching: ", error);
+            });
 }
 
 export default matchFunction;
