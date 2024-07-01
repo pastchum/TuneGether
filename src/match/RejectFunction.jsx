@@ -1,6 +1,6 @@
 import firestore from "@react-native-firebase/firestore";
 
-function matchFunction(matchingId, userId) {
+function rejectFunction(matchingId, userId) {
     //matchingId is other profile Id, userId is user profile Id
 
     console.log("MatchId " + matchingId);
@@ -17,7 +17,7 @@ function matchFunction(matchingId, userId) {
             if (!matches.empty) {
                 matches.forEach((doc) => {
                 if (doc.data().status === "pending") {
-                    doc.ref.update({ status: 'matched' }).then(() => console.log("Match created"));
+                    doc.ref.update({ status: 'rejected' }).then(() => console.log("Match rejected"));
                 }
                 });
             } else {
@@ -25,14 +25,14 @@ function matchFunction(matchingId, userId) {
                 firestore().collection('matches').add({
                 user1Id: userId,
                 user2Id: matchingId,
-                status: 'pending',
+                status: 'rejected',
                 createdAt: new Date().toISOString()
-                }).then(() => console.log("Pending match created"));
+                }).then(() => console.log("Reject created"));
             }
             })
         .catch((error) => {
-            console.error("Error matching: ", error);
+            console.error("Error rejecting: ", error);
             });
 }
 
-export default matchFunction;
+export default rejectFunction;

@@ -15,8 +15,8 @@ function ProfileScreenStack() {
         },
       }}>
         <ProfileStack.Screen name="Profile" component={ProfileScreen} />
-        {/*<ProfileStack.Screen name="UpdateProfile" component={UpdateProfileScreen} />*/}
-        <ProfileStack.Screen name="ProfileSettings" component={SettingsScreen} />
+        <ProfileStack.Screen name="UpdateProfile" component={UpdateProfileScreen} />
+        <ProfileStack.Screen name="ProfileSettings" component={SettingsScreen} initialParams={{invalidName: false, invalidInstrumet: false}}/>
 
       </ProfileStack.Navigator>
     );

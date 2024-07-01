@@ -10,13 +10,16 @@ import { useAuth } from '../authContext/Auth-Context';
 //get firestore
 import firestore from '@react-native-firebase/firestore'
 
+//get match & reject functions
 import matchFunction from '../match/MatchFunction';
+import rejectFunction from '../match/RejectFunction';
 
 const { width, height } = Dimensions.get('window')
 
 function SwipeFunction( { navigation } ) {
     //set current profile for rendering
     const [profilesLoaded, setProfilesLoaded] = useState([]);
+    const profilesLoadedRef = useRef([]);
 
     //refresh state
     const [refreshing, setRefreshing] = useState(false);
@@ -37,14 +40,31 @@ function SwipeFunction( { navigation } ) {
         setRefreshing(true);
         try {
             if (user) {
-                const profilesSnapshots = await firestore().collection('users').limit(10).get();
+                //fetch profiles 
+                const profilesSnapshots = await firestore().collection('users').limit(20).get();
+
+                //fetch matches
+                const matches1 = firestore().collection('matches')
+                    .where('user1Id', '==', user.uid)
+                    .get();
+                const matches2 = firestore().collection('matches')
+                    .where('user2Id', '==', user.uid)
+                    .where('status', '!=', "matched")
+                    .get();
+
+                const [matches1Result, matches2Result] = await Promise.all([matches1, matches2]);
+                const matches = [...matches1Result.docs, ...matches2Result.docs];
+                const matchedUserIds = new Set(matches.map(match => 
+                    match.data().user1Id === user.uid ? match.data().user2Id : match.data().user1Id));
+
+                //filter for not swiped before
                 const newProfiles = profilesSnapshots.docs
                     .filter(docs => docs.data().userId !== user.uid)
+                    .filter(docs => !(matchedUserIds.has(docs.data().userId)))
                     .map(doc => doc.data());
+
                 setProfilesLoaded(prevProfiles => [...prevProfiles, ...newProfiles]);
-                if (profilesLoaded.length > 0) {
-                    setLastViewedProfile(profilesLoaded[0].userId);
-                }
+                profilesLoadedRef.current = newProfiles;
             }
         } catch (error) {
             console.error("Error loading profiles", error);
@@ -54,38 +74,32 @@ function SwipeFunction( { navigation } ) {
         }
     };
 
-    //refresh logic
-    const onRefresh = () => {
-        loadData();
-    };
-
     //effect to load data
     useEffect(() => {
         loadData();
     }, []);
 
     //on swipe left -> reject
-
+    function onSwipeLeft(index) {
+        let userId = profilesLoadedRef.current[index].userId;
+        console.log("Swiped Left: " + userId);
+        return rejectFunction(userId, profileData.userId);
+    };
 
     //on swipe right -> match
-    function onSwipeRight() {
-        if(profile.userId != lastViewedProfile) {
-            setLastViewedProfile(profile.userId);
-        }
-        console.log("LastViewedProfile: " + lastViewedProfile)
-        console.log("matching: " + lastViewedProfile + " " + profileData.userId);
-        return matchFunction(lastViewedProfile);
+    function onSwipeRight(index) {
+        let userId = profilesLoadedRef.current[index].userId;
+        console.log("Swiped right: " + userId);
+        console.log("matching: " + userId + " " + profileData.userId);
+        return matchFunction(userId, profileData.userId);
     };
 
     //on tap -> navigate to profile screen
-    function onPress() {
-        if(false && profilesLoaded[currentIndex].userId != lastViewedProfile) {
-            setLastViewedProfile(profilesLoaded[currentIndex].userId);
-        }
-        console.log("LastViewedProfile: " + lastViewedProfile)
-        //console.log('ids: ' + lastViewedProfile + " " + profileData.userId);
+    function onPress(index) {
+        let userId = profilesLoadedRef.current[index].userId;
+        console.log("View profile: " + userId);
         navigation.navigate("ProfileDetails", 
-                            { matchingId: lastViewedProfile});
+                            { matchingId: userId});
     };
 
     const position = useRef(new Animated.ValueXY({x: startMargin, y: 10})).current;
@@ -99,14 +113,15 @@ function SwipeFunction( { navigation } ) {
         },
         onPanResponderRelease: (event, gesture) => {
           if (Math.abs(gesture.dx) < tapThreshold && Math.abs(gesture.dy) < tapThreshold) {
-            onPress();
+            //press
+            onPress(currentIndex);
           } else if (gesture.dx > swipeThreshold) {
             //swipe right
             Animated.spring(position, {
               toValue: { x: width + 100, y: 0 },
               useNativeDriver: false,
             }).start(() => {
-              onSwipeRight();
+              onSwipeRight(currentIndex);
               setCurrentIndex((prevIndex) => prevIndex + 1);
               position.setValue({ x: startMargin, y: 10 });
             });
@@ -116,7 +131,7 @@ function SwipeFunction( { navigation } ) {
               toValue: { x: -width - 100, y: 10 },
               useNativeDriver: false,
             }).start(() => {
-              console.log(lastViewedProfile);
+              onSwipeLeft(currentIndex);
               setCurrentIndex((prevIndex) => prevIndex + 1);
               position.setValue({ x: startMargin, y: 10 });
             });
@@ -126,7 +141,7 @@ function SwipeFunction( { navigation } ) {
                 toValue: { x: startMargin, y: 10 },
                 useNativeDriver: false,
             }).start(() => {
-                onRefresh();
+                loadData();
             })
           } else {
             Animated.spring(position, {
@@ -153,7 +168,7 @@ function SwipeFunction( { navigation } ) {
                     </Animated.View>
                 ) : null;
             } else if (index === currentIndex + 1) {
-                <View key={profile.id} style={[styles.card, { top: 10 * (index - currentIndex), zIndex: -index }]}>
+                <View key={profile.userId} style={[styles.card, { top: 20, zIndex: -index }]}>
                     {renderProfile(profile)}
                 </View>
             }
@@ -163,12 +178,11 @@ function SwipeFunction( { navigation } ) {
           .reverse();
       };
     
-      return (
-            <View style={styles.container}
-                refreshControl={<RefreshControl refreshing={refreshing} onRefresh={onRefresh}/>}>
-                {renderCards()}
-            </View>
-        );
+    return (
+        <View style={styles.container}>
+            {renderCards()}
+        </View>
+    );
 }
 
 const styles = StyleSheet.create({

@@ -11,13 +11,14 @@ import { useAuth } from '../../authContext/Auth-Context';
 //import { instrumentPicker } from '../../login/screens/profileCreation/InstrumentPicker';
 
 function UpdateProfileScreen({ navigation, route }) {
-    const { invalidName, invalidInstrument } = route?.params;
+    const { invalidName, invalidInstrument } = route?.params || {};
     //get create user profile function
     const { createUserProfile, user, profileData } = useAuth();
     
     //params for user profile details
     const [name, setName] = useState(profileData.name);
-    const [instrument, setInstrument] = useState(profileData.instrument);
+    //const [instrument, setInstrument] = useState(profileData.instrument);
+    const instrument = profileData.instrument;
     const [bio, setBio] = useState(profileData.bio);
 
     return (
@@ -49,13 +50,13 @@ function UpdateProfileScreen({ navigation, route }) {
 
             <Button title='Save your profile'
                 onPress={() => {
-                    if (name && instrument) {
-                        console.log(name + " " + instrument + " " + bio);
+                    if (name) {
+                        console.log(name + " " + " " + bio);
                         return createUserProfile(user, name, instrument, bio);
                     } else {
                         const noName = name === "";
-                        const noInst = instrument === null;
-                        return navigation.navigate("UpdateProfile", { invalidName:noName, invalidInstrument:noInst })
+                        //const noInst = instrument === null;
+                        return navigation.navigate("UpdateProfile", { invalidName:noName, invalidInstrument:false })
                     }
                 }}/>
         </View>
