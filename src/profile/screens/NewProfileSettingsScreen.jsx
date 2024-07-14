@@ -15,120 +15,92 @@ import Ionicons from 'react-native-vector-icons/Ionicons';
 //import auth context
 import { useAuth } from '../../authContext/Auth-Context';
 
-export default function SettingsScreen({ navigation }) {
-
-  const [darkMode, setDarkMode] = useState(false);
-  const {user, signOut } = useAuth();
+export default function SettingsScreen({ navigation, darkMode, setDarkMode }) {
+  const { user, signOut } = useAuth();
   const [form, setForm] = useState({
     emailNotifications: true,
     pushNotifications: false,
   });
+
+  const dynamicStyles = styles(darkMode);
+
   return (
-    <SafeAreaView style={{ flex: 1, backgroundColor: '#f6f6f6' }}>
-      <View style={styles.container}>
-        <ScrollView>       
-          <View style={styles.section}>
-          <Text style={styles.sectionTitle}>Profile Settings</Text>
-            <View style={styles.sectionBody}>
-              <View style={[styles.rowWrapper, styles.rowFirst]}>
+    <SafeAreaView style={dynamicStyles.safeArea}>
+      <View style={dynamicStyles.container}>
+        <ScrollView>
+          <View style={dynamicStyles.section}>
+            <Text style={dynamicStyles.sectionTitle}>Profile Settings</Text>
+            <View style={dynamicStyles.sectionBody}>
+              <View style={[dynamicStyles.rowWrapper, dynamicStyles.rowFirst]}>
                 <TouchableOpacity
                   onPress={() => navigation.navigate("UpdateProfile")}
-                  style={styles.row}>
-                  <View
-                    style={styles.rowIcon}>
-                    <Ionicons 
-                      name='person-circle-outline'
-                      color='gray'
-                      size = {25}/>
+                  style={dynamicStyles.row}>
+                  <View style={dynamicStyles.rowIcon}>
+                    <Ionicons name="person-circle-outline" color="gray" size={25} />
                   </View>
-                  <Text style={styles.rowLabel}>Edit Profile</Text>
+                  <Text style={dynamicStyles.rowLabel}>Edit Profile</Text>
                 </TouchableOpacity>
               </View>
-              
-              
             </View>
-            <Text style={styles.sectionTitle}>Preferences</Text>
-            <View style={styles.sectionBody}>
-              <View style={[styles.rowWrapper, styles.rowFirst]}>
+            <Text style={dynamicStyles.sectionTitle}>Preferences</Text>
+            <View style={dynamicStyles.sectionBody}>
+              <View style={[dynamicStyles.rowWrapper, dynamicStyles.rowFirst]}>
                 <TouchableOpacity
                   onPress={() => {
                     // handle onPress
                   }}
-                  style={styles.row}>
-                  <View
-                    style={styles.rowIcon}>
-                    <Ionicons
-                      name='globe-outline'
-                      color='gray'
-                      size = {25}
-                      />
+                  style={dynamicStyles.row}>
+                  <View style={dynamicStyles.rowIcon}>
+                    <Ionicons name="globe-outline" color="gray" size={25} />
                   </View>
-                  <Text style={styles.rowLabel}>Language</Text>
-                  <View style={styles.rowSpacer} />
-                  <Text style={styles.rowValue}>English</Text>
-                  <FeatherIcon
-                    color="#C6C6C6"
-                    name="chevron-right"
-                    size={20} />
+                  <Text style={dynamicStyles.rowLabel}>Language</Text>
+                  <View style={dynamicStyles.rowSpacer} />
+                  <Text style={dynamicStyles.rowValue}>English</Text>
+                  <FeatherIcon color="#C6C6C6" name="chevron-right" size={20} />
                 </TouchableOpacity>
               </View>
-              <View style={styles.rowWrapper}>
-                <View style={styles.row}>
-                  <View
-                    style={styles.rowIcon}>
-                    <Ionicons 
-                      name='moon-outline'
-                      color='gray'
-                      size = {25}/>
+              <View style={dynamicStyles.rowWrapper}>
+                <View style={dynamicStyles.row}>
+                  <View style={dynamicStyles.rowIcon}>
+                    <Ionicons name="moon-outline" color="gray" size={25} />
                   </View>
-                  <Text style={styles.rowLabel}>Dark Mode</Text>
-                  <View style={styles.rowSpacer} />
+                  <Text style={dynamicStyles.rowLabel}>Dark Mode</Text>
+                  <View style={dynamicStyles.rowSpacer} />
                   <Switch
                     value={darkMode}
                     onValueChange={(value) => {
                       setDarkMode(value);
                     }}
-                    />
+                  />
                 </View>
               </View>
-              <View style={styles.rowWrapper}>
+              <View style={dynamicStyles.rowWrapper}>
                 <TouchableOpacity
                   onPress={() => {
                     // handle onPress
                   }}
-                  style={styles.row}>
-                  <View
-                    style={styles.rowIcon}>
-                    <Ionicons 
-                      name='navigate-outline'
-                      color='gray'
-                      size = {25}/>
+                  style={dynamicStyles.row}>
+                  <View style={dynamicStyles.rowIcon}>
+                    <Ionicons name="navigate-outline" color="gray" size={25} />
                   </View>
-                  <Text style={styles.rowLabel}>Location</Text>
-                  <View style={styles.rowSpacer} />
-                  <FeatherIcon
-                    color="#C6C6C6"
-                    name="chevron-right"
-                    size={20} />
+                  <Text style={dynamicStyles.rowLabel}>Location</Text>
+                  <View style={dynamicStyles.rowSpacer} />
+                  <FeatherIcon color="#C6C6C6" name="chevron-right" size={20} />
                 </TouchableOpacity>
               </View>
             </View>
-            <View style={styles.section}>
-              <Text style={styles.sectionTitle}>Notifications</Text>
-              <View style={styles.sectionBody}>
-                <View style={[styles.rowWrapper, styles.rowFirst]}>
+            <View style={dynamicStyles.section}>
+              <Text style={dynamicStyles.sectionTitle}>Notifications</Text>
+              <View style={dynamicStyles.sectionBody}>
+                <View style={[dynamicStyles.rowWrapper, dynamicStyles.rowFirst]}>
                 </View>
-                <View style={styles.rowWrapper}>
-                  <View style={styles.row}>
-                    <View
-                      style={styles.rowIcon}>
-                      <Ionicons 
-                        name='notifications-outline'
-                        color='gray'
-                        size = {25}/>
+                <View style={dynamicStyles.rowWrapper}>
+                  <View style={dynamicStyles.row}>
+                    <View style={dynamicStyles.rowIcon}>
+                      <Ionicons name="notifications-outline" color="gray" size={25} />
                     </View>
-                    <Text style={styles.rowLabel}>Push Notifications</Text>
-                    <View style={styles.rowSpacer} />
+                    <Text style={dynamicStyles.rowLabel}>Push Notifications</Text>
+                    <View style={dynamicStyles.rowSpacer} />
                     <Switch
                       onValueChange={pushNotifications =>
                         setForm({ ...form, pushNotifications })
@@ -136,43 +108,33 @@ export default function SettingsScreen({ navigation }) {
                       value={form.pushNotifications} />
                   </View>
                 </View>
-                <View style={styles.rowWrapper}>
+                <View style={dynamicStyles.rowWrapper}>
                   <TouchableOpacity
                     onPress={() => {
                       // handle onPress
                     }}
-                    style={styles.row}>
-                    <View
-                      style={styles.rowIcon}>
-                      <Ionicons 
-                        name='musical-notes-outline'
-                        color='gray'
-                        size = {25}/>
+                    style={dynamicStyles.row}>
+                    <View style={dynamicStyles.rowIcon}>
+                      <Ionicons name="musical-notes-outline" color="gray" size={25} />
                     </View>
-                    <Text style={styles.rowLabel}>Sound</Text>
-                    <View style={styles.rowSpacer} />
-                    <Text style={styles.rowValue}>Default</Text>
-                    <FeatherIcon
-                      color="#C6C6C6"
-                      name="chevron-right"
-                      size={20} />
+                    <Text style={dynamicStyles.rowLabel}>Sound</Text>
+                    <View style={dynamicStyles.rowSpacer} />
+                    <Text style={dynamicStyles.rowValue}>Default</Text>
+                    <FeatherIcon color="#C6C6C6" name="chevron-right" size={20} />
                   </TouchableOpacity>
                 </View>
               </View>
             </View>
-            
-            <View style={styles.section}>
-              <View style={styles.sectionBody}>
-                <View style={[styles.rowWrapper, styles.rowFirst]}>
+            <View style={dynamicStyles.section}>
+              <View style={dynamicStyles.sectionBody}>
+                <View style={[dynamicStyles.rowWrapper, dynamicStyles.rowFirst]}>
                 </View>
-                <View style={styles.rowWrapper}>
+                <View style={dynamicStyles.rowWrapper}>
                   <TouchableOpacity
                     onPress={signOut}
-                    style={styles.row}>
-                    
-                    <Text style={styles.logoutLabel}>Log Out</Text>
-                    <View style={styles.rowSpacer} />
-                    
+                    style={dynamicStyles.row}>
+                    <Text style={dynamicStyles.logoutLabel}>Log Out</Text>
+                    <View style={dynamicStyles.rowSpacer} />
                   </TouchableOpacity>
                 </View>
               </View>
@@ -183,149 +145,60 @@ export default function SettingsScreen({ navigation }) {
     </SafeAreaView>
   );
 }
-const styles = StyleSheet.create({
+
+const styles = (darkMode) => StyleSheet.create({
+  safeArea: {
+    flex: 1,
+    backgroundColor: darkMode ? '#000' : '#fff',
+  },
   container: {
-    paddingVertical: 24,
-    paddingHorizontal: 0,
-    flexGrow: 1,
-    flexShrink: 1,
-    flexBasis: 0,
+    flex: 1,
+    backgroundColor: darkMode ? '#000' : '#fff',
   },
-  header: {
-    paddingLeft: 24,
-    paddingRight: 24,
-    marginBottom: 12,
-  },
-  title: {
-    fontSize: 32,
-    fontWeight: '700',
-    color: '#1d1d1d',
-    marginBottom: 6,
-  },
-  subtitle: {
-    fontSize: 15,
-    fontWeight: '500',
-    color: '#929292',
-  },
-  image: {
-    width: 150,
-    height: 150,
-    resizeMode: 'contain',
-    margin: 40,
-  },
-  contentFooter: {
-    marginTop: 24,
-    fontSize: 13,
-    fontWeight: '500',
-    color: '#929292',
-    textAlign: 'center',
-  },
-  /** Profile */
-  profile: {
-    padding: 16,
-    flexDirection: 'column',
-    alignItems: 'center',
-    backgroundColor: '#fff',
-    borderTopWidth: 1,
-    borderBottomWidth: 1,
-    borderColor: '#e3e3e3',
-  },
-  profileAvatar: {
-    width: 60,
-    height: 60,
-    borderRadius: 9999,
-  },
-  profileName: {
-    marginTop: 12,
-    fontSize: 20,
-    fontWeight: '600',
-    color: '#090909',
-  },
-  profileEmail: {
-    marginTop: 6,
-    fontSize: 16,
-    fontWeight: '400',
-    color: '#848484',
-  },
-  profileAction: {
-    marginTop: 12,
-    paddingVertical: 10,
-    paddingHorizontal: 16,
-    flexDirection: 'row',
-    alignItems: 'center',
-    justifyContent: 'center',
-    backgroundColor: '#007bff',
-    borderRadius: 12,
-  },
-  profileActionText: {
-    marginRight: 8,
-    fontSize: 15,
-    fontWeight: '600',
-    color: '#fff',
-  },
-  /** Section */
   section: {
-    paddingTop: 12,
+    marginVertical: 24,
   },
   sectionTitle: {
-    marginVertical: 8,
-    marginHorizontal: 24,
-    fontSize: 14,
-    fontWeight: '600',
-    color: '#a7a7a7',
-    textTransform: 'uppercase',
-    letterSpacing: 1.2,
+    fontSize: 24,
+    fontWeight: 'bold',
+    marginBottom: 12,
+    color: darkMode ? '#fff' : '#000',
   },
   sectionBody: {
-    paddingLeft: 24,
-    backgroundColor: '#fff',
-    borderTopWidth: 1,
-    borderBottomWidth: 1,
-    borderColor: '#e3e3e3',
+    backgroundColor: darkMode ? '#333' : '#f7f7f7',
+    borderRadius: 8,
+    padding: 16,
   },
-  /** Row */
+  rowWrapper: {
+    borderBottomWidth: 1,
+    borderBottomColor: darkMode ? '#555' : '#e5e5e5',
+  },
   row: {
     flexDirection: 'row',
     alignItems: 'center',
-    justifyContent: 'flex-start',
-    paddingRight: 16,
-    height: 50,
-  },
-  rowWrapper: {
-    borderTopWidth: 1,
-    borderColor: '#e3e3e3',
-  },
-  rowFirst: {
-    borderTopWidth: 0,
+    paddingVertical: 16,
   },
   rowIcon: {
-    width: 30,
-    height: 30,
-    borderRadius: 4,
-    alignItems: 'center',
-    justifyContent: 'center',
     marginRight: 12,
   },
   rowLabel: {
-    fontSize: 17,
-    fontWeight: '500',
-    color: '#000',
+    fontSize: 16,
+    color: darkMode ? '#fff' : '#000',
   },
   rowSpacer: {
-    flexGrow: 1,
-    flexShrink: 1,
-    flexBasis: 0,
+    flex: 1,
   },
   rowValue: {
-    fontSize: 17,
-    fontWeight: '500',
-    color: '#8B8B8B',
-    marginRight: 4,
+    fontSize: 16,
+    color: '#6b6b6b',
+    marginRight: 8,
   },
   logoutLabel: {
-    fontSize: 17,
-    fontWeight: '500',
+    fontSize: 16,
     color: 'red',
-    paddingLeft: 150
-  }
+  },
+  rowFirst: {
+    borderTopWidth: 1,
+    borderTopColor: darkMode ? '#555' : '#e5e5e5',
+  },
 });

@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { View, Text, TouchableOpacity, Platform, Button, TextInput } from 'react-native';
+import { View, Text, TouchableOpacity, StyleSheet, Platform, Button, TextInput } from 'react-native';
 import { Styles } from '../../../assets/Styles';
 
 //get render profile function
@@ -13,9 +13,9 @@ function ProfileScreen({ navigation }) {
     console.log("profile: " + profileData);
     
     return (
-        <View style={Styles.container}>
+        <View style={styles.container}>
             { profileData ? (
-                <View style={Styles.profileContainer}>
+                <View style={styles.profileContainer}>
                     {renderProfile(profileData)} 
                 </View >
                 ) : (
@@ -23,7 +23,7 @@ function ProfileScreen({ navigation }) {
                 )}
             <View>
                 <TouchableOpacity
-                    style={Styles.startChatButton}
+                    style={styles.startChatButton}
                     onPress={() => navigation.navigate('ProfileSettings')}>
                     <View >
                         <Text>Account Settings</Text>
@@ -35,3 +35,30 @@ function ProfileScreen({ navigation }) {
 }
 
 export default ProfileScreen;
+
+export const styles = StyleSheet.create({
+    container: {
+        flex: 1,
+        justifyContent: 'center',
+        alignItems: 'center',
+        backgroundColor: '#fff',
+    },
+    profileContainer: {
+        flex: 1,
+        backgroundColor: '#fff',
+        borderRadius: 15,
+        padding: 20,
+        margin: 20,
+    },
+    startChatButton: {
+        marginTop: 20,
+        padding: 10,
+        backgroundColor: '#f0f0f0',
+        borderRadius: 10,
+    },
+    buttonText: {
+        fontSize: 16,
+        fontWeight: 'bold',
+        color: '#333',
+    },
+});
