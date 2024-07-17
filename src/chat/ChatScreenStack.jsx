@@ -5,15 +5,17 @@ import ProfileList from './components/ProfileList';
 
 const ChatStack = createNativeStackNavigator();
 
-function ChatScreenStack() {
+function ChatScreenStack({ darkMode }) {
     return (
       <ChatStack.Navigator
       screenOptions={{
         headerStyle: {
           backgroundColor: 'burlywood',
-        },
+        }
       }}>
-        <ChatStack.Screen name="Profiles" component={ProfileList} />
+        <ChatStack.Screen name="Profiles" >
+          {props => <ProfileList {...props} darkMode={darkMode} />}
+        </ChatStack.Screen>
         <ChatStack.Screen name="Chat" component={ChatScreen} />
         
       </ChatStack.Navigator>
