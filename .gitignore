@@ -1,2 +1,9 @@
+
+#node modules
 node_modules
+
+#DS_Store
 .DS_Store
+
+#Watchman config file
+.watchmanconfig

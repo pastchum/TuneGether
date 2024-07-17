@@ -29,8 +29,9 @@
 #import "RNSSearchBar.h"
 #import "UIViewController+RNScreens.h"
 #import "UIWindow+RNScreens.h"
+#import "RCTSurfaceTouchHandler+RNSUtility.h"
+#import "RCTTouchHandler+RNSUtility.h"
 #import "RNSUIBarButtonItem.h"
-#import "RNScreensTurboModule.h"
 
 FOUNDATION_EXPORT double RNScreensVersionNumber;
 FOUNDATION_EXPORT const unsigned char RNScreensVersionString[];

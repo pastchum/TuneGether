@@ -3,9 +3,9 @@ import { View, StyleSheet, Text, Button } from 'react-native';
 import ChatRoom from '../components/ChatRoom';
 
 function ChatScreen({ route }) {
-    const { profile } = route.params;
+    const { userId } = route?.params;
 
-    if (!profile) {
+    if (!userId) {
         return (
             <View style={styles.container}>
                 <Text style={styles.errorText}>No profile selected</Text>

@@ -29,15 +29,18 @@ function LoginScreenStack() {
               name="SetName" 
               component={SetName} 
               initialParams={{invalidName: false}}
+              screenOptions={{ headerShown: false }}
               />
             <LoginStack.Screen
               name="SetInstrument"
               component={SetInstrument}
               initialParams={{invalidInstrument: false}}
+              screenOptions={{ headerShown: false }}
               />
             <LoginStack.Screen
               name="SetBio"
               component={SetBio}
+              screenOptions={{ headerShown: false }}
               />
           </>
         ) : (
@@ -48,8 +51,15 @@ function LoginScreenStack() {
               component={SplashScreen}
               options={{ headerShown: false }}
               />
-            <LoginStack.Screen name="Login" component={LoginScreen} />
-            <LoginStack.Screen name="CreateAccount" component={CreateAccountScreen}/>
+            <LoginStack.Screen 
+              name="Login" 
+              component={LoginScreen} 
+              />
+            <LoginStack.Screen 
+              name="CreateAccount" 
+              component={CreateAccountScreen}
+              options={{ title: "Create Account" }}
+              />
           </>
         )}
       </LoginStack.Navigator>
