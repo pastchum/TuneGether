@@ -9,7 +9,7 @@ import { ThemeProvider, useTheme } from '@react-navigation/native';
 
 export default function App() {
 
-  
+  console.log("App Start");
   return (
     <AuthProvider>
       <GestureHandlerRootView>

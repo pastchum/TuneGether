@@ -27,8 +27,6 @@ function SwipeFunction( { navigation } ) {
     //get current user
     const { user, profileData } = useAuth();
 
-    //set last seen profile
-    const [lastViewedProfile, setLastViewedProfile] = useState("");
     const currProfileRef = useRef(null);
 
     //thresholds
@@ -50,7 +48,7 @@ function SwipeFunction( { navigation } ) {
                     .get();
                 const matches2 = firestore().collection('matches')
                     .where('user2Id', '==', user.uid)
-                    .where('status', '!=', "matched")
+                    .where('status', '==', "matched")
                     .get();
 
                 const [matches1Result, matches2Result] = await Promise.all([matches1, matches2]);
@@ -178,7 +176,9 @@ function SwipeFunction( { navigation } ) {
                     {renderProfile(profile)}
                 </View>
             }
-    
+            else if (currentIndex > profilesLoaded.length) {
+                loadData();
+            }
             return null;
           })
           .reverse();

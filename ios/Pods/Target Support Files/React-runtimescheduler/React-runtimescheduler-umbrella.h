@@ -10,7 +10,6 @@
 #endif
 #endif
 
-#import "react/renderer/runtimescheduler/ErrorUtils.h"
 #import "react/renderer/runtimescheduler/primitives.h"
 #import "react/renderer/runtimescheduler/RuntimeScheduler.h"
 #import "react/renderer/runtimescheduler/RuntimeSchedulerBinding.h"
