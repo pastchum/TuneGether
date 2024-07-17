@@ -16,7 +16,7 @@ import rejectFunction from '../match/RejectFunction';
 
 const { width, height } = Dimensions.get('window')
 
-function SwipeFunction( { navigation } ) {
+function SwipeFunction( { navigation, darkMode} ) {
     //set current profile for rendering
     const [profilesLoaded, setProfilesLoaded] = useState([]);
     const profilesLoadedRef = useRef([]);
@@ -82,7 +82,7 @@ function SwipeFunction( { navigation } ) {
 
     function handleRender(profile) {
         currProfileRef.current = profile.userId;
-        return renderProfile(profile);
+        return renderProfile(profile, {}, darkMode);
     }
 
     //on swipe left -> reject
@@ -175,7 +175,7 @@ function SwipeFunction( { navigation } ) {
                 ) : null;
             } else if (index === currentIndex + 1) {
                 <View key={profile.userId} style={[styles.card, { top: 20, zIndex: -index }]}>
-                    {renderProfile(profile)}
+                    {renderProfile(profile, {}, darkMode)}
                 </View>
             }
     

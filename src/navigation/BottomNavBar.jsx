@@ -4,7 +4,6 @@ import HomeScreenStack from '../home/HomeScreenStack'
 import ChatScreenStack from '../chat/ChatScreenStack';
 import ProfileScreenStack from '../profile/ProfileScreenStack';
 import Ionicons from 'react-native-vector-icons/Ionicons';
-import SettingsScreen from '../profile/screens/NewProfileSettingsScreen';
 
 const Tabs = createBottomTabNavigator();
 
@@ -30,24 +29,30 @@ function BottomNavBar({ darkMode, setDarkMode }) {
         tabBarActiveTintColor: 'burlywood',
         tabBarInactiveTintColor: 'gray',
         tabBarStyle: {
-          backgroundColor: darkMode ? '#000' : '#fff',
+          backgroundColor: darkMode ? 'black' : '#fff',
         },
       })}
     >
       <Tabs.Screen
         name="HomeStack"
-        component={HomeScreenStack}
         options={{
           tabBarLabel: 'Home',
         }}
-      />
+      >
+        {props => (
+          <HomeScreenStack {...props} darkMode={darkMode} />
+        )}
+      </Tabs.Screen>
       <Tabs.Screen
         name="ChatStack"
-        component={ChatScreenStack}
         options={{
           tabBarLabel: 'Chat',
         }}
-      />
+      >
+        {props => (
+          <ChatScreenStack {...props} darkMode={darkMode} />
+        )}
+      </Tabs.Screen>
       <Tabs.Screen
         name="ProfileStack"
         options={{

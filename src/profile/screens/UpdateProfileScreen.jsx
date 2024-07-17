@@ -1,12 +1,7 @@
 import React, { useState } from 'react';
 import { View, Text, Button, TextInput, ScrollView, Image, StyleSheet, TouchableOpacity } from 'react-native';
 
-import { launchImageLibrary } from 'react-native-image-picker';
 import FeatherIcon from 'react-native-vector-icons/Feather';
-import Ionicons from 'react-native-vector-icons/Ionicons';
-
-//import styles
-import { Styles } from '../../../assets/Styles';
 
 //import auth context
 import { useAuth } from '../../authContext/Auth-Context';
@@ -14,7 +9,7 @@ import { useAuth } from '../../authContext/Auth-Context';
 //import instrumentPicker function
 //import { instrumentPicker } from '../../login/screens/profileCreation/InstrumentPicker';
 
-function UpdateProfileScreen({ navigation, route }) {
+function UpdateProfileScreen({ navigation, route, darkMode }) {
     const { invalidName, invalidInstrument } = route?.params || {};
     const { createUserProfile, user, profileData } = useAuth();
 
@@ -22,54 +17,56 @@ function UpdateProfileScreen({ navigation, route }) {
     const instrument = profileData.instrument;
     const [bio, setBio] = useState(profileData.bio);
 
-    return (
-        <ScrollView contentContainerStyle={styles.container}>
+    const dynamicStyles = styles(darkMode);
 
-        <View style={styles.profile}>
-            <View style={styles.profileAvatarContainer}>
+    return (
+        <ScrollView contentContainerStyle={dynamicStyles.container}>
+
+        <View style={dynamicStyles.profile}>
+            <View style={dynamicStyles.profileAvatarContainer}>
                 <Image
                 source={require('../../../assets/pictures/profile.png')}
-                style={styles.profileAvatar} />
+                style={dynamicStyles.profileAvatar} />
                  <TouchableOpacity
-                        style={styles.cameraButton}
+                        style={dynamicStyles.cameraButton}
                         onPress={() => {
                             // handle onPress
                           }}
                     >
-                         <View style={styles.cameraIconBackground}>
+                         <View style={dynamicStyles.cameraIconBackground}>
                             <FeatherIcon name="camera" size={20} color="burlywood" />
                         </View>
                 </TouchableOpacity>
             </View>
-            <Text style={styles.profileName}>John Doe</Text>
-            <Text style={styles.profileEmail}>john.doe@mail.com</Text>
+            <Text style={dynamicStyles.profileName}>John Doe</Text>
+            <Text style={dynamicStyles.profileEmail}>john.doe@mail.com</Text>
                 
-              <View style={styles.profileAction}>
+              <View style={dynamicStyles.profileAction}>
                 <FeatherIcon color="#fff" name="edit" size={16} />
               </View>
           </View>
             
-            <View style={styles.inputContainer}>
-                <Text style={styles.label}>Enter your name</Text>
+            <View style={dynamicStyles.inputContainer}>
+                <Text style={dynamicStyles.label}>Enter your name</Text>
                 <TextInput 
-                    style={styles.input}
+                    style={dynamicStyles.input}
                     placeholder="Name"
                     value={name}
                     onChangeText={setName}
                 />
-                {invalidName && <Text style={styles.errorText}>Name cannot be empty</Text>}
+                {invalidName && <Text style={dynamicStyles.errorText}>Name cannot be empty</Text>}
             </View>
 
-            <View style={styles.inputContainer}>
-                <Text style={styles.label}>What instruments do you play?</Text>
+            <View style={dynamicStyles.inputContainer}>
+                <Text style={dynamicStyles.label}>What instruments do you play?</Text>
                 {/* Implement instrument picker here */}
-                {invalidInstrument && <Text style={styles.errorText}>You must select at least one instrument</Text>}
+                {invalidInstrument && <Text style={dynamicStyles.errorText}>You must select at least one instrument</Text>}
             </View>
 
-            <View style={styles.inputContainer}>
-                <Text style={styles.label}>Add your biography</Text>
+            <View style={dynamicStyles.inputContainer}>
+                <Text style={dynamicStyles.label}>Add your biography</Text>
                 <TextInput 
-                    style={styles.input}
+                    style={dynamicStyles.input}
                     placeholder="Bio"
                     value={bio}
                     onChangeText={setBio}
@@ -93,11 +90,12 @@ function UpdateProfileScreen({ navigation, route }) {
     );
 }
 
-const styles = StyleSheet.create({
+const styles = (darkMode) => StyleSheet.create({
     container: {
         flexGrow: 1,
         justifyContent: 'center',
         padding: 20,
+        backgroundColor: darkMode ? '#000' : '#fff',
     },
     inputContainer: {
         marginBottom: 20,
@@ -106,7 +104,7 @@ const styles = StyleSheet.create({
         padding: 16,
         flexDirection: 'column',
         alignItems: 'center',
-        backgroundColor: '#fff',
+        backgroundColor: darkMode ? '#333' : '#fff',
         borderTopWidth: 1,
         borderBottomWidth: 1,
         borderColor: '#e3e3e3',
@@ -142,13 +140,15 @@ const styles = StyleSheet.create({
     label: {
         fontSize: 16,
         marginBottom: 5,
+        color: darkMode ? '#fff' : '#000',
     },
     input: {
         borderWidth: 1,
         borderColor: '#ccc',
         borderRadius: 5,
         padding: 10,
-        backgroundColor: '#fff',
+        backgroundColor: darkMode ? '#555' : '#fff',
+        color: darkMode ? '#fff' : '#000',
     },
     errorText: {
         color: 'red',
