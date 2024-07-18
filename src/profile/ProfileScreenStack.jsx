@@ -6,20 +6,26 @@ import SettingsScreen from './screens/NewProfileSettingsScreen';
 
 const ProfileStack = createNativeStackNavigator();
 
-function ProfileScreenStack() {
+function ProfileScreenStack({ darkMode, setDarkMode }) {
     return (
-      <ProfileStack.Navigator
-      screenOptions={{
-        headerStyle: {
-          backgroundColor: 'burlywood',
-        },
-      }}>
-        <ProfileStack.Screen name="Profile" component={ProfileScreen} />
-        <ProfileStack.Screen name="UpdateProfile" component={UpdateProfileScreen} />
-        <ProfileStack.Screen name="ProfileSettings" component={SettingsScreen} initialParams={{invalidName: false, invalidInstrumet: false}}/>
-
-      </ProfileStack.Navigator>
+        <ProfileStack.Navigator
+            screenOptions={{
+                headerStyle: {
+                    backgroundColor: darkMode ? '#333' : 'burlywood',
+                },
+                headerTintColor: darkMode ? '#fff' : '#000',
+            }}
+        >
+            <ProfileStack.Screen name="Profile" component={ProfileScreen} />
+            <ProfileStack.Screen name="UpdateProfile" component={UpdateProfileScreen} />
+            <ProfileStack.Screen
+                name="ProfileSettings"
+                options={{ title: 'Profile Settings' }}
+            >
+                {props => <SettingsScreen {...props} darkMode={darkMode} setDarkMode={setDarkMode} />}
+            </ProfileStack.Screen>
+        </ProfileStack.Navigator>
     );
-  }
+}
 
 export default ProfileScreenStack;
