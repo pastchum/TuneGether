@@ -23,10 +23,10 @@ function matchFunction(matchingId, userId) {
             } else {
                 //create match
                 firestore().collection('matches').add({
-                user1Id: userId,
-                user2Id: matchingId,
-                status: 'pending',
-                createdAt: new Date().toISOString()
+                    user1Id: userId,
+                    user2Id: matchingId,
+                    status: 'pending',
+                    createdAt: new Date().toISOString()
                 }).then(() => console.log("Pending match created"));
             }
             })

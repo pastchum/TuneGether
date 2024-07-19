@@ -1,15 +1,23 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useCallback } from 'react';
 import { View, StyleSheet, Text, Button, FlatList, TextInput, KeyboardAvoidingView, Pressable, ScrollView } from 'react-native';
 import firestore from '@react-native-firebase/firestore'
 import firebase from '@react-native-firebase/app'
-import { useCollectionData } from 'react-firebase-hooks/firestore';
 import { useAuth } from '../../authContext/Auth-Context';
 import { renderProfileBar } from '../../swipe/profile_rendering/RenderProfileBar';
 
 function ChatScreen({ route }) {
+    //get userId of chat recipient
     const { userId } = route?.params;
+
+    //set states
     const [profile, setProfile] = useState(null);
     const [message, setMessage] = useState("");
+
+    const [chatHistory, setChatHistory] = useState([]);
+
+    //get current user id
+    const { user } = useAuth();
+    const uid = user.uid;
 
     useEffect(() => {
         const fetchProfile = async () => {
@@ -26,9 +34,59 @@ function ChatScreen({ route }) {
             }
         };
 
+        const fetchMessages = async () => {
+            try {
+                const sentSnapshot = await firestore().collection('messages')
+                                        .where('senderId', '==', uid)
+                                        .where('receiverId', '==', userId)
+                                        .get();
+                const receivedSnapshot = await firestore().collection('messages')
+                                        .where('senderId', '==', userId)
+                                        .where('receiverId', '==', uid)
+                                        .get()
+
+                const sentDocs = sentSnapshot.docs;
+                const receivedDocs = receivedSnapshot.docs;
+                const chatDocs = [...sentDocs, ...receivedDocs]
+                        .sort((doc1, doc2) => doc1.data().createdAt > doc2.data().createdAt ? 1 : -1);
+                if (chatDocs) {
+                    setChatHistory(chatDocs.map(doc => doc.data()));
+                }
+            } catch (error) {
+                console.log("Error fetching messages: ", error)
+            }
+        }
+
         fetchProfile();
+        fetchMessages();
     }, [userId])
 
+
+    const handleSend = useCallback((messageType, messageText) => {
+        firestore().collection('messages')
+            .add({
+                senderId: uid,
+                receiverId: userId,
+                messageType: messageType,
+                messageText: messageText,
+                createdAt: new Date().toISOString()
+            })
+            .then(() => {
+                setMessage("");
+                setChatHistory((prevHistory) =>[
+                    ...prevHistory,
+                    {
+                        senderId: uid,
+                        receiverId: userId,
+                        messageType: messageType,
+                        messageText: messageText,
+                        createdAt: new Date().toISOString()
+                    }
+                ]);
+            });
+    }, [uid, userId])
+
+    
     if (!profile) {
         return (
             <View style={styles.container}>
@@ -43,9 +101,12 @@ function ChatScreen({ route }) {
                 {renderProfileBar(profile)}
             </View>
                 
-            {/*<ChatRoom profile={profile} />*/}
             <ScrollView>
-
+                {chatHistory.map((chatMessage, index) => (
+                    <View key={index}>
+                        <Text>{chatMessage.senderId === uid ? "Me: " : "Them: "}{chatMessage.messageText}</Text>
+                    </View>
+                ))}
             </ScrollView>
 
             <View style={styles.bottomContainer}>
@@ -56,61 +117,16 @@ function ChatScreen({ route }) {
                     placeholder='Type your message here...'
                 />
 
-                <Pressable style={styles.button}>
+                <Pressable 
+                    style={styles.button}
+                    onPress={() => handleSend("text", message)}
+                >
                     <Text style={{color: "white", fontWeight: "bold"}}>
                         Send
                     </Text>
                 </Pressable>
             </View>
         </KeyboardAvoidingView>
-    );
-}
-
-
-function ChatRoom({ profile }) {
-    const userId = profile.userId;
-    const chatRef = firestore().collection('messages').doc(userId).collection('messages');
-    const query = chatRef.orderBy('createdAt').limit(25);
-    const { user } = useAuth();
-
-    const [messages] = useCollectionData(query, { idField: 'id' });
-    const [text, setText] = useState('');
-
-    const sendMessage = async () => {
-        if (!user) {
-            console.error('No user is authenticated.');
-            return;
-        }
-
-        if (text.trim()) {
-            const { uid } = user;
-            await chatRef.add({
-                text,
-                createdAt: firebase.firestore.FieldValue.serverTimestamp(),
-                uid,
-            });
-            setText('');
-        }
-    };
-
-    return (
-        <View style={styles.container}>
-            <FlatList
-                data={messages}
-                renderItem={({ item }) => <ChatMessage message={item} />}
-                keyExtractor={(item) => item.id}
-                inverted
-            />
-            <View style={styles.inputContainer}>
-                <TextInput
-                    style={styles.input}
-                    value={text}
-                    onChangeText={setText}
-                    placeholder="Type your message"
-                />
-                <Button title="Send" onPress={sendMessage} />
-            </View>
-        </View>
     );
 }
 
