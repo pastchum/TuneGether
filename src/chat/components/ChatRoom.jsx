@@ -1,21 +1,21 @@
 import React, { useState } from 'react';
 import { View, TextInput, Button, FlatList, StyleSheet } from 'react-native';
 import { useCollectionData } from 'react-firebase-hooks/firestore';
-import { firestore, auth } from '../../../config/firebaseConfig';
+import firestore from '@react-native-firebase/firestore'
+import firebase from '@react-native-firebase/app'
 import ChatMessage from './ChatMessage';
 import { useAuth } from '../../authContext/Auth-Context';
 
-function ChatRoom({ userId }) {
-    const profileSnapshot = firestore.collection('users').doc(userId).get();
-    const profile = profileSnapshot.docs
-    const chatRef = firestore.collection('messages').doc(userId).collection('messages');
+function ChatRoom({ profile }) {
+    const userId = profile.userId;
+    const chatRef = firestore().collection('messages').doc(userId).collection('messages');
     const query = chatRef.orderBy('createdAt').limit(25);
+    const { user } = useAuth();
 
     const [messages] = useCollectionData(query, { idField: 'id' });
     const [text, setText] = useState('');
 
     const sendMessage = async () => {
-        const user = auth.currentUser;
         if (!user) {
             console.error('No user is authenticated.');
             return;

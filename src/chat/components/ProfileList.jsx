@@ -3,6 +3,7 @@ import { View, FlatList, Text, TouchableOpacity, StyleSheet, RefreshControl } fr
 import { useCollectionData } from 'react-firebase-hooks/firestore';
 import firestore from '@react-native-firebase/firestore'
 import { useAuth } from '../../authContext/Auth-Context';
+import { renderProfileBar } from '../../swipe/profile_rendering/RenderProfileBar';
 
 function ProfileList({ navigation }) {
     const [friends, setFriends] = useState([]);
@@ -59,7 +60,7 @@ function ProfileList({ navigation }) {
 
     const renderProfileItem = ({ item }) => (
         <TouchableOpacity key={item.userId} style={styles.profileItem} onPress={() => handleProfilePress(item)}>
-            <Text>{item.name}</Text>
+            {renderProfileBar(item)}
         </TouchableOpacity>
     );
 
@@ -88,10 +89,10 @@ function ProfileList({ navigation }) {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        padding: 10,
+        padding: 0,
     },
     profileItem: {
-        padding: 15,
+        padding: 0,
         borderBottomWidth: 1,
         borderBottomColor: '#ccc',
     },
