@@ -70,6 +70,7 @@ export default function SettingsScreen({ navigation, darkMode, setDarkMode }) {
                     value={darkMode}
                     onValueChange={(value) => {
                       setDarkMode(value);
+                      navigation.setParams({ darkMode: value });
                     }}
                   />
                 </View>

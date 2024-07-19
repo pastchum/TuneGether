@@ -1,6 +1,5 @@
-import React, { useState } from 'react';
-import { View, Text, TouchableOpacity, StyleSheet, Platform, Button, TextInput } from 'react-native';
-import { Styles } from '../../../assets/Styles';
+import React from 'react';
+import { View, Text, StyleSheet } from 'react-native';
 
 //get render profile function
 import { renderProfile } from '../../swipe/profile_rendering/RenderProfiles';
@@ -8,44 +7,40 @@ import { renderProfile } from '../../swipe/profile_rendering/RenderProfiles';
 //import auth context
 import { useAuth } from '../../authContext/Auth-Context';
 
-function ProfileScreen({ navigation }) {
-    const {user, profileData, signOut } = useAuth();
-    console.log("profile: " + profileData);
-    
+function ProfileScreen({ darkMode }) {
+    const { user, profileData, signOut } = useAuth();
+
+    const dynamicStyles = styles(darkMode);
+    const additionalStyles = {
+        displayPhoto: { width: 150, height: 150, borderRadius: 80 }
+    };
+
     return (
-        <View style={styles.container}>
-            { profileData ? (
-                <View style={styles.profileContainer}>
-                    {renderProfile(profileData)} 
-                </View >
-                ) : (
-                    <Text> data not found</Text>
-                )}
-            <View>
-                <TouchableOpacity
-                    style={styles.startChatButton}
-                    onPress={() => navigation.navigate('ProfileSettings')}>
-                    <View >
-                        <Text>Account Settings</Text>
-                    </View>
-                </TouchableOpacity>
-            </View>
+        <View style={dynamicStyles.container}>
+            {profileData ? (
+                <View style={dynamicStyles.profileContainer}>
+                    {renderProfile(profileData, additionalStyles, darkMode)}
+                </View>
+            ) : (
+                <Text style={dynamicStyles.dataNotFound}>data not found</Text>
+            )}
+            
         </View>
-    )
+    );
 }
 
 export default ProfileScreen;
 
-export const styles = StyleSheet.create({
+const styles = (darkMode) => StyleSheet.create({
     container: {
         flex: 1,
         justifyContent: 'center',
         alignItems: 'center',
-        backgroundColor: '#fff',
+        backgroundColor: darkMode ? '#333' : '#fff',
     },
     profileContainer: {
         flex: 1,
-        backgroundColor: '#fff',
+        backgroundColor: darkMode ? '#333' : '#fff',
         borderRadius: 15,
         padding: 20,
         margin: 20,
@@ -53,12 +48,15 @@ export const styles = StyleSheet.create({
     startChatButton: {
         marginTop: 20,
         padding: 10,
-        backgroundColor: '#f0f0f0',
+        backgroundColor: darkMode ? '#555' : '#f0f0f0',
         borderRadius: 10,
     },
     buttonText: {
         fontSize: 16,
         fontWeight: 'bold',
-        color: '#333',
+        color: darkMode ? '#fff' : '#333',
+    },
+    dataNotFound: {
+        color: darkMode ? '#fff' : '#000',
     },
 });

@@ -5,9 +5,10 @@ import firebase from '@react-native-firebase/app'
 import { useAuth } from '../../authContext/Auth-Context';
 import { renderProfileBar } from '../../swipe/profile_rendering/RenderProfileBar';
 
-function ChatScreen({ route }) {
+function ChatScreen({ route, darkMode }) {
     //get userId of chat recipient
     const { userId } = route?.params;
+    const dynamicStyles = styles(darkMode);
 
     //set states
     const [profile, setProfile] = useState(null);
@@ -89,14 +90,14 @@ function ChatScreen({ route }) {
     
     if (!profile) {
         return (
-            <View style={styles.container}>
-                <Text style={styles.errorText}>No profile selected</Text>
+            <View style={dynamicStyles.container}>
+                <Text style={dynamicStyles.errorText}>No profile selected</Text>
             </View>
         );
     }
 
     return (
-        <KeyboardAvoidingView style={styles.container}>
+        <KeyboardAvoidingView style={dynamicStyles.container}>
             <View style={styles.profileContainer}>
                 {renderProfileBar(profile)}
             </View>
@@ -130,9 +131,12 @@ function ChatScreen({ route }) {
     );
 }
 
-const styles = StyleSheet.create({
+const styles = (darkMode) => StyleSheet.create({
     container: {
-        flex: 1
+        flex: 1,
+        justifyContent: 'center',
+        alignItems: 'center',
+        backgroundColor: darkMode ? '#000' : '#fff'
     },
     profileContainer: {
         height: 70
@@ -141,10 +145,11 @@ const styles = StyleSheet.create({
         padding: 15,
         fontSize: 18,
         fontWeight: 'bold',
+        color: darkMode ? '#fff' : '#000',
     },
     errorText: {
         fontSize: 18,
-        color: 'red',
+        color: darkMode ? 'red' : 'red',
     },
     inputContainer: {
         flexDirection: 'row',

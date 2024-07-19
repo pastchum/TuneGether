@@ -1,22 +1,33 @@
-import { View, Text } from "react-native";
+import { View, Text, StyleSheet } from "react-native";
 import { useAuth } from "../../authContext/Auth-Context";
 import SwipeFunction from "../../swipe/SwipeFunction";
-import { Styles } from "../../../assets/Styles";
 
-function HomeScreen( { navigation }) {
+function HomeScreen({ navigation, darkMode }) {
     const { user } = useAuth();
+    const dynamicStyles = styles(darkMode);
 
     return (
-        <View>
-            { user ? (<SwipeFunction navigation={navigation} />)
+        <View style={dynamicStyles.container}>
+            { user ? (<SwipeFunction navigation={navigation} darkMode={darkMode} />)
                 : (
-                    <Text>
+                    <Text style={dynamicStyles.text}>
                         Please Log in to Swipe
                     </Text>
                 )
             }
         </View>
-    )
-};
+    );
+}
+
+const styles = (darkMode) => StyleSheet.create({
+    container: {
+        flex: 1,
+        justifyContent: 'center',
+        backgroundColor: darkMode ? '#333' : '#fff',
+    },
+    text: {
+        color: darkMode ? '#fff' : '#000',
+    },
+});
 
 export default HomeScreen;
