@@ -1,7 +1,6 @@
 import React from "react";
 import { View, Text, Image, StyleSheet } from "react-native";
 import defaultPFP from "./DefaultPFP.png";
-import { instruments } from "../../../assets/instruments/Instruments";
 
 export const renderProfileBar = (profileData) => {
     console.log("Rendering profile bar for:", profileData.name, profileData.instrument);
