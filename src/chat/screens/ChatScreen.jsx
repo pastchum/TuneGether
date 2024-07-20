@@ -98,7 +98,7 @@ function ChatScreen({ route, darkMode }) {
 
     return (
         <KeyboardAvoidingView style={dynamicStyles.container}>
-            <View style={styles.profileContainer}>
+            <View style={dynamicStyles.profileContainer}>
                 {renderProfileBar(profile)}
             </View>
                 
@@ -110,16 +110,16 @@ function ChatScreen({ route, darkMode }) {
                 ))}
             </ScrollView>
 
-            <View style={styles.bottomContainer}>
+            <View style={dynamicStyles.bottomContainer}>
                 <TextInput 
                     value={message}
                     onChangeText={(text) => setMessage(text)}
-                    style={styles.input}
+                    style={dynamicStyles.input}
                     placeholder='Type your message here...'
                 />
 
                 <Pressable 
-                    style={styles.button}
+                    style={dynamicStyles.button}
                     onPress={() => handleSend("text", message)}
                 >
                     <Text style={{color: "white", fontWeight: "bold"}}>
@@ -134,8 +134,6 @@ function ChatScreen({ route, darkMode }) {
 const styles = (darkMode) => StyleSheet.create({
     container: {
         flex: 1,
-        justifyContent: 'center',
-        alignItems: 'center',
         backgroundColor: darkMode ? '#000' : '#fff'
     },
     profileContainer: {
