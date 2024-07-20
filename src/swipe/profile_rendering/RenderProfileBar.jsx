@@ -2,31 +2,32 @@ import React from "react";
 import { View, Text, Image, StyleSheet } from "react-native";
 import defaultPFP from "./DefaultPFP.png";
 
-export const renderProfileBar = (profileData) => {
+export const renderProfileBar = (profileData, additionalStyles = {}, darkMode = false) => {
     console.log("Rendering profile bar for:", profileData.name, profileData.instrument);
 
+    const dynamicStyles = createStyles(additionalStyles, darkMode);
+
     return profileData && Array.isArray(profileData.instrument) ? (
-        <View style={styles.profileContainer}>
+        <View style={dynamicStyles.profileContainer}>
             <View style={{padding: 20}}>
-                <Image source={defaultPFP} style={styles.displayPhoto} />
+                <Image source={defaultPFP} style={dynamicStyles.displayPhoto} />
             </View>
-            <View style={styles.profileContent}>
-                <Text style={styles.titleText}>{profileData?.name}</Text>
+            <View style={dynamicStyles.profileContent}>
+                <Text style={dynamicStyles.titleText}>{profileData?.name}</Text>
             </View>
         </View>
     ) : (
-        <View style={styles.container}>
+        <View style={dynamicStyles.container}>
             <Text>No Profile Available</Text>
         </View>
     );
 };
 
-export const styles = StyleSheet.create({
+const createStyles = (additionalStyles, darkMode) => StyleSheet.create({
     profileContainer: {
         flex: 1,
         flexDirection:"row",
-        backgroundColor: "#eaf7e3",
-        borderRadius: 15, // Rounded corners
+        backgroundColor: darkMode ? "slategrey" : "lightsteelblue",
         padding: 0,
         width: "100%",
         height: 70
