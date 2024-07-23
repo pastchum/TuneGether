@@ -3,6 +3,7 @@ import { ScrollView, View, Text, Image, StyleSheet } from "react-native";
 import { Styles } from "../../../assets/Styles";
 import defaultPFP from "./DefaultPFP.png";
 import { instruments } from "../../../assets/instruments/Instruments";
+import getRatings from "../../ratings/GetRatings";
 
 export const renderProfile = (profileData, additionalStyles = {}, darkMode = false) => {
     console.log("Rendering profile for:", profileData.name, profileData.instrument);
@@ -15,6 +16,7 @@ export const renderProfile = (profileData, additionalStyles = {}, darkMode = fal
                 <Text style={dynamicStyles.titleText}>{profileData?.name}</Text>
                 <Image source={defaultPFP} style={dynamicStyles.displayPhoto} />
             </View>
+            {getRatings(profileData)}
             <View style={dynamicStyles.profileDetails}>
                 <Text style={dynamicStyles.subHeader}>I play</Text>
                 <Text>

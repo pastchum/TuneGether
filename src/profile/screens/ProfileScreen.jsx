@@ -8,7 +8,7 @@ import { renderProfile } from '../../swipe/profile_rendering/RenderProfiles';
 import { useAuth } from '../../authContext/Auth-Context';
 
 function ProfileScreen({ darkMode }) {
-    const { user, profileData, signOut } = useAuth();
+    const { profileData } = useAuth();
 
     const dynamicStyles = styles(darkMode);
     const additionalStyles = {
