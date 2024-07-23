@@ -1,11 +1,11 @@
 import React, { useEffect, useState, useCallback } from 'react';
-import { View, StyleSheet, Text, Button, FlatList, TextInput, KeyboardAvoidingView, Pressable, ScrollView } from 'react-native';
+import { View, StyleSheet, Text, Button, FlatList, TextInput, KeyboardAvoidingView, Pressable, ScrollView, TouchableOpacity } from 'react-native';
 import firestore from '@react-native-firebase/firestore'
 import firebase from '@react-native-firebase/app'
 import { useAuth } from '../../authContext/Auth-Context';
 import { renderProfileBar } from '../../swipe/profile_rendering/RenderProfileBar';
 
-function ChatScreen({ route, darkMode }) {
+function ChatScreen({ route, darkMode, navigation }) {
     //get userId of chat recipient
     const { userId } = route?.params;
     const dynamicStyles = styles(darkMode);
@@ -103,9 +103,15 @@ function ChatScreen({ route, darkMode }) {
 
     return (
         <KeyboardAvoidingView style={dynamicStyles.container}>
-            <View style={dynamicStyles.profileContainer}>
-                {renderProfileBar(profile)}
-            </View>
+            <TouchableOpacity
+                onPress={() => {
+                    return navigation.navigate('HomeStack', { screen: "ProfileDetails", 
+                                                              params: { matchingId: userId } })
+                }}>
+                <View style={dynamicStyles.profileContainer}>
+                    {renderProfileBar(profile)}
+                </View>
+            </TouchableOpacity>
                 
             <ScrollView>
                 {chatHistory.map((chatMessage, index) => (

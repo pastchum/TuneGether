@@ -31,12 +31,14 @@ function BottomNavBar({ darkMode, setDarkMode }) {
         tabBarStyle: {
           backgroundColor: darkMode ? 'black' : '#fff',
         },
+        tabBarTestID: 'tab-bar', // Adding test ID for the tab bar
       })}
     >
       <Tabs.Screen
         name="HomeStack"
         options={{
           tabBarLabel: 'Home',
+          tabBarAccessibilityLabel: 'Home',
         }}
       >
         {props => (
@@ -47,6 +49,7 @@ function BottomNavBar({ darkMode, setDarkMode }) {
         name="ChatStack"
         options={{
           tabBarLabel: 'Chat',
+          tabBarAccessibilityLabel: 'Chat',
         }}
       >
         {props => (
@@ -57,6 +60,7 @@ function BottomNavBar({ darkMode, setDarkMode }) {
         name="ProfileStack"
         options={{
           tabBarLabel: 'Profile',
+          tabBarAccessibilityLabel: 'Profile',
         }}
       >
         {props => (

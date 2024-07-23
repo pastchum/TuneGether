@@ -24,3 +24,4 @@ const addRating = (profileData, rating) => {
     }
 }
 
+export default addRating;
