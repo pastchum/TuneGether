@@ -35,31 +35,47 @@ function ChatScreen({ route, darkMode }) {
             }
         };
 
-        const fetchMessages = async () => {
+        const fetchMessages = () => {
             try {
-                const sentSnapshot = await firestore().collection('messages')
+                const sentSnapshot = firestore().collection('messages')
                                         .where('senderId', '==', uid)
-                                        .where('receiverId', '==', userId)
-                                        .get();
-                const receivedSnapshot = await firestore().collection('messages')
+                                        .where('receiverId', '==', userId);
+    
+                const receivedSnapshot = firestore().collection('messages')
                                         .where('senderId', '==', userId)
-                                        .where('receiverId', '==', uid)
-                                        .get()
-
-                const sentDocs = sentSnapshot.docs;
-                const receivedDocs = receivedSnapshot.docs;
-                const chatDocs = [...sentDocs, ...receivedDocs]
-                        .sort((doc1, doc2) => doc1.data().createdAt > doc2.data().createdAt ? 1 : -1);
-                if (chatDocs) {
-                    setChatHistory(chatDocs.map(doc => doc.data()));
-                }
+                                        .where('receiverId', '==', uid);
+    
+                const unsubscribeSent = sentSnapshot.onSnapshot(sentMessages => {
+                    const sentDocs = sentMessages.docs.map(doc => doc.data());
+                    setChatHistory(prevHistory => {
+                        const otherMessages = prevHistory.filter(msg => msg.senderId !== uid || msg.receiverId !== userId);
+                        return [...otherMessages, ...sentDocs].sort((a, b) => a.createdAt > b.createdAt ? 1 : -1);
+                    });
+                });
+                            
+                const unsubscribeReceived = receivedSnapshot.onSnapshot(receivedMessages => {
+                    const receivedDocs = receivedMessages.docs.map(doc => doc.data());
+                    setChatHistory(prevHistory => {
+                        const otherMessages = prevHistory.filter(msg => msg.senderId !== userId || msg.receiverId !== uid);
+                        return [...otherMessages, ...receivedDocs].sort((a, b) => a.createdAt > b.createdAt ? 1 : -1);
+                    });
+                });
+                
+                return () => {
+                    unsubscribeReceived();
+                    unsubscribeSent()
+                };
             } catch (error) {
                 console.log("Error fetching messages: ", error)
             }
         }
+        unsubscribeMessages = fetchMessages();
 
         fetchProfile();
-        fetchMessages();
+        return () => {
+            unsubscribeMessages();
+        };
+
     }, [userId])
 
 
@@ -73,21 +89,10 @@ function ChatScreen({ route, darkMode }) {
                 createdAt: new Date().toISOString()
             })
             .then(() => {
-                setMessage("");
-                setChatHistory((prevHistory) =>[
-                    ...prevHistory,
-                    {
-                        senderId: uid,
-                        receiverId: userId,
-                        messageType: messageType,
-                        messageText: messageText,
-                        createdAt: new Date().toISOString()
-                    }
-                ]);
+                setMessage("")
             });
     }, [uid, userId])
 
-    
     if (!profile) {
         return (
             <View style={dynamicStyles.container}>
