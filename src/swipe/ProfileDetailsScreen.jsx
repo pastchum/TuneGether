@@ -27,7 +27,7 @@ function ProfileDetailsScreen({ route, darkMode, navigation }) {
     const userId = profileData.userId;
     const [currentProfile, setCurrentProfile] = useState(null);
     const dynamicStyles = styles(darkMode);
-    const [matched, setMatched] = useState(true);
+    const [matched, setMatched] = useState(false);
 
     console.log('profileId: ', matchingId);
 
@@ -47,44 +47,30 @@ function ProfileDetailsScreen({ route, darkMode, navigation }) {
         const fetchMatched = async () => {
             try {
                 const match1 = await firestore().collection('matches')
-                                        .where('match', '==', 'status')
-                                        .where('user2Id', '==', userId)
-                                        .where('user1Id', '==', matchingId).get();
+                                        .where('status', '==', 'matched')
+                                        .where('user1Id', '==', userId)
+                                        .where('user2Id', '==', matchingId).get();
 
                 const match2 = await firestore().collection('matches')
-                                        .where('match', '==', 'status')
-                                        .where('user2Id', '==', userId)
-                                        .where('user1Id', '==', matchingId).get();
+                                        .where('status', '==', 'matched')
+                                        .where('user1Id', '==', matchingId)
+                                        .where('user2Id', '==', userId).get();
+                
+                console.log(match1 + " " + match2)
 
                 if (!match1.empty || !match2.empty) {
                     setMatched(true);
                 } else {
                     setMatched(false);
                 }
-                    
-                const checkForMatch = firestore().collection('matches')
-                        .where('match', '==', 'status')
-                        .onSnapshot(snapshot => {
-                            const matched = snapshot.docs.some(doc =>
-                                (doc.data().user1Id === userId && doc.data().user2Id === matchingId) ||
-                                (doc.data().user1Id === matchingId && doc.data().user2Id === userId)
-                            );
-                            setMatched(matched.empty);
-                            console.log(matched.empty);
-                        });
-
-                return checkForMatch;
 
             } catch (error) {
                 console.error("error fetching match: " + error);
             }
         }
-        //unsubscribeMatch = fetchMatched();
 
         fetchCurrentProfileData();
-        return () => {
-            //unsubscribeMatch;
-        }
+        fetchMatched();
     }, [matchingId]);
 
     console.log("profile: " + currentProfile);

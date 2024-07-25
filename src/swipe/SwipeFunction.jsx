@@ -38,7 +38,7 @@ function SwipeFunction( { navigation, darkMode} ) {
     const swipeThreshold = 120;
     const tapThreshold = 10;
     const startMargin = width * 0.05;
-    const profilesPerLoad = 10;
+    const profilesPerLoad = 20;
 
     //logic for loading data
     const loadData = async() => {
