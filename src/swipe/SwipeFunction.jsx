@@ -14,13 +14,17 @@ import firestore from '@react-native-firebase/firestore'
 import matchFunction from '../match/MatchFunction';
 import rejectFunction from '../match/RejectFunction';
 
+//get async last viewed fucntion 
+import { saveLastViewedProfileId, loadLastViewedProfileId } from './AsyncLastViewedProfile';
+
+//get sort function
+
 const { width, height } = Dimensions.get('window')
 
 function SwipeFunction( { navigation, darkMode} ) {
     //set current profile for rendering
     const [profilesLoaded, setProfilesLoaded] = useState([]);
     const profilesLoadedRef = useRef([]);
-    const lastViewedProfileRef = useRef(null);
 
     //refresh state
     const [refreshing, setRefreshing] = useState(false);
@@ -60,9 +64,11 @@ function SwipeFunction( { navigation, darkMode} ) {
                                             .where("userId", "!=", user.uid)
                                             .orderBy('userId')
                                             .limit(profilesPerLoad);
+
+                const lastViewedProfileId = await loadLastViewedProfileId();
                      
                 const currentProfile = await firestore().collection('users')
-                                        .doc(currProfileRef.current)
+                                        .doc(lastViewedProfileId)
                                         .get();
                 if (currentProfile.exists) {
                   profilesQuery = profilesQuery
@@ -97,6 +103,10 @@ function SwipeFunction( { navigation, darkMode} ) {
     const [currentIndex, setCurrentIndex] = useState(0);
 
     function handleRender(profile) {
+        if (currProfileRef.current) {
+          saveLastViewedProfileId(currProfileRef.current);
+          console.log("Last Viewed Profile: " + profile.name);
+        }
         currProfileRef.current = profile.userId;
         return renderProfile(profile, {}, darkMode);
     }
