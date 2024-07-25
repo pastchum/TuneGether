@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { View, Text, TouchableOpacity, StyleSheet } from 'react-native';
+import { View, Text, TouchableOpacity, StyleSheet, Dimensions } from 'react-native';
 
 //get render profile function
 import { renderProfile } from './profile_rendering/RenderProfiles';
@@ -18,6 +18,8 @@ import rejectFunction from '../match/RejectFunction';
 
 //get addRating function
 
+
+const { width, height } = Dimensions.get('window')
 
 function ProfileDetailsScreen({ route, darkMode, navigation }) {
     const { matchingId } = route?.params;
@@ -108,7 +110,7 @@ function ProfileDetailsScreen({ route, darkMode, navigation }) {
                 </TouchableOpacity>
             </View>}
             {matched && 
-            <View style={{flexDirection: "row"}}>
+            <View style={dynamicStyles.bottomRowButtons}>
                 <TouchableOpacity
                     style={dynamicStyles.startChatButton}
                     onPress={() => { rejectFunction(matchingId, userId) }}>
@@ -149,10 +151,17 @@ const styles = (darkMode) => StyleSheet.create({
     startChatButton: {
         // Add your specific styles for start chat button
         backgroundColor: 'burlywood',
-        padding: 10,
+        padding: 5,
         borderRadius: 5,
-        marginBottom: 60
-    },
+        marginBottom: 10,
+        marginLeft: 10,
+        marginRight: 10,
+        width: (width-60) / 3
+      },
+    bottomRowButtons: {
+        height: 50, 
+        flexDirection: "row"
+      }
 });
 
 export default ProfileDetailsScreen;

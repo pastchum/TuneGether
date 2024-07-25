@@ -1,25 +1,17 @@
 import React, { useEffect, useState } from 'react';
-import { View, Button, TextInput, Text, StyleSheet } from 'react-native';
-import { TouchableOpacity } from 'react-native';
+import { View, TextInput, Text, StyleSheet, TouchableOpacity } from 'react-native';
 import Ionicons from 'react-native-vector-icons/Ionicons';
-
-//import styles
 import { Styles } from '../../../assets/Styles';
-
-//import auth context
 import { useAuth } from '../../authContext/Auth-Context';
 
 function CreateAccountScreen({ navigation, route }) {
-    //set hooks for emails and password
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [confirmPassword, setConfirmPassword] = useState('');
     const [passwordMatch, setPasswordMatch] = useState(true);
-    const [passwordVisible, setPassWordVisible] = useState(false);
-    const [passwordVisible1, setPassWordVisible1] = useState(false);
+    const [passwordVisible, setPasswordVisible] = useState(false);
+    const [passwordVisible1, setPasswordVisible1] = useState(false);
 
-
-    //get routes
     const createAccountError = route.params?.issue;
 
     const createAccountErrorMessage = (errorMsg) => {
@@ -31,10 +23,9 @@ function CreateAccountScreen({ navigation, route }) {
                 {errorMsg == "inUse" && <Text>Email already in use</Text>}
                 {errorMsg == "requestFailed" && <Text>Network Request Failed. Try again later</Text>}
             </View>
-        )
-    }
-    
-    //get create account function
+        );
+    };
+
     const { createAcc } = useAuth();
 
     useEffect(() => {
@@ -43,51 +34,53 @@ function CreateAccountScreen({ navigation, route }) {
         } else {
             setPasswordMatch(true);
         }
-    }, [password, confirmPassword])
+    }, [password, confirmPassword]);
 
     return (
-        <View style = {{
-            flex: 1, 
-            alignItems: 'center', 
-            justifyContent: 'center'}}
-        >    
+        <View style={styles.container}>
             <Text>Enter your email</Text>
             <TextInput
                 style={Styles.input}
                 placeholder="Email"
                 value={email}
                 onChangeText={setEmail}
+                testID="email-input"
             />
-
             <Text>Enter your password</Text>
-            <View style = {styles.passwordContainer}>
+            <View style={styles.passwordContainer}>
                 <TextInput
                     style={Styles.input}
                     placeholder="Password"
                     value={password}
                     onChangeText={setPassword}
                     secureTextEntry={!passwordVisible}
-                    />
-                    <TouchableOpacity 
-                        onPress={() => setPassWordVisible(!passwordVisible)}
-                        style={styles.iconContainer1}>
-                        <Ionicons name={passwordVisible ? "eye" : "eye-off"} size = {24} color='gray'/>
-                    </TouchableOpacity>
-
+                    testID="password-input"
+                />
+                <TouchableOpacity 
+                    onPress={() => setPasswordVisible(!passwordVisible)}
+                    style={styles.iconContainer1}
+                    testID="password-toggle"
+                >
+                    <Ionicons name={passwordVisible ? "eye" : "eye-off"} size={24} color='gray'/>
+                </TouchableOpacity>
             </View>
             <Text>Re-enter your password</Text>
-            <View style = {styles.confirmPasswordContainer}>
+            <View style={styles.confirmPasswordContainer}>
                 <TextInput
-                style={Styles.input}
-                placeholder='Password'
-                onChangeText={setConfirmPassword}
-                secureTextEntry = {!passwordVisible1}
-            />
-            <TouchableOpacity 
-                onPress={() => setPassWordVisible1(!passwordVisible1)}
-                style={styles.iconContainer1}>
-                <Ionicons name={passwordVisible1 ? "eye" : "eye-off"} size = {24} color='gray'/>
-            </TouchableOpacity>
+                    style={Styles.input}
+                    placeholder="Confirm Password"
+                    value={confirmPassword}
+                    onChangeText={setConfirmPassword}
+                    secureTextEntry={!passwordVisible1}
+                    testID="confirm-password-input"
+                />
+                <TouchableOpacity 
+                    onPress={() => setPasswordVisible1(!passwordVisible1)}
+                    style={styles.iconContainer1}
+                    testID="confirm-password-toggle"
+                >
+                    <Ionicons name={passwordVisible1 ? "eye" : "eye-off"} size={24} color='gray'/>
+                </TouchableOpacity>
             </View>
             {!passwordMatch && <Text style={styles.errorText}>Passwords do not match</Text>}
 
@@ -95,24 +88,27 @@ function CreateAccountScreen({ navigation, route }) {
 
             <TouchableOpacity 
                 disabled={!passwordMatch}
-                onPress={() => 
-                    createAcc(email, password)
-                    .catch(error => {
-                        if (error.code === "auth/email-already-in-use") {
-                            return navigation.navigate("CreateAccount", { issue:"inUse" });
-                        } else if (error.code === "auth/invalid-email") {
-                            return navigation.navigate("CreateAccount", { issue:"invalidEmail" });
-                        } else if (error.code === "auth/network-request-failed") {
-                            return navigation.navigate("CreateAccount", { issue:"requestFailed" });
-                        } 
-                    })
-                
-            }>
+                onPress={() => {
+                    if (createAcc) {
+                        createAcc(email, password)
+                            .catch(error => {
+                                if (error.code === "auth/email-already-in-use") {
+                                    return navigation.navigate("CreateAccount", { issue: "inUse" });
+                                } else if (error.code === "auth/invalid-email") {
+                                    return navigation.navigate("CreateAccount", { issue: "invalidEmail" });
+                                } else if (error.code === "auth/network-request-failed") {
+                                    return navigation.navigate("CreateAccount", { issue: "requestFailed" });
+                                }
+                            });
+                    }
+                }}
+                testID="create-account-button"
+            >
                 <View style={Styles.startChatButton}>
                     <Text style={Styles.buttonText}>Create Account</Text>
                 </View>
             </TouchableOpacity>
-        </View> 
+        </View>
     );
 }
 

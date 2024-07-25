@@ -6,11 +6,19 @@ import { instruments } from "../../../assets/instruments/Instruments";
 import getRatings from "../../ratings/GetRatings";
 
 export const renderProfile = (profileData, additionalStyles = {}, darkMode = false) => {
+    if (!profileData) {
+        return (
+            <View style={styles.container}>
+                <Text>No Profile Available</Text>
+            </View>
+        );
+    }
+
     console.log("Rendering profile for:", profileData.name, profileData.instrument);
 
     const dynamicStyles = createStyles(additionalStyles, darkMode);
 
-    return profileData && Array.isArray(profileData.instrument) ? (
+    return (
         <ScrollView style={dynamicStyles.profileContainer}>
             <View style={dynamicStyles.profileContent}>
                 <Text style={dynamicStyles.titleText}>{profileData?.name}</Text>
@@ -21,8 +29,10 @@ export const renderProfile = (profileData, additionalStyles = {}, darkMode = fal
                 <Text style={dynamicStyles.subHeader}>I play</Text>
                 <Text>
                     {profileData.instrument
-                        .map(id => instruments
-                            .find(instrument => id == instrument.id).name + "\n")
+                        .map(id => {
+                            const instrument = instruments.find(instrument => id === instrument.id);
+                            return instrument ? instrument.name + "\n" : "";
+                        })
                     }
                 </Text>
                 <View style={dynamicStyles.moreAboutMe}>
@@ -31,10 +41,6 @@ export const renderProfile = (profileData, additionalStyles = {}, darkMode = fal
                 </View>
             </View>
         </ScrollView>
-    ) : (
-        <View style={dynamicStyles.container}>
-            <Text>No Profile Available</Text>
-        </View>
     );
 };
 
