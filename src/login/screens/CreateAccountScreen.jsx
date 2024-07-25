@@ -11,17 +11,16 @@ function CreateAccountScreen({ navigation, route }) {
     const [passwordMatch, setPasswordMatch] = useState(true);
     const [passwordVisible, setPasswordVisible] = useState(false);
     const [passwordVisible1, setPasswordVisible1] = useState(false);
-
-    const createAccountError = route.params?.issue;
+    const [createAccountError, setCreateAccountError] = useState(null);
 
     const createAccountErrorMessage = (errorMsg) => {
         return (
-            <View>
-                {errorMsg == "noInput" && <Text>Fields cannot be empty</Text>}
-                {errorMsg == "invalidPass" && <Text>Invalid Password</Text>}
-                {errorMsg == "invalidEmail" && <Text>Invalid Email</Text>}
-                {errorMsg == "inUse" && <Text>Email already in use</Text>}
-                {errorMsg == "requestFailed" && <Text>Network Request Failed. Try again later</Text>}
+            <View testID="error-message">
+                {errorMsg === "noInput" && <Text>Fields cannot be empty</Text>}
+                {errorMsg === "invalidPass" && <Text>Invalid Password</Text>}
+                {errorMsg === "invalidEmail" && <Text>Invalid Email</Text>}
+                {errorMsg === "inUse" && <Text>Email already in use</Text>}
+                {errorMsg === "requestFailed" && <Text>Network Request Failed. Try again later</Text>}
             </View>
         );
     };
@@ -35,6 +34,12 @@ function CreateAccountScreen({ navigation, route }) {
             setPasswordMatch(true);
         }
     }, [password, confirmPassword]);
+
+    useEffect(() => {
+        if (route.params?.issue) {
+            setCreateAccountError(route.params.issue);
+        }
+    }, [route.params]);
 
     return (
         <View style={styles.container}>

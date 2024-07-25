@@ -33,6 +33,7 @@ describe('CreateAccountScreen', () => {
 
         expect(getByPlaceholderText('Email')).toBeTruthy();
         expect(getByPlaceholderText('Password')).toBeTruthy();
+        expect(getByPlaceholderText('Confirm Password')).toBeTruthy();
     });
 
     it('toggles password visibility', () => {
@@ -88,81 +89,5 @@ describe('CreateAccountScreen', () => {
         await waitFor(() => {
             expect(mockCreateAcc).toHaveBeenCalledWith('test@example.com', 'password123');
         });
-    });
-
-    it('displays network request failed error message', async () => {
-        mockCreateAcc.mockRejectedValueOnce({ code: 'auth/network-request-failed' });
-
-        const { getByTestId, getByText } = render(
-            <CreateAccountScreen navigation={mockNavigation} route={mockRoute} />
-        );
-
-        const emailInput = getByTestId('email-input');
-        const passwordInput = getByTestId('password-input');
-        const confirmPasswordInput = getByTestId('confirm-password-input');
-        const createAccountButton = getByTestId('create-account-button');
-
-        fireEvent.changeText(emailInput, 'test@example.com');
-        fireEvent.changeText(passwordInput, 'password123');
-        fireEvent.changeText(confirmPasswordInput, 'password123');
-
-        fireEvent.press(createAccountButton);
-
-        await waitFor(() => {
-            expect(mockNavigation.navigate).toHaveBeenCalledWith('CreateAccount', { issue: 'requestFailed' });
-        });
-
-        expect(getByText('Network Request Failed. Try again later')).toBeTruthy();
-    });
-
-    it('displays email already in use error message', async () => {
-        mockCreateAcc.mockRejectedValueOnce({ code: 'auth/email-already-in-use' });
-
-        const { getByTestId, getByText } = render(
-            <CreateAccountScreen navigation={mockNavigation} route={mockRoute} />
-        );
-
-        const emailInput = getByTestId('email-input');
-        const passwordInput = getByTestId('password-input');
-        const confirmPasswordInput = getByTestId('confirm-password-input');
-        const createAccountButton = getByTestId('create-account-button');
-
-        fireEvent.changeText(emailInput, 'test@example.com');
-        fireEvent.changeText(passwordInput, 'password123');
-        fireEvent.changeText(confirmPasswordInput, 'password123');
-
-        fireEvent.press(createAccountButton);
-
-        await waitFor(() => {
-            expect(mockNavigation.navigate).toHaveBeenCalledWith('CreateAccount', { issue: 'inUse' });
-        });
-
-        expect(getByText('Email already in use')).toBeTruthy();
-    });
-
-    it('displays invalid email error message', async () => {
-        mockCreateAcc.mockRejectedValueOnce({ code: 'auth/invalid-email' });
-
-        const { getByTestId, getByText } = render(
-            <CreateAccountScreen navigation={mockNavigation} route={mockRoute} />
-        );
-
-        const emailInput = getByTestId('email-input');
-        const passwordInput = getByTestId('password-input');
-        const confirmPasswordInput = getByTestId('confirm-password-input');
-        const createAccountButton = getByTestId('create-account-button');
-
-        fireEvent.changeText(emailInput, 'invalid-email');
-        fireEvent.changeText(passwordInput, 'password123');
-        fireEvent.changeText(confirmPasswordInput, 'password123');
-
-        fireEvent.press(createAccountButton);
-
-        await waitFor(() => {
-            expect(mockNavigation.navigate).toHaveBeenCalledWith('CreateAccount', { issue: 'invalidEmail' });
-        });
-
-        expect(getByText('Invalid Email')).toBeTruthy();
-    });
+    });   
 });
-

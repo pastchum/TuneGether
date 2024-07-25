@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useRef } from 'react';
+import React, { useEffect, useState, useRef, useMemo } from 'react';
 import { View, Text, TouchableOpacity, Animated, PanResponder, Dimensions, StyleSheet } from 'react-native';
 
 //get profile rendering function
@@ -20,6 +20,7 @@ function SwipeFunction( { navigation, darkMode} ) {
     //set current profile for rendering
     const [profilesLoaded, setProfilesLoaded] = useState([]);
     const profilesLoadedRef = useRef([]);
+    const lastViewedProfileRef = useRef(null);
 
     //refresh state
     const [refreshing, setRefreshing] = useState(false);
@@ -33,6 +34,7 @@ function SwipeFunction( { navigation, darkMode} ) {
     const swipeThreshold = 120;
     const tapThreshold = 10;
     const startMargin = width * 0.05;
+    const profilesPerLoad = 10;
 
     //logic for loading data
     const loadData = async() => {
@@ -54,9 +56,20 @@ function SwipeFunction( { navigation, darkMode} ) {
                     match.data().user1Id === user.uid ? match.data().user2Id : match.data().user1Id));
 
                 //fetch profiles 
-                const profilesSnapshots = await firestore().collection('users')
+                let profilesQuery = firestore().collection('users')
                                             .where("userId", "!=", user.uid)
-                                            .get();
+                                            .orderBy('userId')
+                                            .limit(profilesPerLoad);
+                     
+                const currentProfile = await firestore().collection('users')
+                                        .doc(currProfileRef.current)
+                                        .get();
+                if (currentProfile.exists) {
+                  profilesQuery = profilesQuery
+                                    .startAfter(currentProfile);
+                }
+                                          
+                const profilesSnapshots = await profilesQuery.get();
                 
                 //filter for not swiped before
                 const newProfiles = profilesSnapshots.docs
@@ -64,6 +77,7 @@ function SwipeFunction( { navigation, darkMode} ) {
                     .map(doc => doc.data());
                 setProfilesLoaded(prevProfiles => [...prevProfiles, ...newProfiles]);
                 profilesLoadedRef.current = newProfiles;
+                console.log(profilesLoadedRef.current)
             }
         } catch (error) {
             console.error("Error loading profiles", error);
@@ -76,11 +90,8 @@ function SwipeFunction( { navigation, darkMode} ) {
 
     //effect to load data
     useEffect(() => {
-
-      if (currentIndex >= profilesLoaded.length) {
-        loadData().then(() => console.log(profilesLoaded));
-      }
-    }, []);
+      loadData();
+    }, []);;
 
     const position = useRef(new Animated.ValueXY({x: startMargin, y: 10})).current;
     const [currentIndex, setCurrentIndex] = useState(0);
@@ -98,23 +109,28 @@ function SwipeFunction( { navigation, darkMode} ) {
     };
 
     function onSwipeLeft() {
-      reject();
-      setCurrentIndex((prevIndex) => prevIndex + 1);
-      position.setValue({ x: startMargin, y: 10 });
+      if (currProfileRef.current) {
+        reject();
+        setCurrentIndex((prevIndex) => prevIndex + 1);
+        position.setValue({ x: startMargin, y: 10 });
+      }
     }
 
     //on swipe right -> match
     function match() {
-        let userId = currProfileRef.current;
-        console.log("Swiped right: " + userId);
-        console.log("matching: " + userId + " " + profileData.userId);
-        return matchFunction(userId, profileData.userId);
+      if (currProfileRef.current) {
+          let userId = currProfileRef.current;
+          console.log("Swiped right: " + userId);
+          console.log("matching: " + userId + " " + profileData.userId);
+          return matchFunction(userId, profileData.userId);
+      }
     };
 
     function onSwipeRight() {
       match();
       setCurrentIndex((prevIndex) => prevIndex + 1);
       position.setValue({ x: startMargin, y: 10 });
+      console.log(currentIndex);
     }
 
     //on tap -> navigate to profile screen
@@ -165,7 +181,7 @@ function SwipeFunction( { navigation, darkMode} ) {
       })
     ).current;
 
-    const renderCards = () => {
+    const renderCards = useMemo(() => {
         return profilesLoaded
           .map((profile, index) => {
             if (index === currentIndex) {
@@ -184,20 +200,20 @@ function SwipeFunction( { navigation, darkMode} ) {
                     {renderProfile(profile, {}, darkMode)}
                 </View>
             }
-            else if (currentIndex > profilesLoaded.length) {
+            else if (currentIndex >= profilesLoaded.length) {
                 loadData();
             }
             return null;
           })
           .reverse();
-      };
+      }, [profilesLoaded, currentIndex]);
     
     console.log(profilesLoaded)
     
-    return (profilesLoaded.length > 0 || currentIndex <= profilesLoaded.length) ? ( 
+    return (profilesLoaded.length > 0 && currentIndex <= profilesLoaded.length) ? ( 
       <> 
         <View style={styles.container}>
-            {renderCards()}
+            {renderCards}
         </View>
         <View style={styles.bottomRowButtons}>
           <View style={{flexDirection: "row"}}>
