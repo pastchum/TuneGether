@@ -6,14 +6,14 @@ import FeatherIcon from 'react-native-vector-icons/Feather';
 //import auth context
 import { useAuth } from '../../authContext/Auth-Context';
 
-//import instrumentPicker function
-//import { instrumentPicker } from '../../login/screens/profileCreation/InstrumentPicker';
+import { selectImage } from "../../login/screens/profileCreation/ImagePicker";
 
 function UpdateProfileScreen({ navigation, route, darkMode }) {
     const { invalidName, invalidInstrument } = route?.params || {};
-    const { createUserProfile, user, profileData } = useAuth();
+    const { createUserProfile, user, profileData, uploadProfilePicture } = useAuth();
 
     const [name, setName] = useState(profileData.name);
+    const [profilePic, setProfilePic] = useState("");
     const instrument = profileData.instrument;
     const [bio, setBio] = useState(profileData.bio);
 
@@ -29,8 +29,10 @@ function UpdateProfileScreen({ navigation, route, darkMode }) {
                 style={dynamicStyles.profileAvatar} />
                  <TouchableOpacity
                         style={dynamicStyles.cameraButton}
-                        onPress={() => {
-                            // handle onPress
+                        onPress={async () => {
+                            const imagePath = await selectImage();
+                            setProfilePic(imagePath);
+                            console.log(profilePic);
                           }}
                     >
                          <View style={dynamicStyles.cameraIconBackground}>
@@ -38,8 +40,8 @@ function UpdateProfileScreen({ navigation, route, darkMode }) {
                         </View>
                 </TouchableOpacity>
             </View>
-            <Text style={dynamicStyles.profileName}>John Doe</Text>
-            <Text style={dynamicStyles.profileEmail}>john.doe@mail.com</Text>
+            <Text style={dynamicStyles.profileName}>{profileData.name}</Text>
+            <Text style={dynamicStyles.profileEmail}>{profileData.email}</Text>
                 
               <View style={dynamicStyles.profileAction}>
                 <FeatherIcon color="#fff" name="edit" size={16} />
@@ -80,7 +82,9 @@ function UpdateProfileScreen({ navigation, route, darkMode }) {
                 onPress={() => {
                     if (name) {
                         console.log(name, bio);
-                        createUserProfile(user, name, instrument, bio, photo);
+                        setProfilePic(profilePic => profilePic ? profilePic : "");
+                        createUserProfile(user, name, instrument, bio);
+                        uploadProfilePicture(user, profilePic);
                     } else {
                         navigation.navigate("UpdateProfile", { invalidName: !name, invalidInstrument: false });
                     }

@@ -2,7 +2,7 @@ import React, { useEffect, useState, useRef, useMemo } from 'react';
 import { View, Text, TouchableOpacity, Animated, PanResponder, Dimensions, StyleSheet } from 'react-native';
 
 //get profile rendering function
-import { renderProfile } from './profile_rendering/RenderProfiles';
+import { RenderProfile } from './profile_rendering/RenderProfiles';
 
 //get auth context for current user
 import { useAuth } from '../authContext/Auth-Context';
@@ -16,6 +16,7 @@ import rejectFunction from '../match/RejectFunction';
 
 //get async last viewed fucntion 
 import { saveLastViewedProfileId, loadLastViewedProfileId } from './AsyncLastViewedProfile';
+import { FlatList, RefreshControl } from 'react-native-gesture-handler';
 
 //get sort function
 
@@ -81,9 +82,11 @@ function SwipeFunction( { navigation, darkMode} ) {
                 const newProfiles = profilesSnapshots.docs
                     .filter(docs => !(matchedUserIds.has(docs.data().userId)))
                     .map(doc => doc.data());
+                    console.log("New Profiles:", profilesSnapshots);
+                console.log(newProfiles)
                 setProfilesLoaded(prevProfiles => [...prevProfiles, ...newProfiles]);
                 profilesLoadedRef.current = newProfiles;
-                console.log(profilesLoadedRef.current)
+                console.log(profilesLoaded)
             }
         } catch (error) {
             console.error("Error loading profiles", error);
@@ -99,6 +102,10 @@ function SwipeFunction( { navigation, darkMode} ) {
       loadData();
     }, []);;
 
+    const onRefresh = () => {
+      loadData();
+    }
+
     const position = useRef(new Animated.ValueXY({x: startMargin, y: 10})).current;
     const [currentIndex, setCurrentIndex] = useState(0);
 
@@ -108,7 +115,9 @@ function SwipeFunction( { navigation, darkMode} ) {
           console.log("Last Viewed Profile: " + profile.name);
         }
         currProfileRef.current = profile.userId;
-        return renderProfile(profile, {}, darkMode);
+        return (
+          <RenderProfile profileData={profile} darkMode={darkMode} />
+        );
     }
 
     //on swipe left -> reject
@@ -137,10 +146,12 @@ function SwipeFunction( { navigation, darkMode} ) {
     };
 
     function onSwipeRight() {
-      match();
-      setCurrentIndex((prevIndex) => prevIndex + 1);
-      position.setValue({ x: startMargin, y: 10 });
-      console.log(currentIndex);
+      if (currProfileRef.current) {
+        match();
+        setCurrentIndex((prevIndex) => prevIndex + 1);
+        position.setValue({ x: startMargin, y: 10 });
+        console.log(currentIndex);
+      }
     }
 
     //on tap -> navigate to profile screen
@@ -207,7 +218,7 @@ function SwipeFunction( { navigation, darkMode} ) {
                 ) : null;
             } else if (index === currentIndex + 1) {
                 <View key={profile.userId} style={[styles.card, { top: 20, zIndex: -index }]}>
-                    {renderProfile(profile, {}, darkMode)}
+                    <RenderProfile profileData={profile} darkMode={darkMode}/>
                 </View>
             }
             else if (currentIndex >= profilesLoaded.length) {
@@ -217,9 +228,7 @@ function SwipeFunction( { navigation, darkMode} ) {
           })
           .reverse();
       }, [profilesLoaded, currentIndex]);
-    
-    console.log(profilesLoaded)
-    
+        
     return (profilesLoaded.length > 0 && currentIndex <= profilesLoaded.length) ? ( 
       <> 
         <View style={styles.container}>
@@ -258,20 +267,32 @@ function SwipeFunction( { navigation, darkMode} ) {
         </View>
       </>
     ) : (
-      <View styles={{alignItems: "center", justifyContent: "center"}}>
-        <Text style={{margin: "auto"}}>
-          No profiles available at the moment :(
-        </Text>
+      <FlatList
+        data={[0]}
+        onRefresh={<RefreshControl refreshing={refreshing} onRefresh={onRefresh} />}
+        renderItem={() => (
+          <View styles={{
+            marginBottom:60,
+            width: "100%",
+            height: "100%",
+            alignItems: "center", 
+            justifyContent: "center"
+            }}>
+            <Text style={{margin: "auto"}}>
+              No profiles available at the moment :(
+            </Text>
 
-        <TouchableOpacity
-          style={styles.startChatButton}
-          onPress={loadData}
-          >
-          <View>
-            <Text style={styles.name}>Refresh</Text>
+            <TouchableOpacity
+              style={styles.startChatButton}
+              onPress={loadData}
+              >
+              <View>
+                <Text style={styles.name}>Refresh</Text>
+              </View>
+            </TouchableOpacity>
           </View>
-        </TouchableOpacity>
-      </View>
+        )}
+        />
     );
 }
 
