@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { View, Text, Button, TextInput, ScrollView, Image, StyleSheet, TouchableOpacity } from 'react-native';
 
 import FeatherIcon from 'react-native-vector-icons/Feather';
@@ -8,16 +8,45 @@ import { useAuth } from '../../authContext/Auth-Context';
 
 import { selectImage } from "../../login/screens/profileCreation/ImagePicker";
 
+import defaultPfp from "../../swipe/profile_rendering/DefaultPFP.png"
+
 function UpdateProfileScreen({ navigation, route, darkMode }) {
     const { invalidName, invalidInstrument } = route?.params || {};
     const { createUserProfile, user, profileData, uploadProfilePicture } = useAuth();
 
     const [name, setName] = useState(profileData.name);
-    const [profilePic, setProfilePic] = useState("");
+    const [profilePic, setProfilePic] = useState(profileData.profilePicURL);
     const instrument = profileData.instrument;
     const [bio, setBio] = useState(profileData.bio);
 
     const dynamicStyles = styles(darkMode);
+
+    useEffect(() => {
+        const fetchAndSetPFP = async () => {
+            try {
+                if (profileData?.profilePicURL) {
+                    const response = await fetch(profileData.profilePicURL)
+                    const blob = await response.blob()
+                    const objectURL = URL.createObjectURL(blob)
+                    //set img
+                    setProfilePic({ uri: objectURL });
+                    console.log(objectURL);
+
+                    return () => URL.revokeObjectURL(objectURL)
+                }
+            } catch (error) {
+                try {
+                    if (profileData?.profilePicURL) {
+                        setPfp({ uri: profileData.profilePicURL });
+                    }
+                } catch (error) {
+                    console.log(error);
+                }
+            }
+        }
+
+        fetchAndSetPFP();
+    }, [profileData?.profilePicURL])
 
     return (
         <ScrollView contentContainerStyle={dynamicStyles.container}>
@@ -25,7 +54,7 @@ function UpdateProfileScreen({ navigation, route, darkMode }) {
         <View style={dynamicStyles.profile}>
             <View style={dynamicStyles.profileAvatarContainer}>
                 <Image
-                source={require('../../../assets/pictures/profile.png')}
+                source={profilePic}
                 style={dynamicStyles.profileAvatar} />
                  <TouchableOpacity
                         style={dynamicStyles.cameraButton}
