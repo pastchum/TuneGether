@@ -1,5 +1,5 @@
-import React, { useEffect, useState, useRef } from 'react';
-import { View, Text, RefreshControl, Animated, PanResponder, Dimensions, StyleSheet } from 'react-native';
+import React, { useEffect, useState, useRef, useMemo } from 'react';
+import { View, Text, TouchableOpacity, Animated, PanResponder, Dimensions, StyleSheet } from 'react-native';
 
 //get profile rendering function
 import { renderProfile } from './profile_rendering/RenderProfiles';
@@ -13,6 +13,11 @@ import firestore from '@react-native-firebase/firestore'
 //get match & reject functions
 import matchFunction from '../match/MatchFunction';
 import rejectFunction from '../match/RejectFunction';
+
+//get async last viewed fucntion 
+import { saveLastViewedProfileId, loadLastViewedProfileId } from './AsyncLastViewedProfile';
+
+//get sort function
 
 const { width, height } = Dimensions.get('window')
 
@@ -33,15 +38,13 @@ function SwipeFunction( { navigation, darkMode} ) {
     const swipeThreshold = 120;
     const tapThreshold = 10;
     const startMargin = width * 0.05;
+    const profilesPerLoad = 20;
 
     //logic for loading data
     const loadData = async() => {
         setRefreshing(true);
         try {
             if (user) {
-                //fetch profiles 
-                const profilesSnapshots = await firestore().collection('users').limit(20).get();
-
                 //fetch matches
                 const matches1 = firestore().collection('matches')
                     .where('user1Id', '==', user.uid)
@@ -56,47 +59,89 @@ function SwipeFunction( { navigation, darkMode} ) {
                 const matchedUserIds = new Set(matches.map(match => 
                     match.data().user1Id === user.uid ? match.data().user2Id : match.data().user1Id));
 
+                //fetch profiles 
+                let profilesQuery = firestore().collection('users')
+                                            .where("userId", "!=", user.uid)
+                                            .orderBy('userId')
+                                            .limit(profilesPerLoad);
+
+                const lastViewedProfileId = await loadLastViewedProfileId();
+                     
+                const currentProfile = await firestore().collection('users')
+                                        .doc(lastViewedProfileId)
+                                        .get();
+                if (currentProfile.exists) {
+                  profilesQuery = profilesQuery
+                                    .startAfter(currentProfile);
+                }
+                                          
+                const profilesSnapshots = await profilesQuery.get();
+                
                 //filter for not swiped before
                 const newProfiles = profilesSnapshots.docs
-                    .filter(docs => docs.data().userId !== user.uid)
                     .filter(docs => !(matchedUserIds.has(docs.data().userId)))
                     .map(doc => doc.data());
-
                 setProfilesLoaded(prevProfiles => [...prevProfiles, ...newProfiles]);
                 profilesLoadedRef.current = newProfiles;
+                console.log(profilesLoadedRef.current)
             }
         } catch (error) {
             console.error("Error loading profiles", error);
             throw error;
         } finally {
             setRefreshing(false);
+            console.log("Refresh Done");
         }
     };
 
     //effect to load data
     useEffect(() => {
-        loadData();
-    }, []);
+      loadData();
+    }, []);;
+
+    const position = useRef(new Animated.ValueXY({x: startMargin, y: 10})).current;
+    const [currentIndex, setCurrentIndex] = useState(0);
 
     function handleRender(profile) {
+        if (currProfileRef.current) {
+          saveLastViewedProfileId(currProfileRef.current);
+          console.log("Last Viewed Profile: " + profile.name);
+        }
         currProfileRef.current = profile.userId;
         return renderProfile(profile, {}, darkMode);
     }
 
     //on swipe left -> reject
-    function onSwipeLeft() {
+    function reject() {
         let userId = currProfileRef.current;
         console.log("Swiped Left: " + userId);
         return rejectFunction(userId, profileData.userId);
     };
 
+    function onSwipeLeft() {
+      if (currProfileRef.current) {
+        reject();
+        setCurrentIndex((prevIndex) => prevIndex + 1);
+        position.setValue({ x: startMargin, y: 10 });
+      }
+    }
+
     //on swipe right -> match
-    function onSwipeRight() {
-        let userId = currProfileRef.current;
-        console.log("Swiped right: " + userId);
-        console.log("matching: " + userId + " " + profileData.userId);
-        return matchFunction(userId, profileData.userId);
+    function match() {
+      if (currProfileRef.current) {
+          let userId = currProfileRef.current;
+          console.log("Swiped right: " + userId);
+          console.log("matching: " + userId + " " + profileData.userId);
+          return matchFunction(userId, profileData.userId);
+      }
     };
+
+    function onSwipeRight() {
+      match();
+      setCurrentIndex((prevIndex) => prevIndex + 1);
+      position.setValue({ x: startMargin, y: 10 });
+      console.log(currentIndex);
+    }
 
     //on tap -> navigate to profile screen
     function onPress() {
@@ -105,9 +150,6 @@ function SwipeFunction( { navigation, darkMode} ) {
         navigation.navigate("ProfileDetails", 
                             { matchingId: userId});
     };
-
-    const position = useRef(new Animated.ValueXY({x: startMargin, y: 10})).current;
-    const [currentIndex, setCurrentIndex] = useState(0);
   
     const panResponder = useRef(
       PanResponder.create({
@@ -124,21 +166,13 @@ function SwipeFunction( { navigation, darkMode} ) {
             Animated.spring(position, {
               toValue: { x: width + 100, y: 0 },
               useNativeDriver: false,
-            }).start(() => {
-              onSwipeRight();
-              setCurrentIndex((prevIndex) => prevIndex + 1);
-              position.setValue({ x: startMargin, y: 10 });
-            });
+            }).start(onSwipeRight);
           } else if (gesture.dx < -swipeThreshold) {
             //swipe left
             Animated.spring(position, {
               toValue: { x: -width - 100, y: 10 },
               useNativeDriver: false,
-            }).start(() => {
-              onSwipeLeft();
-              setCurrentIndex((prevIndex) => prevIndex + 1);
-              position.setValue({ x: startMargin, y: 10 });
-            });
+            }).start(onSwipeLeft);
           } else if (gesture.dy > swipeThreshold) {
             //Refresh
             Animated.spring(position, {
@@ -157,7 +191,7 @@ function SwipeFunction( { navigation, darkMode} ) {
       })
     ).current;
 
-    const renderCards = () => {
+    const renderCards = useMemo(() => {
         return profilesLoaded
           .map((profile, index) => {
             if (index === currentIndex) {
@@ -176,18 +210,68 @@ function SwipeFunction( { navigation, darkMode} ) {
                     {renderProfile(profile, {}, darkMode)}
                 </View>
             }
-            else if (currentIndex > profilesLoaded.length) {
+            else if (currentIndex >= profilesLoaded.length) {
                 loadData();
             }
             return null;
           })
           .reverse();
-      };
+      }, [profilesLoaded, currentIndex]);
     
-    return (
+    console.log(profilesLoaded)
+    
+    return (profilesLoaded.length > 0 && currentIndex <= profilesLoaded.length) ? ( 
+      <> 
         <View style={styles.container}>
-            {renderCards()}
+            {renderCards}
         </View>
+        <View style={styles.bottomRowButtons}>
+          <View style={{flexDirection: "row"}}>
+                <TouchableOpacity
+                    style={styles.startChatButton}
+                    >
+                    <View>
+                        <Text style={styles.name}>Sort</Text>
+                    </View>
+                </TouchableOpacity>
+            </View>
+            <View style={{flexDirection: "row"}}>
+                <TouchableOpacity
+                    style={styles.startChatButton}
+                    onPress={onSwipeRight}
+                    >
+                    <View>
+                        <Text style={styles.name}>Match</Text>
+                    </View>
+                </TouchableOpacity>
+            </View>
+            <View style={{flexDirection: "row"}}>
+                <TouchableOpacity
+                    style={styles.startChatButton}
+                    onPress={onSwipeLeft}
+                    >
+                    <View>
+                        <Text style={styles.name}>Reject</Text>
+                    </View>
+                </TouchableOpacity>
+            </View>
+        </View>
+      </>
+    ) : (
+      <View styles={{alignItems: "center", justifyContent: "center"}}>
+        <Text style={{margin: "auto"}}>
+          No profiles available at the moment :(
+        </Text>
+
+        <TouchableOpacity
+          style={styles.startChatButton}
+          onPress={loadData}
+          >
+          <View>
+            <Text style={styles.name}>Refresh</Text>
+          </View>
+        </TouchableOpacity>
+      </View>
     );
 }
 
@@ -222,6 +306,20 @@ const styles = StyleSheet.create({
       padding: 10,
       textAlign: 'center',
     },
+    startChatButton: {
+      // Add your specific styles for start chat button
+      backgroundColor: 'burlywood',
+      padding: 0,
+      borderRadius: 60,
+      marginBottom: 10,
+      marginLeft: 10,
+      marginRight: 10,
+      width: (width-60) / 3
+    },
+    bottomRowButtons: {
+      height: 50, 
+      flexDirection: "row"
+    }
   });
 
 export default SwipeFunction;

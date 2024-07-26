@@ -7,3 +7,7 @@ node_modules
 
 #Watchman config file
 .watchmanconfig
+
+#devices file
+devices.json
+

@@ -6,7 +6,7 @@ function rejectFunction(matchingId, userId) {
     console.log("MatchId " + matchingId);
     console.log("UserId " + userId);
 
-        //get list of matches
+    //get list of matches
     firestore()
         .collection('matches')
         .where('user2Id', '==', userId)
@@ -16,23 +16,27 @@ function rejectFunction(matchingId, userId) {
             //if match found
             if (!matches.empty) {
                 matches.forEach((doc) => {
-                if (doc.data().status === "pending") {
-                    doc.ref.update({ status: 'rejected' }).then(() => console.log("Match rejected"));
-                }
+                    if (doc.data().status === "pending") {
+                        doc.ref.update({ status: 'rejected' }).then(() => {
+                            console.log("Match rejected");
+                        });
+                    }
                 });
             } else {
                 //create match
                 firestore().collection('matches').add({
-                user1Id: userId,
-                user2Id: matchingId,
-                status: 'rejected',
-                createdAt: new Date().toISOString()
-                }).then(() => console.log("Reject created"));
+                    user1Id: userId,
+                    user2Id: matchingId,
+                    status: 'rejected',
+                    createdAt: new Date().toISOString()
+                }).then(() => {
+                    console.log("Reject created");
+                });
             }
-            })
+        })
         .catch((error) => {
             console.error("Error rejecting: ", error);
-            });
+        });
 }
 
 export default rejectFunction;

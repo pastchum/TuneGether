@@ -5,12 +5,10 @@ import { Styles } from '../../../assets/Styles';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 
 function LoginScreen({ navigation, route }) {
-    //set hooks for emails and password
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [passwordVisible, setPassWordVisible] = useState(false);
 
-    //get route for login issues
     const loginError = route.params?.issue;
 
     const loginErrorMessage = (errorMsg) => {
@@ -25,11 +23,10 @@ function LoginScreen({ navigation, route }) {
         )
     }
 
-    //get sign in function
     const { signIn } = useAuth();
 
     return (
-        <View style = {Styles.container}>
+        <View style={Styles.container}>
             <Image
                 source={require('../../../assets/pictures/profile.png')}
                 style={styles.image}
@@ -40,57 +37,57 @@ function LoginScreen({ navigation, route }) {
                 value={email}
                 onChangeText={setEmail}
             />
-            <View style = {styles.passwordContainer}>
+            <View style={styles.passwordContainer}>
                 <TextInput
-                    style={[Styles.input, { flex: 1}]}
+                    style={[Styles.input, { flex: 1 }]}
                     placeholder="Password"
                     value={password}
                     onChangeText={setPassword}
                     secureTextEntry={!passwordVisible}
                 />
-                <TouchableOpacity 
+                <TouchableOpacity
                     onPress={() => setPassWordVisible(!passwordVisible)}
-                    style={styles.iconContainer}>
-                    <Ionicons name={passwordVisible ? "eye" : "eye-off"} size = {24} color='gray'/>
+                    style={styles.iconContainer}
+                    testID="password-toggle"
+                >
+                    <Ionicons name={passwordVisible ? "eye" : "eye-off"} size={24} color='gray' />
                 </TouchableOpacity>
             </View>
             {loginErrorMessage(loginError)}
 
             <Button title='Log In'
-                    color='burlywood'
-                    onPress={() => {
-                        if (email != "" && password != "") {
-                            return signIn(email, password)
-                                .catch (error => {
-                                    if (error.code === 'auth/invalid-email') {
-                                        return navigation.navigate("Login", {issue: "invalidEmail"});
-                                    } else if (error.code === 'auth/invalid-credential') {
-                                        return navigation.navigate("Login", {issue: "invalidPass"});
-                                    } else if (error.code === 'auth/') {
-                                        return navigation.navigate("Login", {issue: "invalidPass"});
-                                    } else if (error.code === "auth/network-request-failed") {
-                                        return navigation.navigate("CreateAccount", { issue:"requestFailed" });
-                                    } 
-                                });
-                    } 
+                color='burlywood'
+                onPress={() => {
+                    if (email != "" && password != "") {
+                        return signIn(email, password)
+                            .catch(error => {
+                                if (error.code === 'auth/invalid-email') {
+                                    return navigation.navigate("Login", { issue: "invalidEmail" });
+                                } else if (error.code === 'auth/invalid-credential') {
+                                    return navigation.navigate("Login", { issue: "invalidPass" });
+                                } else if (error.code === 'auth/') {
+                                    return navigation.navigate("Login", { issue: "invalidPass" });
+                                } else if (error.code === "auth/network-request-failed") {
+                                    return navigation.navigate("CreateAccount", { issue: "requestFailed" });
+                                }
+                            });
+                    }
                     else {
-                        return navigation.navigate("Login", {issue: "noInput"});
+                        return navigation.navigate("Login", { issue: "noInput" });
                     }
                 }
-            }/>
+                } />
 
-            {/* for create account */}
-            <View style = {{
+            <View style={{
                 marginTop: 50
             }}>
                 <Text style={Styles.subHeader}>  Don't have an account?</Text>
-                <Button 
+                <Button
                     title='Create an account'
                     color='burlywood'
                     onPress={() => navigation.navigate('CreateAccount')}>
                 </Button>
             </View>
-
         </View>
     )
 };

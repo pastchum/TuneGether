@@ -18,17 +18,17 @@ function SplashScreen() {
     }, [fadeAnim, navigation]);
 
     return (
-        <View style = {Styles.container}>
-            <Image
-                source={require('../../assets/pictures/tuneicon.png')}
-                style={styles.image}
-            />
-            <View>
-
-            </View>
+        <View style={styles.container}>
+            <Animated.View style={{ opacity: fadeAnim }}>
+                <Image
+                    source={require('../../assets/pictures/tuneicon.png')}
+                    style={styles.image}
+                    testID="splash-image"
+                />
+            </Animated.View>
         </View>
     );
-} 
+}
 
 const styles = StyleSheet.create({
     container: {
