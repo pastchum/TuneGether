@@ -8,7 +8,7 @@ import { instruments } from '../../../../../assets/instruments/Instruments';
 
 export default function SetInstrument( { navigation, route }) {
   const [selectedItems, setSelectedItems] = useState([]);
-  const { name, invalidInstrument } = route?.params || {};
+  const { name, profilePicURL, invalidInstrument } = route?.params || {};
   console.log('Selected:', selectedItems);
 
   return (
@@ -39,9 +39,10 @@ export default function SetInstrument( { navigation, route }) {
       <TouchableOpacity 
         onPress={() => {
           if (selectedItems.length > 0) {
-            return navigation.navigate("SetBio", { name: name, instrument: selectedItems });
+            console.log(profilePicURL);
+            return navigation.navigate("SetBio", { name: name, profilePicURL: profilePicURL, instrument: selectedItems });
           } else {
-            return navigation.navigate("SetInstrument", { name: name, invalidInstrument:false })
+            return navigation.navigate("SetInstrument", { name: name, profilePicURL: profilePicURL, invalidInstrument:false })
           }
         }}>
         <View style={Styles.startChatButton}>

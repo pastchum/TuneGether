@@ -2,7 +2,7 @@ import React from 'react';
 import { View, Text, StyleSheet } from 'react-native';
 
 //get render profile function
-import { renderProfile } from '../../swipe/profile_rendering/RenderProfiles';
+import { RenderProfile } from '../../swipe/profile_rendering/RenderProfiles';
 
 //import auth context
 import { useAuth } from '../../authContext/Auth-Context';
@@ -19,7 +19,7 @@ function ProfileScreen({ darkMode }) {
         <View style={dynamicStyles.container}>
             {profileData ? (
                 <View style={dynamicStyles.profileContainer}>
-                    {renderProfile(profileData, additionalStyles, darkMode)}
+                    <RenderProfile profileData={profileData} additionalStyles={additionalStyles} darkMode={darkMode} />
                 </View>
             ) : (
                 <Text style={dynamicStyles.dataNotFound}>data not found</Text>

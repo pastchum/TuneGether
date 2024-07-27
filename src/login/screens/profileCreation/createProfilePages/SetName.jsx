@@ -23,7 +23,7 @@ function SetName({ navigation, route }) {
                 style={Styles.button}
                 onPress={() => {
                     if (name) {
-                        return navigation.navigate("SetInstrument", { name: name });
+                        return navigation.navigate("SetProfilePicture", { name: name });
                     } else {
                         //test for no name
                         const noName = name === "";

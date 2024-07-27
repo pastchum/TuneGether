@@ -1,6 +1,7 @@
 import React, { createContext, useContext, useEffect, useState } from 'react';
 import auth from '@react-native-firebase/auth';
 import firestore from '@react-native-firebase/firestore';
+import storage from '@react-native-firebase/storage';
 
 const AuthContext = createContext(null);
 
@@ -100,6 +101,36 @@ export const AuthProvider = ({ children }) => {
         }
     }
 
+    //upload profile picture 
+    const uploadProfilePicture = async(user, profilePicturePath) => {
+        try {
+            let storageRef = storage().ref();
+            let imageName = user.uid + "_profilePic";
+            let imagesRef = storageRef.child(`images/${user.uid}/${imageName}`);
+
+            const response = await fetch(profilePicturePath);
+            const blob = await response.blob();
+
+            imagesRef
+                .put(blob)
+                .then((snapshot) => {
+                    console.log("uploaded an image.");
+                })
+
+            const downloadURL = await imagesRef.getDownloadURL();
+                
+            firestore().collection('users')
+                .doc(user.uid)
+                .update({
+                    profilePicURL: downloadURL
+                }).then(
+                    console.log("URL updated")
+                );
+        } catch (error) {
+            console.error(error)
+        }
+    }
+
     // context object:
     const value = {
         user,
@@ -112,6 +143,7 @@ export const AuthProvider = ({ children }) => {
         fetchUserProfile,
         createUserProfile,
         addProfileData,
+        uploadProfilePicture,
     };
 
     return (

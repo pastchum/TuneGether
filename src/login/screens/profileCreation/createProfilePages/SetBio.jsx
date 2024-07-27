@@ -10,10 +10,10 @@ import { useAuth } from '../../../../authContext/Auth-Context';
 
 function SetBio({ navigation, route }) {
     //get params
-    const { name, instrument } = route?.params || {};
+    const { name, profilePicURL, instrument } = route?.params || {};
 
     //get create user profile function
-    const { createUserProfile, user } = useAuth();
+    const { createUserProfile, user, uploadProfilePicture } = useAuth();
     
     //params for user profile details
     const [biography, setBiography] = useState("");
@@ -39,9 +39,14 @@ function SetBio({ navigation, route }) {
                 onPress={() => {
                     console.log(user);
                     console.log(name);
+                    console.log(profilePicURL);
                     console.log(instrument);
                     console.log(biography);
-                    createUserProfile(user, name, instrument, biography);
+                    createUserProfile(user, name, instrument, biography)
+                        .then(() => profilePicURL
+                            ? uploadProfilePicture(user, profilePicURL)
+                            : null
+                            );
                 }}>
                 <View style={Styles.startChatButton}>
                     <Text style={Styles.buttonText}>Create Profile</Text>
