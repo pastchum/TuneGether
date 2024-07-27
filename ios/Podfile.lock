@@ -2704,8 +2704,6 @@ PODS:
     - Firebase/Storage (= 10.27.0)
     - React-Core
     - RNFBApp
-  - RNFS (2.20.0):
-    - React-Core
   - RNGestureHandler (2.17.1):
     - DoubleConversion
     - glog
@@ -2895,7 +2893,6 @@ DEPENDENCIES:
   - "RNFBFirestore (from `../node_modules/@react-native-firebase/firestore`)"
   - "RNFBMessaging (from `../node_modules/@react-native-firebase/messaging`)"
   - "RNFBStorage (from `../node_modules/@react-native-firebase/storage`)"
-  - RNFS (from `../node_modules/react-native-fs`)
   - RNGestureHandler (from `../node_modules/react-native-gesture-handler`)
   - RNImageCropPicker (from `../node_modules/react-native-image-crop-picker`)
   - RNReanimated (from `../node_modules/react-native-reanimated`)
@@ -3111,8 +3108,6 @@ EXTERNAL SOURCES:
     :path: "../node_modules/@react-native-firebase/messaging"
   RNFBStorage:
     :path: "../node_modules/@react-native-firebase/storage"
-  RNFS:
-    :path: "../node_modules/react-native-fs"
   RNGestureHandler:
     :path: "../node_modules/react-native-gesture-handler"
   RNImageCropPicker:
@@ -3242,7 +3237,6 @@ SPEC CHECKSUMS:
   RNFBFirestore: 4c0b80a4b715b3615a3be2c39ccec32ec6ff5d3c
   RNFBMessaging: 85f661b9f16e2b081e6809ef63d3daa4458b9042
   RNFBStorage: 0dc295ad7ff28ba30816e42e08028df19eea4468
-  RNFS: 4ac0f0ea233904cb798630b3c077808c06931688
   RNGestureHandler: 5538c370587d7e757667b9283ca867dd7635f154
   RNImageCropPicker: 771e2ca319d2cf92e04ebf334ece892ee9a6728f
   RNReanimated: d51431fd3597a8f8320319dce8e42cee82a5445f

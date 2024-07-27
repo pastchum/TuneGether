@@ -1,7 +1,16 @@
-import React, { setState } from "react";
+import React, { useState, useEffect } from "react";
+import { StyleSheet } from "react-native";
+import SectionedMultiSelect from "react-native-sectioned-multi-select";
+import Icon from 'react-native-vector-icons/MaterialIcons';
+import { instruments } from "../../../assets/instruments/Instruments";
 
-export function sortFunction() {
+export function SortFunction({ setSortCondition }) {
+    console.log("sort running");
     const [selectedItems, setSelectedItems] = useState([]);
+
+    useEffect(() => {
+      setSortCondition(selectedItems);
+    }, [selectedItems])
 
     return (
         <SectionedMultiSelect
@@ -15,6 +24,7 @@ export function sortFunction() {
             modalAnimationType="slide"
             colors={{primary: 'burlywood'}}
             styles={{
+                container: styles.container,
                 backdrop: styles.multiSelectBackdrop,
                 selectToggle: styles.multiSelectBox,
                 chipContainer: styles.multiSelectChipContainer,
@@ -25,6 +35,9 @@ export function sortFunction() {
 }
 
 const styles = StyleSheet.create({
+    container: {
+      height: "80%"
+    },
     multiSelectBackdrop: {
       backgroundColor: 'rgba(255, 183, 0, 0.2)',
     },

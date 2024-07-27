@@ -103,27 +103,32 @@ export const AuthProvider = ({ children }) => {
 
     //upload profile picture 
     const uploadProfilePicture = async(user, profilePicturePath) => {
-        let storageRef = storage().ref();
-        let imageName = user.uid + "_profilePic";
-        let imagesRef = storageRef.child(`images/${user.uid}/${imageName}`);
+        try {
+            let storageRef = storage().ref();
+            let imageName = user.uid + "_profilePic";
+            let imagesRef = storageRef.child(`images/${user.uid}/${imageName}`);
 
-        const response = await fetch(profilePicturePath);
-        const blob = await response.blob();
+            const response = await fetch(profilePicturePath);
+            const blob = await response.blob();
 
-        imagesRef
-            .put(blob)
-            .then((snapshot) => {
-                console.log("uploaded an image.");
-            })
-            .catch((error) => console.error(error));
+            imagesRef
+                .put(blob)
+                .then((snapshot) => {
+                    console.log("uploaded an image.");
+                })
 
-        const downloadURL = await imagesRef.getDownloadURL();
-            
-        firestore().collection('users')
-            .doc(user.uid)
-            .update({
-                profilePicURL: downloadURL
-            });
+            const downloadURL = await imagesRef.getDownloadURL();
+                
+            firestore().collection('users')
+                .doc(user.uid)
+                .update({
+                    profilePicURL: downloadURL
+                }).then(
+                    console.log("URL updated")
+                );
+        } catch (error) {
+            console.error(error)
+        }
     }
 
     // context object:
