@@ -4,12 +4,16 @@ import firestore from "@react-native-firebase/firestore";
 const addRating = (profileData, rating) => {
     const userId = profileData.userId;
     const currentRating = profileData.rating;
-    const currentNumberOfRates = profileData.numberOfRates;
+    let currentNumberOfRates = profileData.numberOfRates;
+
+    if (!userId) {
+        throw new Error('Missing userId');
+    }
 
     if (currentNumberOfRates !== undefined && currentRating !== undefined) {
-        //calculate new rating
+        // Calculate new rating
         const totalRating = currentNumberOfRates * currentRating + rating;
-        const currentNumberOfRates = currentNumberOfRates++;
+        currentNumberOfRates++;
         const newRating = totalRating / currentNumberOfRates;
 
         firestore().collection('users').doc(userId).update({

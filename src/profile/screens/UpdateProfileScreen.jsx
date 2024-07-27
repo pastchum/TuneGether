@@ -20,31 +20,29 @@ function UpdateProfileScreen({ navigation, route, darkMode }) {
     const dynamicStyles = styles(darkMode);
 
     return (
-        <ScrollView contentContainerStyle={dynamicStyles.container}>
-
-        <View style={dynamicStyles.profile}>
-            <View style={dynamicStyles.profileAvatarContainer}>
-                <Image
-                source={require('../../../assets/pictures/profile.png')}
-                style={dynamicStyles.profileAvatar} />
-                 <TouchableOpacity
+        <ScrollView contentContainerStyle={dynamicStyles.container} testID="update-profile-container">
+            <View style={dynamicStyles.profile}>
+                <View style={dynamicStyles.profileAvatarContainer}>
+                    <Image
+                        source={require('../../../assets/pictures/profile.png')}
+                        style={dynamicStyles.profileAvatar} />
+                    <TouchableOpacity
                         style={dynamicStyles.cameraButton}
                         onPress={() => {
                             // handle onPress
                           }}
                     >
-                         <View style={dynamicStyles.cameraIconBackground}>
+                        <View style={dynamicStyles.cameraIconBackground}>
                             <FeatherIcon name="camera" size={20} color="burlywood" />
                         </View>
-                </TouchableOpacity>
+                    </TouchableOpacity>
+                </View>
+                <Text style={dynamicStyles.profileName}>John Doe</Text>
+                <Text style={dynamicStyles.profileEmail}>john.doe@mail.com</Text>
+                <View style={dynamicStyles.profileAction}>
+                    <FeatherIcon color="#fff" name="edit" size={16} />
+                </View>
             </View>
-            <Text style={dynamicStyles.profileName}>John Doe</Text>
-            <Text style={dynamicStyles.profileEmail}>john.doe@mail.com</Text>
-                
-              <View style={dynamicStyles.profileAction}>
-                <FeatherIcon color="#fff" name="edit" size={16} />
-              </View>
-          </View>
             
             <View style={dynamicStyles.inputContainer}>
                 <Text style={dynamicStyles.label}>Enter your name</Text>
@@ -80,7 +78,7 @@ function UpdateProfileScreen({ navigation, route, darkMode }) {
                 onPress={() => {
                     if (name) {
                         console.log(name, bio);
-                        createUserProfile(user, name, instrument, bio, photo);
+                        createUserProfile(user, name, instrument, bio, null);
                     } else {
                         navigation.navigate("UpdateProfile", { invalidName: !name, invalidInstrument: false });
                     }
@@ -108,8 +106,8 @@ const styles = (darkMode) => StyleSheet.create({
         borderTopWidth: 1,
         borderBottomWidth: 1,
         borderColor: '#e3e3e3',
-      },
-      profileAvatarContainer: {
+    },
+    profileAvatarContainer: {
         borderWidth: 2,
         borderColor: 'burlywood',
         borderRadius: 105,
@@ -119,8 +117,8 @@ const styles = (darkMode) => StyleSheet.create({
         width: 100,
         height: 100,
         borderRadius: 9999,
-      },
-      cameraButton: {
+    },
+    cameraButton: {
         position: 'absolute',
         bottom: -7,
         right: 0,

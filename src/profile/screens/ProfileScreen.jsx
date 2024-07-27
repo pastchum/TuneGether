@@ -16,7 +16,7 @@ function ProfileScreen({ darkMode }) {
     };
 
     return (
-        <View style={dynamicStyles.container}>
+        <View style={dynamicStyles.container} testID="profile-container">
             {profileData ? (
                 <View style={dynamicStyles.profileContainer}>
                     {renderProfile(profileData, additionalStyles, darkMode)}
@@ -24,7 +24,6 @@ function ProfileScreen({ darkMode }) {
             ) : (
                 <Text style={dynamicStyles.dataNotFound}>data not found</Text>
             )}
-            
         </View>
     );
 }
