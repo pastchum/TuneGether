@@ -1,9 +1,8 @@
 import React, { useEffect, useState, useCallback } from 'react';
 import { View, StyleSheet, Text, Button, FlatList, TextInput, KeyboardAvoidingView, Pressable, ScrollView, TouchableOpacity } from 'react-native';
 import firestore from '@react-native-firebase/firestore'
-import firebase from '@react-native-firebase/app'
 import { useAuth } from '../../authContext/Auth-Context';
-import { renderProfileBar } from '../../swipe/profile_rendering/RenderProfileBar';
+import { RenderProfileBar } from '../../swipe/profile_rendering/RenderProfileBar';
 
 function ChatScreen({ route, darkMode, navigation }) {
     //get userId of chat recipient
@@ -109,7 +108,7 @@ function ChatScreen({ route, darkMode, navigation }) {
                                                               params: { matchingId: userId } })
                 }}>
                 <View style={dynamicStyles.profileContainer}>
-                    {renderProfileBar(profile)}
+                    <RenderProfileBar profileData={profile} />
                 </View>
             </TouchableOpacity>
                 

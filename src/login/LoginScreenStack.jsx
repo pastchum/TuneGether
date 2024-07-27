@@ -7,6 +7,7 @@ import SetName from './screens/profileCreation/createProfilePages/SetName';
 import SetInstrument from './screens/profileCreation/createProfilePages/SetInstrument';
 import SetBio from './screens/profileCreation/createProfilePages/SetBio';
 import SplashScreen from '../splash/SplashScreen';
+import SetProfilePicture from './screens/profileCreation/createProfilePages/setProfilePicture';
 
 const LoginStack = createNativeStackNavigator();
 
@@ -30,6 +31,11 @@ function LoginScreenStack() {
               component={SetName} 
               initialParams={{invalidName: false}}
               screenOptions={{ headerShown: false }}
+              />
+            <LoginStack.Screen
+              name="SetProfilePicture"
+              component={SetProfilePicture}
+              screenOptions={{headerShown: false}}
               />
             <LoginStack.Screen
               name="SetInstrument"

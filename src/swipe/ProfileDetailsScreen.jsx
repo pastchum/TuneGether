@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { View, Text, TouchableOpacity, StyleSheet, Dimensions } from 'react-native';
 
 //get render profile function
-import { renderProfile } from './profile_rendering/RenderProfiles';
+import { RenderProfile } from './profile_rendering/RenderProfiles';
 
 //get auth context
 import { useAuth } from '../authContext/Auth-Context';
@@ -19,7 +19,7 @@ import rejectFunction from '../match/RejectFunction';
 //get addRating function
 
 
-const { width, height } = Dimensions.get('window')
+const { width } = Dimensions.get('window')
 
 function ProfileDetailsScreen({ route, darkMode, navigation }) {
     const { matchingId } = route?.params;
@@ -80,7 +80,7 @@ function ProfileDetailsScreen({ route, darkMode, navigation }) {
         <View style={dynamicStyles.container}>
             {currentProfile ? (
                 <View style={dynamicStyles.profileContainer}>
-                    {renderProfile(currentProfile, {}, darkMode)}
+                    <RenderProfile profileData={currentProfile} darkMode={darkMode} />
                 </View>
             ) : (
                 <Text style={dynamicStyles.text}>Data not found</Text>

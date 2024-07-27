@@ -2,7 +2,7 @@ import React, { useEffect, useState, useRef, useMemo } from 'react';
 import { View, Text, TouchableOpacity, Animated, PanResponder, Dimensions, StyleSheet } from 'react-native';
 
 //get profile rendering function
-import { renderProfile } from './profile_rendering/RenderProfiles';
+import { RenderProfile } from './profile_rendering/RenderProfiles';
 
 //get auth context for current user
 import { useAuth } from '../authContext/Auth-Context';
@@ -16,8 +16,10 @@ import rejectFunction from '../match/RejectFunction';
 
 //get async last viewed fucntion 
 import { saveLastViewedProfileId, loadLastViewedProfileId } from './AsyncLastViewedProfile';
+import { FlatList, RefreshControl } from 'react-native-gesture-handler';
 
 //get sort function
+import { SortFunction } from './sorting/SortFunction';
 
 const { width, height } = Dimensions.get('window')
 
@@ -28,6 +30,10 @@ function SwipeFunction( { navigation, darkMode} ) {
 
     //refresh state
     const [refreshing, setRefreshing] = useState(false);
+
+    //set sorted parameters
+    const [sortCondition, setSortCondition] = useState([]);
+    const [sorting, setSorting] = useState(false);
 
     //get current user
     const { user, profileData } = useAuth();
@@ -78,12 +84,22 @@ function SwipeFunction( { navigation, darkMode} ) {
                 const profilesSnapshots = await profilesQuery.get();
                 
                 //filter for not swiped before
-                const newProfiles = profilesSnapshots.docs
-                    .filter(docs => !(matchedUserIds.has(docs.data().userId)))
+                let newProfiles = profilesSnapshots.docs
+                    .filter(docs => !(matchedUserIds.has(docs.data().userId)));
+
+                if (sortCondition) {
+                  console.log("Filters: " + sortCondition);
+                  newProfiles = newProfiles
+                    .filter(docs => docs.data().instrument === sortCondition);
+                }
+                
+                newProfiles = newProfiles
                     .map(doc => doc.data());
+                    console.log("New Profiles:", profilesSnapshots);
+                console.log(newProfiles)
                 setProfilesLoaded(prevProfiles => [...prevProfiles, ...newProfiles]);
                 profilesLoadedRef.current = newProfiles;
-                console.log(profilesLoadedRef.current)
+                console.log(profilesLoaded)
             }
         } catch (error) {
             console.error("Error loading profiles", error);
@@ -99,6 +115,10 @@ function SwipeFunction( { navigation, darkMode} ) {
       loadData();
     }, []);;
 
+    const onRefresh = () => {
+      loadData();
+    }
+
     const position = useRef(new Animated.ValueXY({x: startMargin, y: 10})).current;
     const [currentIndex, setCurrentIndex] = useState(0);
 
@@ -108,7 +128,14 @@ function SwipeFunction( { navigation, darkMode} ) {
           console.log("Last Viewed Profile: " + profile.name);
         }
         currProfileRef.current = profile.userId;
-        return renderProfile(profile, {}, darkMode);
+        return (
+          <RenderProfile profileData={profile} darkMode={darkMode} />
+        );
+    }
+
+    function handleSort() {
+      console.log("sort pressed. sorting: " + sorting);
+      setSorting(!sorting);
     }
 
     //on swipe left -> reject
@@ -137,10 +164,12 @@ function SwipeFunction( { navigation, darkMode} ) {
     };
 
     function onSwipeRight() {
-      match();
-      setCurrentIndex((prevIndex) => prevIndex + 1);
-      position.setValue({ x: startMargin, y: 10 });
-      console.log(currentIndex);
+      if (currProfileRef.current) {
+        match();
+        setCurrentIndex((prevIndex) => prevIndex + 1);
+        position.setValue({ x: startMargin, y: 10 });
+        console.log(currentIndex);
+      }
     }
 
     //on tap -> navigate to profile screen
@@ -207,7 +236,7 @@ function SwipeFunction( { navigation, darkMode} ) {
                 ) : null;
             } else if (index === currentIndex + 1) {
                 <View key={profile.userId} style={[styles.card, { top: 20, zIndex: -index }]}>
-                    {renderProfile(profile, {}, darkMode)}
+                    <RenderProfile profileData={profile} darkMode={darkMode}/>
                 </View>
             }
             else if (currentIndex >= profilesLoaded.length) {
@@ -217,10 +246,20 @@ function SwipeFunction( { navigation, darkMode} ) {
           })
           .reverse();
       }, [profilesLoaded, currentIndex]);
-    
-    console.log(profilesLoaded)
-    
-    return (profilesLoaded.length > 0 && currentIndex <= profilesLoaded.length) ? ( 
+        
+    return sorting ? (
+      <View>
+        <SortFunction setSortCondition={setSortCondition}/>
+        <TouchableOpacity
+          style={styles.refreshButton}
+          onPress={handleSort}
+          >
+          <View>
+            <Text style={styles.name}>Apply Filters</Text>
+          </View>
+        </TouchableOpacity>
+      </View>
+    ) : (profilesLoaded.length > 0 && currentIndex <= profilesLoaded.length) ? ( 
       <> 
         <View style={styles.container}>
             {renderCards}
@@ -228,7 +267,8 @@ function SwipeFunction( { navigation, darkMode} ) {
         <View style={styles.bottomRowButtons}>
           <View style={{flexDirection: "row"}}>
                 <TouchableOpacity
-                    style={styles.startChatButton}
+                    style={styles.bottomRowButtonsContainer}
+                    onPress={handleSort}
                     >
                     <View>
                         <Text style={styles.name}>Sort</Text>
@@ -237,7 +277,7 @@ function SwipeFunction( { navigation, darkMode} ) {
             </View>
             <View style={{flexDirection: "row"}}>
                 <TouchableOpacity
-                    style={styles.startChatButton}
+                    style={styles.bottomRowButtonsContainer}
                     onPress={onSwipeRight}
                     >
                     <View>
@@ -247,7 +287,7 @@ function SwipeFunction( { navigation, darkMode} ) {
             </View>
             <View style={{flexDirection: "row"}}>
                 <TouchableOpacity
-                    style={styles.startChatButton}
+                    style={styles.bottomRowButtonsContainer}
                     onPress={onSwipeLeft}
                     >
                     <View>
@@ -258,20 +298,42 @@ function SwipeFunction( { navigation, darkMode} ) {
         </View>
       </>
     ) : (
-      <View styles={{alignItems: "center", justifyContent: "center"}}>
-        <Text style={{margin: "auto"}}>
-          No profiles available at the moment :(
-        </Text>
+      <FlatList
+        data={[0]}
+        onRefresh={<RefreshControl refreshing={refreshing} onRefresh={onRefresh} />}
+        renderItem={() => (
+          <View styles={{
+            flex: 1,
+            marginBottom:60,
+            width: "100%",
+            height: "100%",
+            alignItems: "center", 
+            justifyContent: "center"
+            }}>
+            <Text style={styles.words}>
+              No profiles available at the moment :(
+            </Text>
 
-        <TouchableOpacity
-          style={styles.startChatButton}
-          onPress={loadData}
-          >
-          <View>
-            <Text style={styles.name}>Refresh</Text>
+            <TouchableOpacity
+              style={styles.refreshButton}
+              onPress={loadData}
+              >
+              <View>
+                <Text style={styles.name}>Refresh</Text>
+              </View>
+            </TouchableOpacity>
+
+            <TouchableOpacity
+              style={styles.refreshButton}
+              onPress={handleSort}
+              >
+              <View>
+                <Text style={styles.name}>Change filters</Text>
+              </View>
+            </TouchableOpacity>
           </View>
-        </TouchableOpacity>
-      </View>
+        )}
+        />
     );
 }
 
@@ -306,7 +368,15 @@ const styles = StyleSheet.create({
       padding: 10,
       textAlign: 'center',
     },
-    startChatButton: {
+    words: {
+      marginTop: 50,
+      fontSize: 25,
+      fontWeight: 'bold',
+      padding: 10,
+      textAlign: 'center',
+      marginBottom: 50
+    },
+    bottomRowButtonsContainer: {
       // Add your specific styles for start chat button
       backgroundColor: 'burlywood',
       padding: 0,
@@ -314,12 +384,21 @@ const styles = StyleSheet.create({
       marginBottom: 10,
       marginLeft: 10,
       marginRight: 10,
-      width: (width-60) / 3
+      width: (width - 60)/3
     },
     bottomRowButtons: {
       height: 50, 
       flexDirection: "row"
-    }
+    }, refreshButton: {
+      // Add your specific styles for start chat button
+      backgroundColor: 'burlywood',
+      padding: 0,
+      borderRadius: 60,
+      marginBottom: 30,
+      marginLeft: 70,
+      marginRight: 70,
+      width: 'auto'
+    },
   });
 
 export default SwipeFunction;

@@ -1,11 +1,13 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { ScrollView, View, Text, Image, StyleSheet } from "react-native";
-import { Styles } from "../../../assets/Styles";
 import defaultPFP from "./DefaultPFP.png";
 import { instruments } from "../../../assets/instruments/Instruments";
 import getRatings from "../../ratings/GetRatings";
+import { useAuth } from "../../authContext/Auth-Context";
 
-export const renderProfile = (profileData, additionalStyles = {}, darkMode = false) => {
+export const RenderProfile = ({ profileData, additionalStyles = {}, darkMode = false }) => {
+    const [pfp, setPfp] = useState(defaultPFP);
+
     if (!profileData) {
         return (
             <View style={styles.container}>
@@ -13,6 +15,33 @@ export const renderProfile = (profileData, additionalStyles = {}, darkMode = fal
             </View>
         );
     }
+
+    useEffect(() => {
+        const fetchAndSetPFP = async () => {
+            try {
+                if (profileData?.profilePicURL) {
+                    const response = await fetch(profileData.profilePicURL)
+                    const blob = await response.blob()
+                    const objectURL = URL.createObjectURL(blob)
+                    //set img
+                    setPfp({ uri: objectURL });
+                    console.log(objectURL);
+
+                    return () => URL.revokeObjectURL(objectURL)
+                }
+            } catch (error) {
+                try {
+                    if (profileData?.profilePicURL) {
+                        setPfp({ uri: profileData.profilePicURL });
+                    }
+                } catch (error) {
+                    console.log(error);
+                }
+            }
+        }
+
+        fetchAndSetPFP();
+    }, [profileData?.profilePicURL])
 
     console.log("Rendering profile for:", profileData.name, profileData.instrument);
 
@@ -22,17 +51,19 @@ export const renderProfile = (profileData, additionalStyles = {}, darkMode = fal
         <ScrollView style={dynamicStyles.profileContainer}>
             <View style={dynamicStyles.profileContent}>
                 <Text style={dynamicStyles.titleText}>{profileData?.name}</Text>
-                <Image source={defaultPFP} style={dynamicStyles.displayPhoto} />
+                <Image source={pfp} style={dynamicStyles.displayPhoto} />
             </View>
             {getRatings(profileData)}
             <View style={dynamicStyles.profileDetails}>
                 <Text style={dynamicStyles.subHeader}>I play</Text>
                 <Text>
-                    {profileData.instrument
+                    {Array.isArray(profileData.instrument) ?(
+                    profileData.instrument
                         .map(id => {
                             const instrument = instruments.find(instrument => id === instrument.id);
                             return instrument ? instrument.name + "\n" : "";
-                        })
+                        }) 
+                    ) : null
                     }
                 </Text>
                 <View style={dynamicStyles.moreAboutMe}>

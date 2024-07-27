@@ -1,25 +1,62 @@
-import React, { useState } from 'react';
-import { View, Text, Button, TextInput, ScrollView, Image, StyleSheet, TouchableOpacity } from 'react-native';
+import React, { useState, useEffect } from 'react';
+import { View, Text, TextInput, ScrollView, Image, StyleSheet, TouchableOpacity } from 'react-native';
 
 import FeatherIcon from 'react-native-vector-icons/Feather';
 
 //import auth context
 import { useAuth } from '../../authContext/Auth-Context';
 
-//import instrumentPicker function
-//import { instrumentPicker } from '../../login/screens/profileCreation/InstrumentPicker';
+import { selectImage } from "../../login/screens/profileCreation/ImagePicker";
+
+//for instrument selection
+import SectionedMultiSelect from 'react-native-sectioned-multi-select';
+import { instruments } from '../../../assets/instruments/Instruments';
+import Icon from 'react-native-vector-icons/MaterialIcons';
+
+import defaultPfp from "../../swipe/profile_rendering/DefaultPFP.png"
 
 function UpdateProfileScreen({ navigation, route, darkMode }) {
-    const { invalidName, invalidInstrument } = route?.params || {};
-    const { createUserProfile, user, profileData } = useAuth();
+    const { invalidName } = route?.params || {};
+    const { createUserProfile, user, profileData, uploadProfilePicture } = useAuth();
 
     const [name, setName] = useState(profileData.name);
-    const instrument = profileData.instrument;
+    const [profilePic, setProfilePic] = useState(profileData.profilePicURL
+        ? profileData.profilePicURL
+        : defaultPfp);
+    const [instrument, setInstrument] = useState(profileData.instrument);
     const [bio, setBio] = useState(profileData.bio);
 
     const dynamicStyles = styles(darkMode);
 
+    useEffect(() => {
+        const fetchAndSetPFP = async () => {
+            try {
+                if (profileData?.profilePicURL) {
+                    const response = await fetch(profileData.profilePicURL)
+                    const blob = await response.blob()
+                    const objectURL = URL.createObjectURL(blob)
+                    //set img
+                    setProfilePic({ uri: objectURL });
+                    console.log(objectURL);
+
+                    return () => URL.revokeObjectURL(objectURL)
+                }
+            } catch (error) {
+                try {
+                    if (profileData?.profilePicURL) {
+                        setProfilePic({ uri: profileData.profilePicURL });
+                    }
+                } catch (error) {
+                    console.log(error);
+                }
+            }
+        }
+
+        fetchAndSetPFP();
+    }, [profileData?.profilePicURL])
+
     return (
+
         <ScrollView contentContainerStyle={dynamicStyles.container} testID="update-profile-container">
             <View style={dynamicStyles.profile}>
                 <View style={dynamicStyles.profileAvatarContainer}>
@@ -27,9 +64,12 @@ function UpdateProfileScreen({ navigation, route, darkMode }) {
                         source={require('../../../assets/pictures/profile.png')}
                         style={dynamicStyles.profileAvatar} />
                     <TouchableOpacity
+
                         style={dynamicStyles.cameraButton}
-                        onPress={() => {
-                            // handle onPress
+                        onPress={async () => {
+                            const imagePath = await selectImage();
+                            setProfilePic(imagePath);
+                            console.log("setting picture: " + profilePic);
                           }}
                     >
                         <View style={dynamicStyles.cameraIconBackground}>
@@ -43,6 +83,7 @@ function UpdateProfileScreen({ navigation, route, darkMode }) {
                     <FeatherIcon color="#fff" name="edit" size={16} />
                 </View>
             </View>
+
             
             <View style={dynamicStyles.inputContainer}>
                 <Text style={dynamicStyles.label}>Enter your name</Text>
@@ -57,8 +98,24 @@ function UpdateProfileScreen({ navigation, route, darkMode }) {
 
             <View style={dynamicStyles.inputContainer}>
                 <Text style={dynamicStyles.label}>What instruments do you play?</Text>
-                {/* Implement instrument picker here */}
-                {invalidInstrument && <Text style={dynamicStyles.errorText}>You must select at least one instrument</Text>}
+                <SectionedMultiSelect
+                    items={instruments}
+                    IconRenderer={Icon}
+                    uniqueKey="id"
+                    onSelectedItemsChange={setInstrument}
+                    selectedItems={instrument}
+                    selectText="Choose some instruments..."
+                    searchPlaceholderText="Search instruments..."
+                    modalAnimationType="slide"
+                    colors={{primary: 'burlywood'}}
+                    styles={{
+                        backdrop: styles.multiSelectBackdrop,
+                        selectToggle: styles.multiSelectBox,
+                        chipContainer: styles.multiSelectChipContainer,
+                        chipText: styles.multiSelectChipText,
+                    }}
+                />
+                {!instrument && <Text style={dynamicStyles.errorText}>You must select at least one instrument</Text>}
             </View>
 
             <View style={dynamicStyles.inputContainer}>
@@ -84,6 +141,7 @@ function UpdateProfileScreen({ navigation, route, darkMode }) {
                     }
                 }}
             />
+
         </ScrollView>
     );
 }
@@ -151,7 +209,43 @@ const styles = (darkMode) => StyleSheet.create({
     errorText: {
         color: 'red',
         marginTop: 5,
-    }
+    },
+    multiSelectBackdrop: {
+        backgroundColor: 'rgba(255, 183, 0, 0.2)',
+    },
+    multiSelectBox: {
+        borderWidth: 1,
+        borderRadius: 8,
+        borderColor: '#bbb',
+        padding: 12,
+        marginBottom: 12
+    },
+    multiSelectChipContainer: {
+        borderWidth: 0,
+        backgroundColor: 'burlywood',
+        borderRadius: 8
+    },
+    multiSelectChipText: {
+        color: '#222',
+        fontSize: 14.5
+    },
+    button: {
+        backgroundColor: 'burlywood',
+        padding: 0,
+        borderRadius: 60,
+        marginBottom: 10,
+        marginLeft: 10,
+        marginRight: 10,
+        width: 180,
+        height: 40,
+        alignItems:'center',
+        justifyContent: 'center'
+    },
+    buttonText: {
+        color: 'black',
+        fontSize: 16,
+        fontWeight: '700'
+    },
 });
 
 export default UpdateProfileScreen;

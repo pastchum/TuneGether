@@ -1,9 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import { View, FlatList, Text, TouchableOpacity, StyleSheet, RefreshControl } from 'react-native';
-import { useCollectionData } from 'react-firebase-hooks/firestore';
 import firestore from '@react-native-firebase/firestore'
 import { useAuth } from '../../authContext/Auth-Context';
-import { renderProfileBar } from '../../swipe/profile_rendering/RenderProfileBar';
+import { RenderProfileBar } from '../../swipe/profile_rendering/RenderProfileBar';
 
 function ProfileList({ navigation, darkMode }) {
     const [friends, setFriends] = useState([]);
@@ -62,7 +61,7 @@ function ProfileList({ navigation, darkMode }) {
 
     const renderProfileItem = ({ item }) => (
         <TouchableOpacity key={item.userId} style={dynamicStyles.profileItem} onPress={() => handleProfilePress(item)}>
-            {renderProfileBar(item)}
+            <RenderProfileBar profileData={item} />
         </TouchableOpacity>
     );
 
@@ -76,11 +75,19 @@ function ProfileList({ navigation, darkMode }) {
                     refreshControl={<RefreshControl refreshing={refreshing} onRefresh={onRefresh} />}
                 />
             ) : (
-                <View>
-                    <Text style={dynamicStyles.text}>
-                        No friends here. Go find some through swiping!
-                    </Text>
-                </View>
+                <FlatList
+                    data={[1]}
+                    renderItem={() => (
+                    <View style={{margin: "auto", marginTop: 20, alignItems: "center"}}>
+                        <Text style={dynamicStyles.text}>
+                            No friends here :(
+                        </Text> 
+                        <Text style={dynamicStyles.text}>
+                            Go find some through swiping!
+                        </Text>
+                    </View>)}
+                    refreshControl={<RefreshControl refreshing={refreshing} onRefresh={onRefresh} />}
+                />
             )}
         </View>
     );
@@ -98,6 +105,8 @@ const styles = (darkMode) => StyleSheet.create({
         borderBottomColor: darkMode ? '#444' : '#ccc',
     },
     text: {
+        fontFamily: "roboto",
+        fontWeight: "700",
         color: darkMode ? '#fff' : '#000',
     },
 });
