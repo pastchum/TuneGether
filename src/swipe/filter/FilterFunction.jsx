@@ -4,13 +4,13 @@ import SectionedMultiSelect from "react-native-sectioned-multi-select";
 import Icon from 'react-native-vector-icons/MaterialIcons';
 import { instruments } from "../../../assets/instruments/Instruments";
 
-export function SortFunction({ setSortCondition }) {
-    console.log("sort running");
+export function FilterFunction({ setFilterCondition, filterCondtion}) {
+    console.log("Filter running");
     const [selectedItems, setSelectedItems] = useState([]);
 
     useEffect(() => {
-      setSortCondition(selectedItems);
-    }, [selectedItems])
+      setFilterCondition(selectedItems);
+    }, [selectedItems, setFilterCondition]);
 
     return (
         <SectionedMultiSelect
@@ -32,6 +32,15 @@ export function SortFunction({ setSortCondition }) {
           }}
         />
     )
+}
+
+export function containsInstruments(instrumentsArray, filterArray) {
+  if (!filterArray || filterArray.length === 0) {
+    console.log("no filter")
+    return true;
+  }
+
+  return filterArray.every(filterItem => instrumentsArray.includes(filterItem));
 }
 
 const styles = StyleSheet.create({

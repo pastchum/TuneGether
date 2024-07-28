@@ -1,5 +1,5 @@
-import React from 'react';
-import { View, Text, StyleSheet } from 'react-native';
+import React, { useState } from 'react';
+import { View, Text, StyleSheet, FlatList, RefreshControl } from 'react-native';
 
 //get render profile function
 import { RenderProfile } from '../../swipe/profile_rendering/RenderProfiles';
@@ -8,23 +8,48 @@ import { RenderProfile } from '../../swipe/profile_rendering/RenderProfiles';
 import { useAuth } from '../../authContext/Auth-Context';
 
 function ProfileScreen({ darkMode }) {
-    const { profileData } = useAuth();
+    const { profileData, fetchUserProfile, user } = useAuth();
+
+    const [refreshing, setRefreshing] = useState(false);
 
     const dynamicStyles = styles(darkMode);
     const additionalStyles = {
         displayPhoto: { width: 150, height: 150, borderRadius: 80 }
     };
 
+    const loadData = async () => {
+        setRefreshing(true);
+        try {
+            await fetchUserProfile(user)
+        } catch (error) {
+            console.error(error);
+        } finally {
+            setRefreshing(false)
+        };
+    }
+
+    function onRefresh() {
+        loadData();
+    }
+
     return (
-        <View style={dynamicStyles.container} testID="profile-container">
-            {profileData ? (
-                <View style={dynamicStyles.profileContainer}>
-                    <RenderProfile profileData={profileData} additionalStyles={additionalStyles} darkMode={darkMode} />
+        <FlatList 
+            data={[1]}
+            renderItem={() => (
+                <View style={dynamicStyles.container}>
+                    {profileData ? (
+                        <View style={dynamicStyles.profileContainer}>
+                            <RenderProfile profileData={profileData} additionalStyles={additionalStyles} darkMode={darkMode} />
+                        </View>
+                    ) : (
+                        <Text style={dynamicStyles.dataNotFound}>data not found</Text>
+                    )}
                 </View>
-            ) : (
-                <Text style={dynamicStyles.dataNotFound}>data not found</Text>
             )}
-        </View>
+            refreshControl={
+                <RefreshControl refreshing={refreshing} onRefresh={onRefresh} />
+            }
+            />
     );
 }
 

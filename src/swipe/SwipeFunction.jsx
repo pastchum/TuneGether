@@ -18,12 +18,12 @@ import rejectFunction from '../match/RejectFunction';
 import { saveLastViewedProfileId, loadLastViewedProfileId } from './AsyncLastViewedProfile';
 import { FlatList, RefreshControl } from 'react-native-gesture-handler';
 
-//get sort function
-import { SortFunction } from './sorting/SortFunction';
+//get filter function
+import { FilterFunction, containsInstruments } from './filter/FilterFunction';
 
 const { width, height } = Dimensions.get('window')
 
-function SwipeFunction( { navigation, darkMode} ) {
+function SwipeFunction( { navigation, darkMode } ) {
     //set current profile for rendering
     const [profilesLoaded, setProfilesLoaded] = useState([]);
     const profilesLoadedRef = useRef([]);
@@ -31,9 +31,9 @@ function SwipeFunction( { navigation, darkMode} ) {
     //refresh state
     const [refreshing, setRefreshing] = useState(false);
 
-    //set sorted parameters
-    const [sortCondition, setSortCondition] = useState([]);
-    const [sorting, setSorting] = useState(false);
+    //set filtered parameters
+    const [filterCondition, setFilterCondition] = useState([]);
+    const [filtering, setFiltering] = useState(false);
 
     //get current user
     const { user, profileData } = useAuth();
@@ -46,6 +46,8 @@ function SwipeFunction( { navigation, darkMode} ) {
     const startMargin = width * 0.05;
     const profilesPerLoad = 20;
 
+    
+  
     //logic for loading data
     const loadData = async() => {
         setRefreshing(true);
@@ -71,35 +73,40 @@ function SwipeFunction( { navigation, darkMode} ) {
                                             .orderBy('userId')
                                             .limit(profilesPerLoad);
 
+                
                 const lastViewedProfileId = await loadLastViewedProfileId();
                      
-                const currentProfile = await firestore().collection('users')
+                if (lastViewedProfileId) {
+                  const currentProfile = await firestore().collection('users')
                                         .doc(lastViewedProfileId)
                                         .get();
-                if (currentProfile.exists) {
-                  profilesQuery = profilesQuery
-                                    .startAfter(currentProfile);
+                  if (currentProfile.exists) {
+                    profilesQuery = profilesQuery
+                                      .startAfter(currentProfile);
+                  }
                 }
                                           
                 const profilesSnapshots = await profilesQuery.get();
-                
+
+                if (profilesSnapshots.docs.length < profilesPerLoad) {
+                  saveLastViewedProfileId(""); 
+                  console.log("End of profile list reached, resetting pagination.");
+                } 
+
                 //filter for not swiped before
                 let newProfiles = profilesSnapshots.docs
-                    .filter(docs => !(matchedUserIds.has(docs.data().userId)));
+                    .filter(doc => !(matchedUserIds.has(doc.data().userId)));
 
-                if (sortCondition) {
-                  console.log("Filters: " + sortCondition);
-                  newProfiles = newProfiles
-                    .filter(docs => docs.data().instrument === sortCondition);
-                }
-                
+                console.log("Filters: " + filterCondition);
                 newProfiles = newProfiles
-                    .map(doc => doc.data());
-                    console.log("New Profiles:", profilesSnapshots);
-                console.log(newProfiles)
+                  .filter(doc => containsInstruments(doc.data().instrument, filterCondition))
+                  .map(doc => doc.data());
                 setProfilesLoaded(prevProfiles => [...prevProfiles, ...newProfiles]);
                 profilesLoadedRef.current = newProfiles;
-                console.log(profilesLoaded)
+                console.log("instruments: " + 
+                    profilesLoadedRef.current.map(doc => 
+                      doc.name + 
+                      doc.instrument + " "));
             }
         } catch (error) {
             console.error("Error loading profiles", error);
@@ -112,8 +119,9 @@ function SwipeFunction( { navigation, darkMode} ) {
 
     //effect to load data
     useEffect(() => {
+      console.log("Current filter: " + filterCondition)
       loadData();
-    }, []);;
+    }, [filterCondition]);
 
     const onRefresh = () => {
       loadData();
@@ -133,9 +141,8 @@ function SwipeFunction( { navigation, darkMode} ) {
         );
     }
 
-    function handleSort() {
-      console.log("sort pressed. sorting: " + sorting);
-      setSorting(!sorting);
+    function handleFilter() {
+      setFiltering(!filtering);
     }
 
     //on swipe left -> reject
@@ -168,7 +175,6 @@ function SwipeFunction( { navigation, darkMode} ) {
         match();
         setCurrentIndex((prevIndex) => prevIndex + 1);
         position.setValue({ x: startMargin, y: 10 });
-        console.log(currentIndex);
       }
     }
 
@@ -235,9 +241,11 @@ function SwipeFunction( { navigation, darkMode} ) {
                     </Animated.View>
                 ) : null;
             } else if (index === currentIndex + 1) {
+              return (
                 <View key={profile.userId} style={[styles.card, { top: 20, zIndex: -index }]}>
                     <RenderProfile profileData={profile} darkMode={darkMode}/>
                 </View>
+              )
             }
             else if (currentIndex >= profilesLoaded.length) {
                 loadData();
@@ -247,12 +255,15 @@ function SwipeFunction( { navigation, darkMode} ) {
           .reverse();
       }, [profilesLoaded, currentIndex]);
         
-    return sorting ? (
+    return filtering ? (
       <View>
-        <SortFunction setSortCondition={setSortCondition}/>
+        <FilterFunction 
+          setFilterCondition={setFilterCondition} 
+          filterCondition={filterCondition} 
+        />
         <TouchableOpacity
           style={styles.refreshButton}
-          onPress={handleSort}
+          onPress={handleFilter}
           >
           <View>
             <Text style={styles.name}>Apply Filters</Text>
@@ -268,10 +279,10 @@ function SwipeFunction( { navigation, darkMode} ) {
           <View style={{flexDirection: "row"}}>
                 <TouchableOpacity
                     style={styles.bottomRowButtonsContainer}
-                    onPress={handleSort}
+                    onPress={handleFilter}
                     >
                     <View>
-                        <Text style={styles.name}>Sort</Text>
+                        <Text style={styles.name}>Filter</Text>
                     </View>
                 </TouchableOpacity>
             </View>
@@ -325,7 +336,7 @@ function SwipeFunction( { navigation, darkMode} ) {
 
             <TouchableOpacity
               style={styles.refreshButton}
-              onPress={handleSort}
+              onPress={handleFilter}
               >
               <View>
                 <Text style={styles.name}>Change filters</Text>

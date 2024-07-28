@@ -32,23 +32,10 @@ function UpdateProfileScreen({ navigation, route, darkMode }) {
         const fetchAndSetPFP = async () => {
             try {
                 if (profileData?.profilePicURL) {
-                    const response = await fetch(profileData.profilePicURL)
-                    const blob = await response.blob()
-                    const objectURL = URL.createObjectURL(blob)
-                    //set img
-                    setProfilePic({ uri: objectURL });
-                    console.log(objectURL);
-
-                    return () => URL.revokeObjectURL(objectURL)
+                    setProfilePic({ uri: profileData.profilePicURL });
                 }
             } catch (error) {
-                try {
-                    if (profileData?.profilePicURL) {
-                        setProfilePic({ uri: profileData.profilePicURL });
-                    }
-                } catch (error) {
-                    console.log(error);
-                }
+                console.log(error);
             }
         }
 

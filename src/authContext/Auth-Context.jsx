@@ -130,6 +130,38 @@ export const AuthProvider = ({ children }) => {
             console.error(error)
         }
     }
+    
+    //upload group/band picture
+    const uploadChatPicture = async(id, profilePicturePath) => {
+        try {
+            let storageRef = storage().ref();
+            let imageName = id + "_profilePic";
+            let imagesRef = storageRef.child(`images/groups/${id}/${imageName}`);
+
+            const response = await fetch(profilePicturePath);
+            const blob = await response.blob();
+
+            imagesRef
+                .put(blob)
+                .then((snapshot) => {
+                    console.log("uploaded an image.");      
+                })
+            setTimeout(()=> {}, 500);
+            
+            const downloadURL = await imagesRef.getDownloadURL();
+            
+                
+            firestore().collection('groupchat')
+                .doc(id)
+                .update({
+                    profilePicURL: downloadURL
+                }).then(
+                    console.log("URL updated")
+                );
+        } catch (error) {
+            console.error(error)
+        }
+    }
 
     // context object:
     const value = {
@@ -144,6 +176,7 @@ export const AuthProvider = ({ children }) => {
         createUserProfile,
         addProfileData,
         uploadProfilePicture,
+        uploadChatPicture,
     };
 
     return (

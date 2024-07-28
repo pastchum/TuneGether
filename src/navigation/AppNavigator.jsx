@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import BottomNavBar from "./BottomNavBar";
 import LoginStackScreen from '../login/LoginScreenStack'
@@ -9,8 +9,12 @@ import { useAuth } from "../authContext/Auth-Context";
 const AppNavigationStack = createNativeStackNavigator();
 
 function AppNavigator() {
-  const { user, profileData } = useAuth();
+  const { user, profileData, fetchUserProfile } = useAuth();
   const [darkMode, setDarkMode] = useState(false);  // Manage dark mode state here
+
+  useEffect(() => {
+    fetchUserProfile(user);
+  }, [user])
 
   return (
     <AppNavigationStack.Navigator screenOptions={{ headerShown: false }}>
