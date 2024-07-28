@@ -1,33 +1,39 @@
 import React from "react";
-import { View, Text } from "react-native"
+import { View, Text, StyleSheet } from "react-native"
 
-const getRatings = (profileData) => {
-    try {
-        //check for ratings
-        if (profileData) {
-            const rating = profileData.rating;
-            const numberOfRates = profileData.numberOfRates;
+const GetRatings = ({ rating, additionalStyles, darkMode }) => {
+    const dynamicStyles = createStyles(additionalStyles, darkMode);
 
-            if (rating === undefined || numberOfRates === undefined || numberOfRates === 0 ) {
-                return (
-                    <View>
-                        <Text>
-                            No ratings yet
-                        </Text>
-                    </View>
-                )
-            } else {
-                return (
-                    <View>
-                        <Text>Rating: </Text>
-                        <Text>{rating}/5</Text>
-                    </View>
-                )
-            }
-        } 
-    } catch (error) {
+    const totalStars = 5;
+    const validRating = typeof rating === 'number' && rating >= 0 && rating <= 5 ? rating : 0;
+    const filledStars = Math.round(validRating);
+    const emptyStars = totalStars - filledStars;
 
-    }
+    return (
+        <View style={dynamicStyles.starContainer}>
+            {Array(filledStars).fill().map((_, index) => (
+                <Text key={`filled-${index}`} style={dynamicStyles.filledStar}>★</Text>
+            ))}
+            {Array(emptyStars).fill().map((_, index) => (
+                <Text key={`empty-${index}`} style={dynamicStyles.emptyStar}>☆</Text>
+            ))}
+        </View>
+    );
 }
 
-export default getRatings;
+const createStyles = (additionalStyles, darkMode) => StyleSheet.create({
+    starContainer: {
+        flexDirection: 'row',
+    },
+    filledStar: {
+        fontSize: 36, // Increased font size
+        color: 'burlywood'
+        
+    },
+    emptyStar: {
+        fontSize: 36, // Increased font size
+        color: 'black'
+    },
+})
+
+export default GetRatings;

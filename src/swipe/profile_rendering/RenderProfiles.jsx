@@ -2,8 +2,8 @@ import React, { useEffect, useState } from "react";
 import { ScrollView, View, Text, Image, StyleSheet } from "react-native";
 import defaultPFP from "./DefaultPFP.png";
 import { instruments } from "../../../assets/instruments/Instruments";
-import getRatings from "../../ratings/GetRatings";
 import { useAuth } from "../../authContext/Auth-Context";
+import GetRatings from "../../ratings/GetRatings";
 
 export const RenderProfile = ({ profileData, additionalStyles = {}, darkMode = false }) => {
     const [pfp, setPfp] = useState(defaultPFP);
@@ -20,23 +20,10 @@ export const RenderProfile = ({ profileData, additionalStyles = {}, darkMode = f
         const fetchAndSetPFP = async () => {
             try {
                 if (profileData?.profilePicURL) {
-                    const response = await fetch(profileData.profilePicURL)
-                    const blob = await response.blob()
-                    const objectURL = URL.createObjectURL(blob)
-                    //set img
-                    setPfp({ uri: objectURL });
-                    console.log(objectURL);
-
-                    return () => URL.revokeObjectURL(objectURL)
+                    setPfp({ uri: profileData.profilePicURL });
                 }
             } catch (error) {
-                try {
-                    if (profileData?.profilePicURL) {
-                        setPfp({ uri: profileData.profilePicURL });
-                    }
-                } catch (error) {
-                    console.log(error);
-                }
+                console.log(error);
             }
         }
 
@@ -53,16 +40,23 @@ export const RenderProfile = ({ profileData, additionalStyles = {}, darkMode = f
                 <Text style={dynamicStyles.titleText}>{profileData?.name}</Text>
                 <Image source={pfp} style={dynamicStyles.displayPhoto} />
             </View>
-            {getRatings(profileData)}
+            <View style={dynamicStyles.ratingContainer}>
+                <Text style={dynamicStyles.subHeader}>Rating</Text>
+                <GetRatings 
+                    rating={profileData.rating} 
+                    additionalStyles={additionalStyles}
+                    darkMode={darkMode}
+                />
+            </View>
             <View style={dynamicStyles.profileDetails}>
                 <Text style={dynamicStyles.subHeader}>I play</Text>
                 <Text>
-                    {Array.isArray(profileData.instrument) ?(
+                    {Array.isArray(profileData.instrument) ? (
                     profileData.instrument
                         .map(id => {
                             const instrument = instruments.find(instrument => id === instrument.id);
                             return instrument ? instrument.name + "\n" : "";
-                        }) 
+                        })
                     ) : null
                     }
                 </Text>
@@ -89,8 +83,14 @@ const createStyles = (additionalStyles, darkMode) => StyleSheet.create({
         alignItems: 'center',
         ...additionalStyles.profileContent,
     },
+    ratingContainer: {
+        justifyContent: 'center',
+        alignItems: 'center',
+        marginVertical: 5, // Reduced margin
+        ...additionalStyles.ratingContainer,
+    },
     profileDetails: {
-        marginTop: 30,
+        marginTop: 15, // Reduced margin
         marginLeft: 30,
         marginBottom: 30,
         ...additionalStyles.profileDetails,
@@ -118,6 +118,18 @@ const createStyles = (additionalStyles, darkMode) => StyleSheet.create({
         marginBottom: 10,
         ...additionalStyles.subHeader,
     },
+    starContainer: {
+        flexDirection: 'row',
+    },
+    filledStar: {
+        fontSize: 36, // Increased font size
+        color: 'burlywood'
+        
+    },
+    emptyStar: {
+        fontSize: 36, // Increased font size
+        color: 'black'
+    },
     container: {
         flex: 1,
         justifyContent: 'center',
@@ -125,3 +137,5 @@ const createStyles = (additionalStyles, darkMode) => StyleSheet.create({
         ...additionalStyles.container,
     },
 });
+
+export default RenderProfile;

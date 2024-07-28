@@ -2,10 +2,10 @@ import React, { useEffect, useState } from 'react';
 import { View, FlatList, Text, TouchableOpacity, StyleSheet, RefreshControl } from 'react-native';
 import firestore from '@react-native-firebase/firestore'
 import { useAuth } from '../../authContext/Auth-Context';
-import { RenderProfileBar } from '../../swipe/profile_rendering/RenderProfileBar';
+import { RenderChatBar } from './RenderChatBar';
 
-function ProfileList({ navigation, darkMode }) {
-    const [friends, setFriends] = useState([]);
+function GroupChatList({ navigation, darkMode }) {
+    const [chats, setChats] = useState([]);
     const [refreshing, setRefreshing] = useState(false);
     const { user } = useAuth();
     const dynamicStyles = styles(darkMode);
@@ -16,29 +16,20 @@ function ProfileList({ navigation, darkMode }) {
         try {
             if (user) {
                 // Fetch profiles
-                const profilesSnapshots = await firestore().collection('users').where('userId', '!=', user.uid).get();
-                // Fetch matches
-                const matches = await firestore().collection('matches')
-                    .where('status', '==', "matched")
-                    .get();
-                const matchedUserIds = new Set(matches.docs.map(match => {
-                    if (match.data().user1Id === user.uid) return match.data().user2Id;
-                    else if (match.data().user2Id === user.uid) return match.data().user1Id;
-                    else return "";
-                }).filter(id => id !== ""));
+                const groupChatSnapshots = await firestore().collection('groupchats')
+                    .where('users', 'array-contains', user.uid).get();
                 
-                console.log(matchedUserIds);
+                console.log(groupChatSnapshots);
 
                 // Filter
-                const friendsData = profilesSnapshots.docs
-                    .filter(doc => doc.data().userId !== user.uid)
-                    .filter(doc => matchedUserIds.has(doc.data().userId))
-                    .map(doc => ({ ...doc.data(), id: doc.id }));
+                const chatsData = groupChatSnapshots.docs
+                    .map(doc => ({ ...doc.data(), id: doc.chatId }));
+                console.log(chatsData);
 
-                setFriends(friendsData);
+                setChats(chatsData);
             }
         } catch (error) {
-            console.error("Error loading friends", error);
+            console.error("Error loading chats", error);
             throw error;
         } finally {
             setRefreshing(false);
@@ -55,23 +46,23 @@ function ProfileList({ navigation, darkMode }) {
         loadData();
     }, []);
 
-    const handleProfilePress = (profile) => {
-        navigation.navigate('Chat', { userId: profile.userId });
+    const handleChatPress = (chat) => {
+        navigation.navigate('GroupChat', { chatId: chat.chatId });
     };
 
-    const renderProfileItem = ({ item }) => (
-        <TouchableOpacity key={item.userId} style={dynamicStyles.profileItem} onPress={() => handleProfilePress(item)}>
-            <RenderProfileBar profileData={item} darkMode={darkMode} />
+    const renderChatItem = ({ item }) => (
+        <TouchableOpacity key={item.chatId} style={dynamicStyles.profileItem} onPress={() => handleChatPress(item)}>
+            <RenderChatBar chatData={item} />
         </TouchableOpacity>
     );
 
     return (
         <View style={dynamicStyles.container}>
-            {friends.length > 0 ? (
+            {chats.length > 0 ? (
                 <FlatList
-                    data={friends}
-                    renderItem={renderProfileItem}
-                    keyExtractor={(item) => item.userId}
+                    data={chats}
+                    renderItem={renderChatItem}
+                    keyExtractor={(item) => item.chatId}
                     refreshControl={<RefreshControl refreshing={refreshing} onRefresh={onRefresh} />}
                 />
             ) : (
@@ -80,11 +71,14 @@ function ProfileList({ navigation, darkMode }) {
                     renderItem={() => (
                     <View style={{margin: "auto", marginTop: 20, alignItems: "center"}}>
                         <Text style={dynamicStyles.text}>
-                            No friends here :(
+                            No chats :(
                         </Text> 
-                        <Text style={dynamicStyles.text}>
-                            Go find some through swiping!
-                        </Text>
+                        <TouchableOpacity 
+                            onPress={() => {}}>
+                            <Text style={dynamicStyles.text}>
+                                Create one now
+                            </Text>
+                        </TouchableOpacity>
                     </View>)}
                     refreshControl={<RefreshControl refreshing={refreshing} onRefresh={onRefresh} />}
                 />
@@ -111,4 +105,4 @@ const styles = (darkMode) => StyleSheet.create({
     },
 });
 
-export default ProfileList;
+export default GroupChatList;
