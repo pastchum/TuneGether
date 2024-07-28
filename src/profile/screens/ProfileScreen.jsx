@@ -50,7 +50,6 @@ function ProfileScreen({ darkMode }) {
                 <RefreshControl refreshing={refreshing} onRefresh={onRefresh} />
             }
             />
-
     );
 }
 

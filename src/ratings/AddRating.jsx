@@ -24,6 +24,7 @@ const addRating = async (profileData, rating, userId) => {
     } catch (error) {
         console.error('Error updating rating: ', error);
         throw error;
+
     }
 };
 
