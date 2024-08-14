@@ -88,6 +88,7 @@ function ProfileDetailsScreen({ route, darkMode, navigation }) {
     setSelectedRating(rating);
     addRating(currentProfile, rating, userId); // Call the updated addRating function with the userId
     setModalVisible(false);
+    loadData();
   };
 
   const onRefresh = () => {
@@ -171,6 +172,7 @@ function ProfileDetailsScreen({ route, darkMode, navigation }) {
         visible={modalVisible}
         onRequestClose={() => {
           setModalVisible(!modalVisible);
+          loadData();
         }}
       >
         <View style={dynamicStyles.modalContainer}>
@@ -178,7 +180,12 @@ function ProfileDetailsScreen({ route, darkMode, navigation }) {
             <Text style={dynamicStyles.modalText}>Rate this user</Text>
             <View style={dynamicStyles.starsContainer}>
               {[1, 2, 3, 4, 5].map((star) => (
-                <TouchableOpacity key={star} onPress={() => handleRating(star)}>
+                <TouchableOpacity
+                  key={star}
+                  onPress={() => {
+                    handleRating(star);
+                  }}
+                >
                   <Text style={dynamicStyles.star}>
                     {star <= selectedRating ? "★" : "☆"}
                   </Text>
@@ -187,7 +194,10 @@ function ProfileDetailsScreen({ route, darkMode, navigation }) {
             </View>
             <TouchableOpacity
               style={dynamicStyles.closeButton}
-              onPress={() => setModalVisible(!modalVisible)}
+              onPress={() => {
+                setModalVisible(!modalVisible);
+                loadData();
+              }}
             >
               <Text style={dynamicStyles.textStyle}>Close</Text>
             </TouchableOpacity>
